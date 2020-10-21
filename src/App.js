@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import ProfilePicture from './components/ProfilePicture';
 import Navbar from './components/Navbar';
 import ProfileInfo from './components/ProfileInfo';
-
+import './style/app.css';
 
 
 function App() {
@@ -11,12 +11,16 @@ function App() {
   return (
     <Container fluid>
       <Row>
-        <Col>
+        <Col xs={5}>
           <ProfilePicture />
         </Col>
         <Col>
-          <Navbar />
-          <ProfileInfo />
+          <div className="navBar">
+            <Navbar />
+          </div>
+          <div className="profile">
+            <ProfileInfo />
+          </div>
         </Col>
       </Row>
     </Container>

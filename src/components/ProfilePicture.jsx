@@ -1,19 +1,14 @@
 import React from 'react';
-
-// const divStyle = {
-//   width: 33px
-// };
+import '../style/profilePicture.css';
 
 class ProfilePicture extends React.Component {
 
-  // constructor(){
-  //
-  // }
-
   render() {
     return (
-      <div>
-        Picture goes here
+      <div className="pictureColumn">
+        <div className="backgroundBox"></div>
+        <img src={process.env.PUBLIC_URL + '/img/image2.jpg'} alt="something"/>
+        <div className="line"></div>
       </div>
     );
   }

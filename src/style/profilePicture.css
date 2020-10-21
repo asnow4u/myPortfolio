@@ -1,0 +1,39 @@
+
+.pictureColumn {
+
+}
+
+.backgroundBox {
+  /* position: absolute;
+  z-index: -1;
+  height: 50vh;
+  width: 50vh;
+  top: 11vh;
+  left: 23vh;
+  background-color: blue; */
+}
+
+img {
+  display: inline;
+  height: 70%;
+  width: 70%;
+  clip-path:polygon(0% 0%, 94% 0%, 68% 100%, 0% 100%);
+  box-shadow: inset -50vh 50vh black;
+
+  position: relative;
+  top: -60vh;
+  left: 27vh;
+}
+
+.line {
+  display: inline-block;
+  width: 0%;
+  height: 110vh;
+  border-right: 4vh solid;
+  border-color: rgb(204, 197, 0);
+  transform: rotate(10deg);
+
+  position: relative;
+  top: -2vh;
+  left: 15vh;
+}

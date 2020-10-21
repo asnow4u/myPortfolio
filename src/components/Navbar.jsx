@@ -1,10 +1,8 @@
 import React from 'react';
+import '../style/navbar.css';
 
 class Navbar extends React.Component {
 
-  // constructor(){
-  //
-  // }
 
   render() {
     return (
