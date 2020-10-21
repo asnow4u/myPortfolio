@@ -1,25 +1,46 @@
 .profileInfoDiv {
-  /* text-align: center; */
-  padding-top: 3vw;
+  padding-top: 5vw;
   padding-left: 2vw;
 }
 
-.firstName {
-  font-size: 8vw;
-  color: rgb(0, 0, 0);
+.hello {
+  font-size: 7vw;
+  color: rgb(204, 197, 0);
+  text-shadow: 2px 2px 8px black;
 }
 
-.lastName {
-  font-size: 8vw;
+.name {
+  font-size: 7vw;
   position: relative;
-  left: 20vw;
-  color: rgb(0, 0, 0);
+  left: 4vw;
+  /* top: 0vw */
+  color: rgb(204, 197, 0);
+  text-shadow: 2px 2px 8px black;
 }
 
-.profileBlog {
+.job {
+  font-size: 5.5vw;
+  position: relative;
+  left: 8vw;
+  top: 2vw;
+  color: rgb(204, 197, 0);
+  text-shadow: 2px 2px 8px black;
+}
+
+
+/* .profileBlog {
   margin-right: 6vw;
   padding-top: 5vw;
   padding-right: 6vw;
   font-size: 1.5vw;
-  color: rgb(0, 0, 0);
-}
+  color: rgb(204, 197, 0);
+  text-shadow: 2px 2px 8px black;
+} */
+
+
+/* <h1 className="firstName">Andrew</h1>
+<h1 className="lastName">Snow</h1>
+<div className="profileBlog">
+  <p>
+  </p>
+</div> */

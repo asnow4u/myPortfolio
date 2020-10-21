@@ -1,24 +1,21 @@
 
-.pictureColumn {
-
-}
-
 .backgroundBox {
-  /* position: absolute;
+  position: absolute;
   z-index: -1;
-  height: 50vh;
-  width: 50vh;
-  top: 11vh;
-  left: 23vh;
-  background-color: blue; */
+  height: 93vh;
+  width: 66vh;
+  top: 3vh;
+  left: 18vh;
+  /* background: rgba(40, 40, 40, 1); */
+  background: black;
+  clip-path:polygon(15% 0%, 94% 0%, 68% 100%, 0% 100%);
 }
 
-img {
+.profilePicture {
   display: inline;
   height: 70%;
   width: 70%;
   clip-path:polygon(0% 0%, 94% 0%, 68% 100%, 0% 100%);
-  box-shadow: inset -50vh 50vh black;
 
   position: relative;
   top: -60vh;

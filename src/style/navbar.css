@@ -1,0 +1,39 @@
+
+.navDiv {
+  padding-top: 3vw;
+  padding-left: 1vw;
+}
+
+.button {
+  border: none;
+  color: black;
+  background-color: rgb(204, 197, 0);
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+  font-size: 1.5vw;
+  font-weight: bold;
+  text-align: center;
+  width: 3vw;
+  outline: none;
+}
+
+.homeButton:hover {
+  color: rgb(204, 197, 0);
+  background-color: black;
+}
+
+.projectButton:hover {
+  color: rgb(204, 197, 0);
+  background-color: black;
+}
+
+.contactButton:hover {
+  color: rgb(204, 197, 0);
+  background-color: black;
+}
+
+.linkImage {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}

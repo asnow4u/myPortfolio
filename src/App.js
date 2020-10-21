@@ -15,11 +15,13 @@ function App() {
           <ProfilePicture />
         </Col>
         <Col>
-          <div className="navBar">
-            <Navbar />
-          </div>
           <div className="profile">
             <ProfileInfo />
+          </div>
+        </Col>
+        <Col xs={1}>
+          <div className="navBar">
+            <Navbar />
           </div>
         </Col>
       </Row>
