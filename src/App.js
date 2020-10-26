@@ -4,6 +4,8 @@ import { Switch, Route} from 'react-router-dom';
 import ProfilePicture from './components/ProfilePicture';
 import Navbar from './components/Navbar';
 import ProfileInfo from './components/ProfileInfo';
+import ContactInfo from './components/ContactInfo';
+import Resume from './components/Resume';
 import './style/app.css';
 
 
@@ -17,8 +19,14 @@ function App() {
 
           </Route>
 
-          <Route path = "/contact">
-
+          <Route path = "/aboutme">
+            <Col xs={3}>
+              <div className="backgroundBar"></div>
+              <ContactInfo />
+            </Col>
+            <Col>
+              <Resume />
+            </Col>
           </Route>
 
           <Route path="/">

@@ -1,0 +1,78 @@
+.aboutMeDiv {
+    /* padding-left: 5vh; */
+    padding-top: 5vh;
+}
+
+.aboutMe {
+  color: rgb(204, 197, 0);
+  font-size: 4vw;
+  text-shadow: 2px 2px 8px black;
+}
+
+.bioDiv {
+  padding: 1vh;
+  margin: 1vh;
+  width: 90%;
+  text-align: center;
+  border-radius: 15px 100px;
+  background-color: rgb(204, 197, 0);
+}
+
+.bio {
+  margin-left: 5vh;
+  margin-right: 5vh;
+}
+
+.buttonSelection {
+  padding-top: 1vh;
+
+}
+
+.projectButton {
+  margin-right: 8vh;
+  width: 10vw;
+  color: rgb(204, 197, 0);
+  background-color: rgb(60,60,60);
+}
+
+.resumeButton {
+  margin-left: 8vh;
+  width: 10vw;
+  color: rgb(204, 197, 0);
+  background-color: rgb(60,60,60);
+}
+
+.resumeDiv {
+  padding-top: 6vh;
+  color: rgb(204, 197, 0);
+  font-size: 4vh;
+  font-style: bold;
+  text-shadow: 2px 2px 8px black;
+}
+
+.skillDiv {
+  padding-top: 3vh;
+}
+
+.skillTile {
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  text-align: center;
+  padding-bottom: 2vh;
+}
+
+.skillImg {
+  /* display: block;
+  width: 75%;
+  height: 75%;
+  margin: auto; */
+  /* margin-left: auto;
+  margin-right: auto; */
+}
+
+
+.skillDisc {
+  /* padding-left: 2vh;
+  padding-right: 2vh; */
+}

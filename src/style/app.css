@@ -4,3 +4,11 @@ body {
   background: rgba(90, 90, 90, 1);
   background-image: radial-gradient(circle, rgb(70, 70, 70), rgb(50, 50, 50), rgb(20, 20, 20));
 }
+
+.backgroundBar {
+  position: relative;
+  height: 80vh;
+  left: -3vh;
+  background-color: rgb(204, 197, 0);
+  clip-path:polygon(90% 0%, 100% 0%, 0% 100%, 0% 90%);
+}

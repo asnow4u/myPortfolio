@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import '../style/navbar.css';
 
 
-
-
 class Navbar extends React.Component {
 
   constructor(props){
@@ -41,7 +39,7 @@ class Navbar extends React.Component {
 
   hoverProfileToggle = (hover) =>{
     const urlString = window.location.pathname;
-    if (urlString == '/projects' || urlString == '/contact'){
+    if (urlString == '/projects' || urlString == '/aboutme'){
 
       if (hover){
         this.setState({profileFile: process.env.PUBLIC_URL + '/img/profile_hover.png'});
@@ -111,7 +109,7 @@ class Navbar extends React.Component {
 
   hoverContactToggle = (hover) => {
     const urlString = window.location.pathname;
-    if (urlString != '/contact'){
+    if (urlString != '/aboutme'){
 
       if (hover){
         this.setState({contactFile: process.env.PUBLIC_URL + '/img/contact_hover.png'});
@@ -146,7 +144,7 @@ class Navbar extends React.Component {
             </Link>
           </Row>
           <Row>
-            <Link to="/contact" onClick={this.updateNavContact}>
+            <Link to="/aboutme" onClick={this.updateNavContact}>
               <button className="button" id="contactLink" onMouseOver={() => this.hoverContactToggle(true)} onMouseOut={() => this.hoverContactToggle(false)}>
                 <img className="linkImage" id="contactImage" src={this.state.contactFile}/>
               </button>
