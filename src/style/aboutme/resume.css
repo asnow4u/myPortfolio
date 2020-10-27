@@ -1,6 +1,7 @@
 .aboutMeDiv {
-    /* padding-left: 5vh; */
+    position: relative;
     padding-top: 5vh;
+    left: -18vh;
 }
 
 .aboutMe {
@@ -14,6 +15,7 @@
   margin: 1vh;
   width: 90%;
   text-align: center;
+  border: solid black;
   border-radius: 15px 100px;
   background-color: rgb(204, 197, 0);
 }
@@ -23,7 +25,7 @@
   margin-right: 5vh;
 }
 
-.buttonSelection {
+/* .buttonSelection {
   padding-top: 1vh;
 
 }
@@ -40,10 +42,12 @@
   width: 10vw;
   color: rgb(204, 197, 0);
   background-color: rgb(60,60,60);
-}
+} */
 
 .resumeDiv {
-  padding-top: 6vh;
+  position: relative;
+  left: 20vh;
+  padding-top: 8vh;
   color: rgb(204, 197, 0);
   font-size: 4vh;
   font-style: bold;
@@ -60,6 +64,7 @@
   border-width: 3px;
   text-align: center;
   padding-bottom: 2vh;
+  background-color: rgb(60,60,60);
 }
 
 .skillImg {

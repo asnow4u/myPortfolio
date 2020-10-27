@@ -1,8 +1,16 @@
-
-.navDiv {
-  padding-top: 3vw;
-  padding-left: 1vw;
+.pageNavDiv {
+  position: absolute;
+  margin-top: 3vw;
+  margin-left: 1vw;
+  border: solid black;
 }
+
+/* .exteralNavDiv {
+  position: absolute;
+  top: 30vw;
+  margin-left: 1vw;
+  border: solid black;
+} */
 
 .button {
   border: none;

@@ -4,8 +4,8 @@ import { Switch, Route} from 'react-router-dom';
 import ProfilePicture from './components/ProfilePicture';
 import Navbar from './components/Navbar';
 import ProfileInfo from './components/ProfileInfo';
-import ContactInfo from './components/ContactInfo';
 import Resume from './components/Resume';
+import Project from './components/Project';
 import './style/app.css';
 
 
@@ -16,13 +16,17 @@ function App() {
       <Row>
         <Switch>
           <Route path = "/projects">
-
+            <Col xs={3}>
+              <div className="projectBackgroundBar"></div>
+            </Col>
+            <Col>
+              <Project />
+            </Col>
           </Route>
 
           <Route path = "/aboutme">
             <Col xs={3}>
-              <div className="backgroundBar"></div>
-              <ContactInfo />
+              <div className="aboutBackgroundBar"></div>
             </Col>
             <Col>
               <Resume />
@@ -30,7 +34,7 @@ function App() {
           </Route>
 
           <Route path="/">
-            <Col xs={5}>
+            <Col xs={4}>
               <ProfilePicture />
             </Col>
             <Col>
@@ -49,7 +53,6 @@ function App() {
       </Row>
     </Container>
   );
-
 }
 
 export default App;

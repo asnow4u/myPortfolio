@@ -6,9 +6,8 @@ class ProfilePicture extends React.Component {
   render() {
     return (
       <div className="pictureColumn">
-        <div className="backgroundBox"></div>
         <img className="profilePicture" src={process.env.PUBLIC_URL + '/img/image2.jpg'} alt=""/>
-        <div className="line"></div>
+        <div className="profileBackgroundBar"></div>
       </div>
     );
   }

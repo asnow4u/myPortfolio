@@ -128,29 +128,59 @@ class Navbar extends React.Component {
 
     return (
       <div className="navDiv">
-        <Container>
-          <Row>
-            <Link to="/" onClick={this.updateNavProfile}>
-              <button className="button homeButton" id="profileLink" onMouseOver={() => this.hoverProfileToggle(true)} onMouseOut={() => this.hoverProfileToggle(false)}>
-                <img className="linkImage" id="homeImage" src={this.state.profileFile}/>
-              </button>
-            </Link>
-          </Row>
-          <Row>
-            <Link to="/projects" onClick={this.updateNavProject}>
-              <button className="button" id="projectLink" onMouseOver={() => this.hoverProjectToggle(true)} onMouseOut={() => this.hoverProjectToggle(false)}>
-                <img className="linkImage" id="projectImage" src={this.state.projectFile}/>
-              </button>
-            </Link>
-          </Row>
-          <Row>
-            <Link to="/aboutme" onClick={this.updateNavContact}>
-              <button className="button" id="contactLink" onMouseOver={() => this.hoverContactToggle(true)} onMouseOut={() => this.hoverContactToggle(false)}>
-                <img className="linkImage" id="contactImage" src={this.state.contactFile}/>
-              </button>
-            </Link>
-          </Row>
-        </Container>
+        <div className="pageNavDiv">
+          <Container>
+            <Row>
+              <Link to="/" onClick={this.updateNavProfile}>
+                <button className="button homeButton" id="profileLink" onMouseOver={() => this.hoverProfileToggle(true)} onMouseOut={() => this.hoverProfileToggle(false)}>
+                  <img className="linkImage" id="homeImage" src={this.state.profileFile}/>
+                </button>
+              </Link>
+            </Row>
+            <Row>
+              <Link to="/projects" onClick={this.updateNavProject}>
+                <button className="button" id="projectLink" onMouseOver={() => this.hoverProjectToggle(true)} onMouseOut={() => this.hoverProjectToggle(false)}>
+                  <img className="linkImage" id="projectImage" src={this.state.projectFile}/>
+                </button>
+              </Link>
+            </Row>
+            <Row>
+              <Link to="/aboutme" onClick={this.updateNavContact}>
+                <button className="button" id="contactLink" onMouseOver={() => this.hoverContactToggle(true)} onMouseOut={() => this.hoverContactToggle(false)}>
+                  <img className="linkImage" id="contactImage" src={this.state.contactFile}/>
+                </button>
+              </Link>
+            </Row>
+
+            <Row>
+              <a href="https://www.linkedin.com/in/asnow4u/" target="_blank" rel="noopener noreferrer">
+                <button className="button" id="profileLink" onMouseOver={() => this.hoverProfileToggle(true)} onMouseOut={() => this.hoverProfileToggle(false)}>
+                  <img className="linkImage" id="homeImage" src={process.env.PUBLIC_URL + '/img/email.png'}/>
+                </button>
+              </a>
+            </Row>
+            <Row>
+              <a href="https://github.com/asnow4u/" target="_blank" rel="noopener noreferrer">
+                <button className="button" id="profileLink" onMouseOver={() => this.hoverProfileToggle(true)} onMouseOut={() => this.hoverProfileToggle(false)}>
+                  <img className="linkImage" id="homeImage" src={process.env.PUBLIC_URL + '/img/git.png'}/>
+                </button>
+              </a>
+            </Row>
+            <Row>
+              <a href="https://www.linkedin.com/in/asnow4u/" target="_blank" rel="noopener noreferrer">
+                <button className="button" id="profileLink" onMouseOver={() => this.hoverProfileToggle(true)} onMouseOut={() => this.hoverProfileToggle(false)}>
+                  <img className="linkImage" id="homeImage" src={process.env.PUBLIC_URL + '/img/linkedin.png'}/>
+                </button>
+              </a>
+            </Row>
+          </Container>
+        </div>
+
+        <div className="exteralNavDiv">
+          <Container>
+
+          </Container>
+        </div>
       </div>
     );
   }

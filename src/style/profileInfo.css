@@ -3,44 +3,63 @@
   padding-left: 2vw;
 }
 
-.hello {
-  font-size: 7vw;
+.profileHello {
+  /* position: relative;
+  left: 7vw; */
+  padding-left: 15vw;
+  font-size: 6vw;
   color: rgb(204, 197, 0);
   text-shadow: 2px 2px 8px black;
 }
 
-.name {
-  font-size: 7vw;
-  position: relative;
-  left: 4vw;
+.profileName {
+  /* position: relative;
+  left: 4vw; */
   /* top: 0vw */
+  padding-top: 3vw;
+  padding-left: 10vw;
+  font-size: 6vw;
   color: rgb(204, 197, 0);
   text-shadow: 2px 2px 8px black;
 }
 
-.job {
-  font-size: 5.5vw;
-  position: relative;
-  left: 8vw;
-  top: 2vw;
+.profileJob {
+
+  /* position: relative; */
+  /* left: -10vw; */
+  /* right: 3vw; */
+  /* top: 2vw; */
+  padding-top: 3vw;
+  font-size: 6vw;
   color: rgb(204, 197, 0);
   text-shadow: 2px 2px 8px black;
 }
 
+.contactInfo {
+  position: absolute;
+  top: 650px;
+  text-align: center;
+  width: 100%;
+  background-color: rgb(204, 197, 0);
+  border: solid black;
+}
 
-/* .profileBlog {
-  margin-right: 6vw;
-  padding-top: 5vw;
-  padding-right: 6vw;
-  font-size: 1.5vw;
-  color: rgb(204, 197, 0);
-  text-shadow: 2px 2px 8px black;
-} */
+.contactImage {
+  height: 30px;
+  width: 30px;
+}
 
+.emailContact {
+  display: inline-block;
+  padding-right: 80px;
+}
 
-/* <h1 className="firstName">Andrew</h1>
-<h1 className="lastName">Snow</h1>
-<div className="profileBlog">
-  <p>
-  </p>
-</div> */
+.githubContact {
+  display: inline-block;
+  padding-right: 80px;
+}
+
+.linkedinContact {
+  display: inline-block;
+  /* padding-right: 80px; */
+}
