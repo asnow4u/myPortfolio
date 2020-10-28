@@ -13,7 +13,7 @@ class Resume extends React.Component {
             <div className="bio">
               I'm a software engineer and developer with a passion to create new and inovative experiences.
               I design, build, and test 3D enviroments and web based applications that enhance the users experience.
-              If your interested in some of the projects I've been working on go check out my Github.
+              Check out the projects I've been working on.
             </div>
           </div>
         </div>

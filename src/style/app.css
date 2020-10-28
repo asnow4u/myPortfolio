@@ -17,11 +17,13 @@ body {
 
 .projectBackgroundBar {
   position: relative;
-  height: 140%;
-  /* width: 30px; */
-  /* top: 7px; */
-  /* left: 23vh; */
+  /* display: block; */
+  height: 30px;
+  /* max-width: 100%; */
+  width: 870px;
+  top: 120px;
+  left: -50px;
   border: solid black;
   background-color: rgb(204, 197, 0);
-  /* transform: rotate(-18deg); */
+  transform: rotate(-20deg);
 }

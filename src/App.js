@@ -16,10 +16,8 @@ function App() {
       <Row>
         <Switch>
           <Route path = "/projects">
-            <Col xs={3}>
-              <div className="projectBackgroundBar"></div>
-            </Col>
             <Col>
+              <div className="projectBackgroundBar"></div>
               <Project />
             </Col>
           </Route>

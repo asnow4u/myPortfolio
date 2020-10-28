@@ -14,7 +14,8 @@ class Navbar extends React.Component {
         contactHover: false,
         profileFile: process.env.PUBLIC_URL + '/img/profile_hover.png',
         projectFile: process.env.PUBLIC_URL + '/img/project.png',
-        contactFile: process.env.PUBLIC_URL + '/img/contact.png'
+        contactFile: process.env.PUBLIC_URL + '/img/contact.png',
+        gitLinkFile: process.env.PUBLIC_URL + '/img/git.png'
       };
   }
 
@@ -124,6 +125,35 @@ class Navbar extends React.Component {
   }
 
 
+  hoverExternalNavLink = (hover, link) => {
+    if (hover){
+      if (link == "email"){
+        let button = document.getElementById("emailLink").style.backgroundColor = "black";
+
+      } else if (link == "git"){
+        this.setState({gitLinkFile: process.env.PUBLIC_URL + '/img/git_hover.png'});
+        let button = document.getElementById("gitLink").style.backgroundColor = "black";
+
+      } else if (link == "linkedin"){
+        let button = document.getElementById("linkedinLink").style.backgroundColor = "black";
+      }
+
+    } else {
+      if (link == "email"){
+        let button = document.getElementById("emailLink").style.backgroundColor = "rgb(204, 197, 0)";
+
+      } else if (link == "git"){
+        this.setState({gitLinkFile: process.env.PUBLIC_URL + '/img/git.png'});
+        let button = document.getElementById("gitLink").style.backgroundColor = "rgb(204, 197, 0)";
+
+      } else if (link == "linkedin"){
+        let button = document.getElementById("linkedinLink").style.backgroundColor = "rgb(204, 197, 0)";
+
+      }
+    }
+  }
+
+
   render() {
 
     return (
@@ -154,22 +184,22 @@ class Navbar extends React.Component {
 
             <Row>
               <a href="https://www.linkedin.com/in/asnow4u/" target="_blank" rel="noopener noreferrer">
-                <button className="button" id="profileLink" onMouseOver={() => this.hoverProfileToggle(true)} onMouseOut={() => this.hoverProfileToggle(false)}>
-                  <img className="linkImage" id="homeImage" src={process.env.PUBLIC_URL + '/img/email.png'}/>
+                <button className="button" id="emailLink" onMouseOver={() => this.hoverExternalNavLink(true, "email")} onMouseOut={() => this.hoverExternalNavLink(false, "email")}>
+                  <img className="linkImage" src={process.env.PUBLIC_URL + '/img/email.png'}/>
                 </button>
               </a>
             </Row>
             <Row>
               <a href="https://github.com/asnow4u/" target="_blank" rel="noopener noreferrer">
-                <button className="button" id="profileLink" onMouseOver={() => this.hoverProfileToggle(true)} onMouseOut={() => this.hoverProfileToggle(false)}>
-                  <img className="linkImage" id="homeImage" src={process.env.PUBLIC_URL + '/img/git.png'}/>
+                <button className="button" id="gitLink" onMouseOver={() => this.hoverExternalNavLink(true, "git")} onMouseOut={() => this.hoverExternalNavLink(false, "git")}>
+                  <img className="linkImage" src={this.state.gitLinkFile}/>
                 </button>
               </a>
             </Row>
             <Row>
               <a href="https://www.linkedin.com/in/asnow4u/" target="_blank" rel="noopener noreferrer">
-                <button className="button" id="profileLink" onMouseOver={() => this.hoverProfileToggle(true)} onMouseOut={() => this.hoverProfileToggle(false)}>
-                  <img className="linkImage" id="homeImage" src={process.env.PUBLIC_URL + '/img/linkedin.png'}/>
+                <button className="button" id="linkedinLink" onMouseOver={() => this.hoverExternalNavLink(true, "linkedin")} onMouseOut={() => this.hoverExternalNavLink(false, "linkedin")}>
+                  <img className="linkImage" src={process.env.PUBLIC_URL + '/img/linkedin.png'}/>
                 </button>
               </a>
             </Row>

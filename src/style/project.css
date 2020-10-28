@@ -1,0 +1,56 @@
+.projectTitle {
+  margin-top: 2vw;
+  margin-left: 50vw;
+  font-size: 6vw;
+  color: rgb(204, 197, 0);
+  text-shadow: 2px 2px 8px black;
+}
+
+.firstShowcaseProjects {
+  display: block;
+  height: 22vw;
+  float: right;
+  padding-right: 3vw;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
+}
+
+.horShowcase {
+  display: inline-block;
+  margin-left: 5vw;
+  height: 100%;
+  width: 15vw;
+  background-color: gray;
+}
+
+.showcaseImage {
+  height: 50%;
+  width: 80%;
+  margin-top: 5%;
+  margin-left: 10%;
+  background-color: black;
+}
+
+.showcaseDesc {
+  height: 35%;
+  width: 80%;
+  margin-top: 5%;
+  margin-left: 10%;
+  background-color: yellow;
+}
+
+.secondShowcaseProjects {
+  display: block;
+  height: 11vw;
+  width: 80%;
+  float: right;
+  padding-right: 2vw;
+}
+
+.verShowcase {
+  display: inline-block;
+  margin-left: 2vw;
+  height: 80%;
+  width: 30%;
+  background-color: gray;
+}
