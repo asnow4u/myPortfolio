@@ -1,56 +1,56 @@
 .projectTitle {
-  margin-top: 2vw;
-  margin-left: 50vw;
+  margin-top: 1vw;
+  margin-left: 55vw;
   font-size: 6vw;
   color: rgb(204, 197, 0);
   text-shadow: 2px 2px 8px black;
 }
 
-.firstShowcaseProjects {
+.showcaseProjects {
   display: block;
-  height: 22vw;
-  float: right;
-  padding-right: 3vw;
-  padding-top: 2vw;
-  padding-bottom: 2vw;
+  padding-left: 12vw;
+  padding-top: 1vw;
 }
 
-.horShowcase {
+.showcaseTile {
   display: inline-block;
   margin-left: 5vw;
-  height: 100%;
-  width: 15vw;
-  background-color: gray;
-}
-
-.showcaseImage {
-  height: 50%;
-  width: 80%;
-  margin-top: 5%;
-  margin-left: 10%;
-  background-color: black;
+  width: 20vw;
+  border: solid black;
+  color: black;
 }
 
 .showcaseDesc {
-  height: 35%;
-  width: 80%;
-  margin-top: 5%;
-  margin-left: 10%;
+  width: 100%;
+  padding: 8px 10px;
   background-color: yellow;
+  text-align: center;
 }
 
-.secondShowcaseProjects {
+.showcaseTitle {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.skillTitle {
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 30px;
+  color: rgb(204, 197, 0);
+  text-shadow: 2px 2px 8px black;
+
+}
+
+.skillList {
+  margin-top: 10px;
+  margin-left: 100px;
+}
+
+.skillTile {
   display: block;
-  height: 11vw;
-  width: 80%;
-  float: right;
-  padding-right: 2vw;
-}
-
-.verShowcase {
-  display: inline-block;
-  margin-left: 2vw;
-  height: 80%;
-  width: 30%;
-  background-color: gray;
+  text-align: center;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  background-color: rgb(60,60,60);
 }
