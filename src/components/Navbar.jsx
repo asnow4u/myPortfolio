@@ -15,7 +15,8 @@ class Navbar extends React.Component {
         profileFile: process.env.PUBLIC_URL + '/img/profile_hover.png',
         projectFile: process.env.PUBLIC_URL + '/img/project.png',
         contactFile: process.env.PUBLIC_URL + '/img/contact.png',
-        gitLinkFile: process.env.PUBLIC_URL + '/img/git.png'
+        gitLinkFile: process.env.PUBLIC_URL + '/img/git.png',
+        resumeLinkFile: process.env.PUBLIC_URL + '/img/resumeLink.png'
       };
   }
 
@@ -136,6 +137,10 @@ class Navbar extends React.Component {
 
       } else if (link == "linkedin"){
         let button = document.getElementById("linkedinLink").style.backgroundColor = "black";
+
+      } else if (link == "resume"){
+        this.setState({resumeLinkFile: process.env.PUBLIC_URL + '/img/resumeLink_hover.png'});
+        let button = document.getElementById("resumeLink").style.backgroundColor = "black";
       }
 
     } else {
@@ -149,6 +154,9 @@ class Navbar extends React.Component {
       } else if (link == "linkedin"){
         let button = document.getElementById("linkedinLink").style.backgroundColor = "rgb(204, 197, 0)";
 
+      } else if (link == "resume"){
+        this.setState({resumeLinkFile: process.env.PUBLIC_URL + '/img/resumeLink.png'});
+        let button = document.getElementById("resumeLink").style.backgroundColor = "rgb(204, 197, 0)";
       }
     }
   }
@@ -203,14 +211,16 @@ class Navbar extends React.Component {
                 </button>
               </a>
             </Row>
+            <Row>
+              <a href={process.env.PUBLIC_URL + '/Resume.pdf'} target="_blank" rel="noopener noreferrer">
+                <button className="button" id="resumeLink" onMouseOver={() => this.hoverExternalNavLink(true, "resume")} onMouseOut={() => this.hoverExternalNavLink(false, "resume")}>
+                  <img className="linkImage" src={this.state.resumeLinkFile}/>
+                </button>
+              </a>
+            </Row>
           </Container>
         </div>
 
-        <div className="exteralNavDiv">
-          <Container>
-
-          </Container>
-        </div>
       </div>
     );
   }

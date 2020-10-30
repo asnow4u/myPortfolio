@@ -5,11 +5,11 @@ body {
 }
 
 .aboutBackgroundBar {
-  position: relative;
-  height: 140%;
+  position: absolute;
+  height: 120%;
   width: 30px;
-  top: -27px;
-  left: 23vh;
+  top: -10vh;
+  left: 5vw;
   border: solid black;
   background-color: rgb(204, 197, 0);
   transform: rotate(-18deg);
@@ -17,11 +17,9 @@ body {
 
 .projectBackgroundBar {
   position: relative;
-  /* display: block; */
   height: 30px;
-  /* max-width: 100%; */
   width: 870px;
-  top: 120px;
+  top: 100px;
   left: -50px;
   border: solid black;
   background-color: rgb(204, 197, 0);

@@ -1,5 +1,5 @@
 .projectTitle {
-  margin-top: 1vw;
+  /* margin-top: 1vw; */
   margin-left: 55vw;
   font-size: 6vw;
   color: rgb(204, 197, 0);
@@ -23,34 +23,11 @@
 .showcaseDesc {
   width: 100%;
   padding: 8px 10px;
-  background-color: yellow;
+  background-color: rgb(204, 197, 0);
   text-align: center;
 }
 
 .showcaseTitle {
   font-size: 30px;
   font-weight: bold;
-}
-
-.skillTitle {
-  padding-bottom: 10px;
-  text-align: center;
-  font-size: 30px;
-  color: rgb(204, 197, 0);
-  text-shadow: 2px 2px 8px black;
-
-}
-
-.skillList {
-  margin-top: 10px;
-  margin-left: 100px;
-}
-
-.skillTile {
-  display: block;
-  text-align: center;
-  border-style: solid;
-  border-color: black;
-  border-width: 3px;
-  background-color: rgb(60,60,60);
 }

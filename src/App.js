@@ -23,7 +23,7 @@ function App() {
           </Route>
 
           <Route path = "/aboutme">
-            <Col xs={3}>
+            <Col xs={1}>
               <div className="aboutBackgroundBar"></div>
             </Col>
             <Col>

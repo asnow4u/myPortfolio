@@ -55,32 +55,7 @@ class Project extends React.Component {
         </div>
 
 
-        <Container fluid className="skillList">
-          <div className="skillTitle">SkillSet:</div>
-          <Row>
-            <Col className="skillTile">
-              <img src={process.env.PUBLIC_URL + '/img/react.png'} alt="" width="150" height="100" className="skillImg"/>
-            </Col>
-            <Col className="skillTile">
-              <img src={process.env.PUBLIC_URL + '/img/node.png'} alt="" width="150" height="100" className="skillImg"/>
-            </Col>
-            <Col className="skillTile">
-              <img src={process.env.PUBLIC_URL + '/img/git.png'} alt="" width="100" height="100" className="skillImg"/>
-            </Col>
-            <Col className="skillTile">
-              <img src={process.env.PUBLIC_URL + '/img/unity.png'} alt="" width="150" height="100" className="skillImg"/>
-            </Col>
-            <Col className="skillTile">
-              <img src={process.env.PUBLIC_URL + '/img/webxr.png'} alt="" width="150" height="90" className="skillImg"/>
-            </Col>
-            <Col className="skillTile">
-              <img src={process.env.PUBLIC_URL + '/img/three.png'} alt="" width="150" height="100" className="skillImg"/>
-            </Col>
-            <Col className="skillTile">
-              <img src={process.env.PUBLIC_URL + '/img/mongo.png'} alt="" width="150" height="100" className="skillImg"/>
-            </Col>
-          </Row>
-        </Container>
+        
       </div>
     );
   }
