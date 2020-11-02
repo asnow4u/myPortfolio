@@ -12,10 +12,9 @@ class Project extends React.Component {
         </div>
 
         <div className="showcaseProjects">
-
           <a href="https://github.com/asnow4u/UnityNatureProject/" target="_blank" rel="noopener noreferrer">
             <div className="showcaseTile">
-              <img className="showcaseImage" src={process.env.PUBLIC_URL + '/img/portfolioScreenshot.jpg'} alt="" height="50%" width="100%"/>
+              <img className="showcaseImage" src={process.env.PUBLIC_URL + '/img/unityGame.jpg'} alt="" height="50%" width="100%"/>
               <div className="showcaseDesc">
                 <div className="showcaseTitle">Unity Project</div>
                 <div>
@@ -52,10 +51,34 @@ class Project extends React.Component {
               </div>
             </div>
           </a>
+
+          <a href="https://github.com/osu-cs419-w20/final-project-group2" target="_blank" rel="noopener noreferrer">
+            <div className="showcaseTile">
+              <img className="showcaseImage" src={process.env.PUBLIC_URL + '/img/movieStarScreenShot.jpg'} alt="" height="10%" width="100%"/>
+              <div className="showcaseDesc">
+                <div className="showcaseTitle">Movie Star</div>
+                <div>
+                  A react built website that displays movies based on a criteria such as genre or popularity.
+                  The website pulls from "themoviedb.org" database to provide up to date information about the movie and who stars in them.
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://github.com/osu-cs493-sp19/final-project-great-team-name" target="_blank" rel="noopener noreferrer">
+            <div className="showcaseTile">
+              <img className="showcaseImage" src={process.env.PUBLIC_URL + '/img/docker.png'} alt="" height="10%" width="100%"/>
+              <div className="showcaseDesc">
+                <div className="showcaseTitle">Tarpaulin Api</div>
+                <div>
+                  A small program keeping track of students, information associated with them, the courses their taking, and the assignments associated with them.
+                  This utilizes a mongodb database within a seperate docker container.
+                </div>
+              </div>
+            </div>
+          </a>
+
         </div>
-
-
-        
       </div>
     );
   }

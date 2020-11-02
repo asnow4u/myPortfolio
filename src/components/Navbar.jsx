@@ -37,6 +37,8 @@ class Navbar extends React.Component {
     //Reset contact button and icon
     button = document.getElementById("contactLink").style.backgroundColor = "rgb(204, 197, 0)";
     this.setState({contactFile: process.env.PUBLIC_URL + '/img/contact.png'});
+
+    document.getElementsByTagName("body")[0].style = "overflow: hidden";
   }
 
   hoverProfileToggle = (hover) =>{
@@ -72,6 +74,8 @@ class Navbar extends React.Component {
     //Reset contact button and icon
     button = document.getElementById("contactLink").style.backgroundColor = "rgb(204, 197, 0)";
     this.setState({contactFile: process.env.PUBLIC_URL + '/img/contact.png'});
+
+    document.getElementsByTagName("body")[0].style = "overflow: auto";
   }
 
   hoverProjectToggle = (hover) => {
@@ -107,6 +111,8 @@ class Navbar extends React.Component {
     //Reset project button and icon
     button = document.getElementById("projectLink").style.backgroundColor = "rgb(204, 197, 0)";
     this.setState({projectFile: process.env.PUBLIC_URL + '/img/project.png'});
+
+    document.getElementsByTagName("body")[0].style = "overflow: hidden";
   }
 
   hoverContactToggle = (hover) => {
@@ -191,14 +197,14 @@ class Navbar extends React.Component {
             </Row>
 
             <Row>
-              <a href="https://www.linkedin.com/in/asnow4u/" target="_blank" rel="noopener noreferrer">
+              <a href="mailto: asnow4u@gmail.com">
                 <button className="button" id="emailLink" onMouseOver={() => this.hoverExternalNavLink(true, "email")} onMouseOut={() => this.hoverExternalNavLink(false, "email")}>
                   <img className="linkImage" src={process.env.PUBLIC_URL + '/img/email.png'}/>
                 </button>
               </a>
             </Row>
             <Row>
-              <a href="https://github.com/asnow4u/" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/asnow4u?tab=repositories" target="_blank" rel="noopener noreferrer">
                 <button className="button" id="gitLink" onMouseOver={() => this.hoverExternalNavLink(true, "git")} onMouseOut={() => this.hoverExternalNavLink(false, "git")}>
                   <img className="linkImage" src={this.state.gitLinkFile}/>
                 </button>

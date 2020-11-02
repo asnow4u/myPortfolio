@@ -9,12 +9,13 @@
 .showcaseProjects {
   display: block;
   padding-left: 12vw;
-  padding-top: 1vw;
+  padding-top: 3vh;
 }
 
 .showcaseTile {
   display: inline-block;
   margin-left: 5vw;
+  margin-bottom: 5vh;
   width: 20vw;
   border: solid black;
   color: black;
