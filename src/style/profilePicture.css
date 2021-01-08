@@ -1,39 +1,26 @@
 .profilePicture {
-  position: relative;
-  display: inline;
-  /* top: -60vh; */
-  left: -15px;
-  height: 102%;
-  width: 102%;
-  clip-path:polygon(0% 0%, 94% 0%, 68% 100%, 0% 100%);
+  width: 100%;
+  clip-path:polygon(0% 0%, 100% 0%, 100% 75%, 0% 100%);
 }
 
-.profileBackgroundBar {
-  position: absolute;
-  height: 50vw;
-  width: 35px;
-  top: -15px;
-  left: 392px;
-  border: solid black;
-  background-color: rgb(204, 197, 0);
-  transform: rotate(9.8deg);
+@media only screen and (min-width: 768px) {
 
-  /* position: relative;
-  height: 140%;
-  width: 30px;
-  top: -27px;
-  left: 23vh;
-  border: solid black;
-  background-color: rgb(204, 197, 0);
-  transform: rotate(-18deg); */
-  /* display: inline-block;
-  width: 0%;
-  height: 110vh;
-  border-right: 4vh solid;
-  border-color: rgb(204, 197, 0);
-  transform: rotate(10deg);
+  .profilePicture {
+    /* position: relative; */
+    /* top: -60px; */
+    padding-top: 500px;
+    width: 100%;
+    clip-path:polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    /* clip-path:polygon(0% 10%, 100% 0%, 100% 60%, 0% 60%); TODO: might only show this much and prevent scrolling*/
+  }
 
-  position: relative;
-  top: -2vh;
-  left: 15vh; */
+}
+
+
+@media only screen and (min-width: 1000px) {
+  .profilePicture {
+    padding-top: 0px;
+    width: 40%;
+    clip-path:polygon(0% 0%, 94% 0%, 68% 100%, 0% 100%);
+  }
 }

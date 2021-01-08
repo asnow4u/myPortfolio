@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap'; //Going to remove
 import { Switch, Route} from 'react-router-dom';
 import ProfilePicture from './components/ProfilePicture';
 import Navbar from './components/Navbar';
@@ -12,8 +12,10 @@ import './style/app.css';
 function App() {
 
   return (
-    <Container fluid>
-      <Row>
+    <div className="wrapper">
+
+      <Navbar />
+
         <Switch>
           <Route path = "/projects">
             <Col>
@@ -32,24 +34,14 @@ function App() {
           </Route>
 
           <Route path="/">
-            <Col xs={4}>
-              <ProfilePicture />
-            </Col>
-            <Col>
-              <div className="profile">
-                <ProfileInfo />
-              </div>
-            </Col>
+
+            <ProfilePicture />
+            <ProfileInfo />
+
           </Route>
 
         </Switch>
-        <Col xs={1}>
-          <div className="navBar">
-            <Navbar />
-          </div>
-        </Col>
-      </Row>
-    </Container>
+    </div>
   );
 }
 

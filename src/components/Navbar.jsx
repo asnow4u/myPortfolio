@@ -171,61 +171,49 @@ class Navbar extends React.Component {
   render() {
 
     return (
-      <div className="navDiv">
-        <div className="pageNavDiv">
-          <Container>
-            <Row>
-              <Link to="/" onClick={this.updateNavProfile}>
-                <button className="button homeButton" id="profileLink" onMouseOver={() => this.hoverProfileToggle(true)} onMouseOut={() => this.hoverProfileToggle(false)}>
-                  <img className="linkImage" id="homeImage" src={this.state.profileFile}/>
-                </button>
-              </Link>
-            </Row>
-            <Row>
-              <Link to="/projects" onClick={this.updateNavProject}>
-                <button className="button" id="projectLink" onMouseOver={() => this.hoverProjectToggle(true)} onMouseOut={() => this.hoverProjectToggle(false)}>
-                  <img className="linkImage" id="projectImage" src={this.state.projectFile}/>
-                </button>
-              </Link>
-            </Row>
-            <Row>
-              <Link to="/aboutme" onClick={this.updateNavContact}>
-                <button className="button" id="contactLink" onMouseOver={() => this.hoverContactToggle(true)} onMouseOut={() => this.hoverContactToggle(false)}>
-                  <img className="linkImage" id="contactImage" src={this.state.contactFile}/>
-                </button>
-              </Link>
-            </Row>
+      <div className="navWrapper">
 
-            <Row>
-              <a href="mailto: asnow4u@gmail.com">
-                <button className="button" id="emailLink" onMouseOver={() => this.hoverExternalNavLink(true, "email")} onMouseOut={() => this.hoverExternalNavLink(false, "email")}>
-                  <img className="linkImage" src={process.env.PUBLIC_URL + '/img/email.png'}/>
-                </button>
-              </a>
-            </Row>
-            <Row>
-              <a href="https://github.com/asnow4u?tab=repositories" target="_blank" rel="noopener noreferrer">
-                <button className="button" id="gitLink" onMouseOver={() => this.hoverExternalNavLink(true, "git")} onMouseOut={() => this.hoverExternalNavLink(false, "git")}>
-                  <img className="linkImage" src={this.state.gitLinkFile}/>
-                </button>
-              </a>
-            </Row>
-            <Row>
-              <a href="https://www.linkedin.com/in/asnow4u/" target="_blank" rel="noopener noreferrer">
-                <button className="button" id="linkedinLink" onMouseOver={() => this.hoverExternalNavLink(true, "linkedin")} onMouseOut={() => this.hoverExternalNavLink(false, "linkedin")}>
-                  <img className="linkImage" src={process.env.PUBLIC_URL + '/img/linkedin.png'}/>
-                </button>
-              </a>
-            </Row>
-            <Row>
-              <a href={process.env.PUBLIC_URL + '/Resume.pdf'} target="_blank" rel="noopener noreferrer">
-                <button className="button" id="resumeLink" onMouseOver={() => this.hoverExternalNavLink(true, "resume")} onMouseOut={() => this.hoverExternalNavLink(false, "resume")}>
-                  <img className="linkImage" src={this.state.resumeLinkFile}/>
-                </button>
-              </a>
-            </Row>
-          </Container>
-        </div>
+        <Link to="/" onClick={this.updateNavProfile}>
+          <button className="button homeButton" id="profileLink" onMouseOver={() => this.hoverProfileToggle(true)} onMouseOut={() => this.hoverProfileToggle(false)}>
+            <img className="linkImage" id="homeImage" src={this.state.profileFile}/>
+          </button>
+        </Link>
+
+        <Link to="/projects" onClick={this.updateNavProject}>
+          <button className="button" id="projectLink" onMouseOver={() => this.hoverProjectToggle(true)} onMouseOut={() => this.hoverProjectToggle(false)}>
+            <img className="linkImage" id="projectImage" src={this.state.projectFile}/>
+          </button>
+        </Link>
+
+        <Link to="/aboutme" onClick={this.updateNavContact}>
+          <button className="button" id="contactLink" onMouseOver={() => this.hoverContactToggle(true)} onMouseOut={() => this.hoverContactToggle(false)}>
+            <img className="linkImage" id="contactImage" src={this.state.contactFile}/>
+          </button>
+        </Link>
+
+        <a href="mailto: asnow4u@gmail.com">
+          <button className="button" id="emailLink" onMouseOver={() => this.hoverExternalNavLink(true, "email")} onMouseOut={() => this.hoverExternalNavLink(false, "email")}>
+            <img className="linkImage" src={process.env.PUBLIC_URL + '/img/email.png'}/>
+          </button>
+        </a>
+
+        <a href="https://github.com/asnow4u?tab=repositories" target="_blank" rel="noopener noreferrer">
+          <button className="button" id="gitLink" onMouseOver={() => this.hoverExternalNavLink(true, "git")} onMouseOut={() => this.hoverExternalNavLink(false, "git")}>
+            <img className="linkImage" src={this.state.gitLinkFile}/>
+          </button>
+        </a>
+
+        <a href="https://www.linkedin.com/in/asnow4u/" target="_blank" rel="noopener noreferrer">
+          <button className="button" id="linkedinLink" onMouseOver={() => this.hoverExternalNavLink(true, "linkedin")} onMouseOut={() => this.hoverExternalNavLink(false, "linkedin")}>
+            <img className="linkImage" src={process.env.PUBLIC_URL + '/img/linkedin.png'}/>
+          </button>
+        </a>
+
+        <a href={process.env.PUBLIC_URL + '/Resume.pdf'} target="_blank" rel="noopener noreferrer">
+          <button className="button" id="resumeLink" onMouseOver={() => this.hoverExternalNavLink(true, "resume")} onMouseOut={() => this.hoverExternalNavLink(false, "resume")}>
+            <img className="linkImage" src={this.state.resumeLinkFile}/>
+          </button>
+        </a>
 
       </div>
     );

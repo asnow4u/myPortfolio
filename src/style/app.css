@@ -1,9 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  overflow: hidden;
+  min-width: fit-content;
+  width: 100%;
   background: rgba(90, 90, 90, 1);
   background-image: radial-gradient(circle, rgb(70, 70, 70), rgb(50, 50, 50), rgb(20, 20, 20));
 }
 
+.wrapper {
+  width: 100%;
+}
+
+
+
+/*
 .aboutBackgroundBar {
   position: absolute;
   height: 120%;
@@ -24,4 +37,4 @@ body {
   border: solid black;
   background-color: rgb(204, 197, 0);
   transform: rotate(-20deg);
-}
+} */
