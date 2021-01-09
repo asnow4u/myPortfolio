@@ -16,31 +16,28 @@ function App() {
 
       <Navbar />
 
-        <Switch>
-          <Route path = "/projects">
-            <Col>
-              <div className="projectBackgroundBar"></div>
-              <Project />
-            </Col>
-          </Route>
+      <Switch>
+        <Route path = "/projects">
+          <Project />
+        </Route>
 
-          <Route path = "/aboutme">
-            <Col xs={1}>
-              <div className="aboutBackgroundBar"></div>
-            </Col>
-            <Col>
-              <Resume />
-            </Col>
-          </Route>
+        <Route path = "/aboutme">
+          <Col xs={1}>
+            <div className="aboutBackgroundBar"></div>
+          </Col>
+          <Col>
+            <Resume />
+          </Col>
+        </Route>
 
-          <Route path="/">
+        <Route path="/">
 
-            <ProfilePicture />
-            <ProfileInfo />
+          <ProfilePicture />
+          <ProfileInfo />
 
-          </Route>
+        </Route>
 
-        </Switch>
+      </Switch>
     </div>
   );
 }

@@ -26,6 +26,9 @@ class Navbar extends React.Component {
     hoverProfileToggle: Updates profile icon and background when hovered over
   */
   updateNavProfile = () => {
+
+    window.scrollTo(0,0);
+
     //Update profile button
     let button = document.getElementById("profileLink").style.backgroundColor = "black";
     this.setState({profileFile: process.env.PUBLIC_URL + '/img/profile_hover.png'});
@@ -37,8 +40,6 @@ class Navbar extends React.Component {
     //Reset contact button and icon
     button = document.getElementById("contactLink").style.backgroundColor = "rgb(204, 197, 0)";
     this.setState({contactFile: process.env.PUBLIC_URL + '/img/contact.png'});
-
-    document.getElementsByTagName("body")[0].style = "overflow: hidden";
   }
 
   hoverProfileToggle = (hover) =>{
@@ -64,6 +65,9 @@ class Navbar extends React.Component {
     hoverProjectToggle: Updates project icon and background when hovered over
   */
   updateNavProject = () => {
+
+    window.scrollTo(0,0);
+
     let button = document.getElementById("projectLink").style.backgroundColor = "black";
     this.setState({projectFile: process.env.PUBLIC_URL + '/img/project_hover.png'});
 
@@ -74,8 +78,6 @@ class Navbar extends React.Component {
     //Reset contact button and icon
     button = document.getElementById("contactLink").style.backgroundColor = "rgb(204, 197, 0)";
     this.setState({contactFile: process.env.PUBLIC_URL + '/img/contact.png'});
-
-    document.getElementsByTagName("body")[0].style = "overflow: auto";
   }
 
   hoverProjectToggle = (hover) => {
@@ -101,6 +103,9 @@ class Navbar extends React.Component {
     hoverContactToggle: Updates contact icon and background when hovered over
   */
   updateNavContact = () => {
+
+    window.scrollTo(0,0);
+
     let button = document.getElementById("contactLink").style.backgroundColor = "black";
     this.setState({contactFile: process.env.PUBLIC_URL + '/img/contact_hover.png'});
 
@@ -111,8 +116,6 @@ class Navbar extends React.Component {
     //Reset project button and icon
     button = document.getElementById("projectLink").style.backgroundColor = "rgb(204, 197, 0)";
     this.setState({projectFile: process.env.PUBLIC_URL + '/img/project.png'});
-
-    document.getElementsByTagName("body")[0].style = "overflow: hidden";
   }
 
   hoverContactToggle = (hover) => {

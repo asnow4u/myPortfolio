@@ -14,7 +14,7 @@
   background-color: rgb(204, 197, 0);
 }
 
-.homeButton{
+.homeButton {
   background-color: black;
 }
 
@@ -31,19 +31,15 @@ a:active, a:focus {
 
 @media only screen and (min-width: 768px) {
 
-  .navWrapper{
+  .navWrapper {
     width: 60px;
     height: 500px;
 
     position: absolute;
     right: 0px;
-
-    /* top: 100px; */
-    /* left: 100%; */
-    /* TODO: might take sticky off */
   }
 
-  .button{
+  .button {
     width: 100%;
     height: 15%;
   }
@@ -51,7 +47,7 @@ a:active, a:focus {
 
 @media only screen and (min-width: 1000px) {
 
-  .navWrapper{
+  .navWrapper {
     top: 100px;
   }
 

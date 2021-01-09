@@ -1,34 +1,88 @@
 .projectTitle {
-  /* margin-top: 1vw; */
-  margin-left: 55vw;
-  font-size: 6vw;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 40px;
   color: rgb(204, 197, 0);
   text-shadow: 2px 2px 8px black;
 }
 
 .showcaseProjects {
-  display: block;
-  padding-left: 12vw;
-  padding-top: 3vh;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
 }
 
 .showcaseTile {
-  display: inline-block;
-  margin-left: 5vw;
-  margin-bottom: 5vh;
-  width: 20vw;
+  width: 100%;
+  margin-bottom: 20px;
   border: solid black;
   color: black;
+  text-align: center;
+  background-color: rgb(204, 197, 0);
 }
 
-.showcaseDesc {
+.showcaseImage {
   width: 100%;
-  padding: 8px 10px;
-  background-color: rgb(204, 197, 0);
-  text-align: center;
+  height: 75%;
 }
 
 .showcaseTitle {
-  font-size: 30px;
+  width: 100%;
+  font-size: 25px;
   font-weight: bold;
+}
+
+.showcaseDesc {
+  display: none;
+}
+
+
+@media only screen and (min-width: 768px) {
+
+  .projectTitle {
+    text-align: left;
+    padding-left: 50px;
+    font-size: 50px;
+  }
+
+  .showcaseProjects {
+    width: 85%;
+    display: table;
+  }
+
+  .showcaseTile {
+    float: left;
+    height: 380px;
+    width: 230px;
+    margin-left: 20px;
+  }
+
+  .showcaseImage {
+    height: 32%;
+  }
+
+  .showcaseTitle {
+    font-size: 25px;
+  }
+
+  .showcaseDesc {
+    display: block;
+    padding: 5px;
+  }
+}
+
+
+
+
+@media only screen and (min-width: 1000px) {
+
+  .projectTitle {
+    text-align: left;
+    padding-left: 50px;
+    font-size: 50px;
+  }
+
+
+
 }
