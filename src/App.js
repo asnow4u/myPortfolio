@@ -22,19 +22,12 @@ function App() {
         </Route>
 
         <Route path = "/aboutme">
-          <Col xs={1}>
-            <div className="aboutBackgroundBar"></div>
-          </Col>
-          <Col>
-            <Resume />
-          </Col>
+          <Resume />
         </Route>
 
         <Route path="/">
-
           <ProfilePicture />
           <ProfileInfo />
-
         </Route>
 
       </Switch>
