@@ -1,15 +1,95 @@
 .profileInfo {
   width: 100%;
+  height: 100%;
   text-align: center;
   color: rgb(204, 197, 0);
-  font-size: 35px;
   text-shadow: 2px 2px 8px black;
 }
 
-.profileJob {
-  font-size: 40px;
-  padding-bottom: 15px;
+.profileName {
+  font-size: 50px;
+  padding-bottom: 20px;
 }
+
+.profileJob {
+  font-size: 35px;
+  padding-bottom: 30px;
+}
+
+.continueDiv {
+  height: 100px;
+  /* width: 70%; */
+  width: 100%;
+  float: right;
+  background-color: rgb(204, 197, 0);
+  clip-path:polygon(0% 100%, 100% 0%, 100% 100%);
+}
+
+.continueArrowButton {
+  width: 25%;
+  height: 100%;
+  float: right;
+  padding-top: 15px;
+  border: none;
+  background-color: inherit;
+}
+
+
+/* Fun animation for desktop version, will play with
+svg {
+  width: 100px;
+  height: auto;
+  cursor: pointer;
+}
+
+polygon {
+  transition: all 0.5s cubic-bezier(.2,1,.3,1);
+  animation: arrow-anim 2.5s cubic-bezier(.2,1,.3,1) infinite;
+  animation-play-state: paused;
+}
+
+path {
+  transition: all 0.5s cubic-bezier(.2,1,.3,1);
+  animation: arrow-fixed-anim 2.5s cubic-bezier(.2,1,.3,1) infinite;
+  animation-play-state: paused;
+}
+
+svg:hover polygon, svg:hover path {
+  transition: all 1s cubic-bezier(.2,1,.3,1);
+  fill: #FF4136;
+}
+
+svg:hover .arrow, svg:hover .arrow-fixed {
+  animation-play-state: running;
+}
+
+
+@keyframes arrow-anim {
+	0% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	5% {
+		transform: translateX(-0.1px);
+	}
+	100% {
+		transform: translateX(5px);
+		opacity: 0;
+	}
+}
+
+@keyframes arrow-fixed-anim {
+	5% {
+		opacity: 0;
+	}
+	20% {
+		opacity: 0.4;
+	}
+	100% {
+		opacity: 1;
+	}
+} */
+
 
 
 @media only screen and (min-width: 768px) {
@@ -28,6 +108,10 @@
 
   .profileJob {
     font-size: 80px;
+  }
+
+  .continueButton {
+    display: none;
   }
 
 }

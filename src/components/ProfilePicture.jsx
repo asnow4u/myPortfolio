@@ -5,9 +5,9 @@ class ProfilePicture extends React.Component {
 
   render() {
     return (
-
-      <img className="profilePicture" src={process.env.PUBLIC_URL + '/img/image2.jpg'} alt=""/>
-      
+      <div>
+        <img className="profilePicture" src={process.env.PUBLIC_URL + '/img/profileImage.jpg'} alt=""/>
+      </div>
     );
   }
 

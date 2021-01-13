@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap'; //Going to remove
 import { Switch, Route} from 'react-router-dom';
 import ProfilePicture from './components/ProfilePicture';
 import Navbar from './components/Navbar';
@@ -9,30 +8,43 @@ import Project from './components/Project';
 import './style/app.css';
 
 
-function App() {
+class App extends React.Component {
 
-  return (
-    <div className="wrapper">
+  state = { arrowNav: false }
 
-      <Navbar />
+  callbackFunction = (profileInfoData) => {
+    this.setState({ arrowNav: profileInfoData });
+  }
 
-      <Switch>
-        <Route path = "/projects">
-          <Project />
-        </Route>
+  render(){
 
-        <Route path = "/aboutme">
-          <Resume />
-        </Route>
+    return (
+      <div className="wrapper">
 
-        <Route path="/">
-          <ProfilePicture />
-          <ProfileInfo />
-        </Route>
+        <Navbar arrowLink = {this.state.arrowNav} appCallBack = {this.callbackFunction}/>
 
-      </Switch>
-    </div>
-  );
+        <Switch>
+          <Route path = "/aboutme">
+            <Resume />
+          </Route>
+
+          <Route path = "/projects">
+            <Project />
+          </Route>
+
+          <Route path = "/contact">
+
+          </Route>
+
+          <Route path="/">
+            <ProfilePicture />
+            <ProfileInfo appCallBack = {this.callbackFunction} />
+          </Route>
+
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
