@@ -3,7 +3,7 @@ import { Switch, Route} from 'react-router-dom';
 import ProfilePicture from './components/ProfilePicture';
 import Navbar from './components/Navbar';
 import ProfileInfo from './components/ProfileInfo';
-import Resume from './components/Resume';
+import AboutMe from './components/AboutMe';
 import Project from './components/Project';
 import './style/app.css';
 
@@ -25,7 +25,7 @@ class App extends React.Component {
 
         <Switch>
           <Route path = "/aboutme">
-            <Resume />
+            <AboutMe />
           </Route>
 
           <Route path = "/projects">

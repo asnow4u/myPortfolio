@@ -5,20 +5,20 @@ import '../style/navbar.css';
 
 class Navbar extends React.Component {
 
-  constructor(props){
-      super(props);
-      this.state = {
-        profileHover: false,
-        skillHover: false,
-        projectHover: false,
-        contactHover: false,
-        profileFile: process.env.PUBLIC_URL + '/img/navBar/profileTab_hover.png',
-        skillFile: process.env.PUBLIC_URL + '/img/navBar/skillTab.png',
-        projectFile: process.env.PUBLIC_URL + '/img/navBar/projectTab.png',
-        contactFile: process.env.PUBLIC_URL + '/img/navBar/contactTab.png',
-        gitLinkFile: process.env.PUBLIC_URL + '/img/navBar/gitTab.png',
-        resumeLinkFile: process.env.PUBLIC_URL + '/img/navBar/resumeLink.png'
-      };
+  constructor(){
+    super();
+    this.state = {
+      profileHover: false,
+      skillHover: false,
+      projectHover: false,
+      contactHover: false,
+      profileFile: process.env.PUBLIC_URL + '/img/navBar/profileTab_hover.png',
+      skillFile: process.env.PUBLIC_URL + '/img/navBar/skillTab.png',
+      projectFile: process.env.PUBLIC_URL + '/img/navBar/projectTab.png',
+      contactFile: process.env.PUBLIC_URL + '/img/navBar/contactTab.png',
+      gitLinkFile: process.env.PUBLIC_URL + '/img/navBar/gitTab.png',
+      resumeLinkFile: process.env.PUBLIC_URL + '/img/navBar/resumeLink.png'
+    };
   }
 
 

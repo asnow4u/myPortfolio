@@ -1,0 +1,147 @@
+.aboutMe {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  padding-top: 10px;
+}
+
+.aboutMeTitle {
+  padding-bottom: 10px;
+  color: rgb(204, 197, 0);
+  font-size: 30px;
+  text-shadow: 2px 2px 8px black;
+}
+
+.bioDiv {
+  padding: 10px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  text-align: center;
+  border: solid black;
+  border-radius: 15px 100px;
+  background-color: rgb(204, 197, 0);
+}
+
+.bio {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 85%;
+  height: 250px;
+  overflow-y: auto;
+  color: black;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.skills {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  padding-top: 20px;
+}
+
+.skillTitle {
+  font-size: 30px;
+  padding-bottom: 25px;
+  color: rgb(204, 197, 0);
+  text-shadow: 2px 2px 8px black;
+}
+
+.skillDiv {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.skillCategory {
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 30px;
+  width: 90%;
+}
+
+.categoryTitle {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: rgb(204, 197, 0);
+  text-shadow: 2px 2px 8px black;
+}
+
+.skillTile {
+  display: inline-block;
+  width: 33.33%;
+  border: solid black 4px;
+  background-color: rgb(204, 197, 0);
+}
+
+.skillImg {
+  display: block;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+@media only screen and (min-width: 768px) {
+
+  .bio {
+    width: 90%;
+    height: 20%;
+  }
+
+  .categoryTitle {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .skillTile {
+    width: 25%;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+
+  .aboutMeTitle {
+    padding-top: 25px;
+  }
+
+  .bioDiv {
+    margin-left: 0;
+  }
+
+  .skillTitle {
+    padding-top: 20px;
+    padding-right: 150px;
+    text-align: right;
+    font-size: 40px;
+  }
+
+  .skillCategory {
+    margin-left: 0;
+    padding-bottom: 35px;
+  }
+
+  .categoryTitle {
+    text-align: left;
+    font-size: 30px;
+  }
+
+  .skillTile {
+    width: 20%;
+  }
+
+}
+
+@media only screen and (min-width: 1300px) {
+
+  .skillTile {
+    width: 15%;
+  }
+}

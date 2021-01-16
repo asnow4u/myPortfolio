@@ -1,5 +1,5 @@
-.projectTitle {
-  padding-top: 20px;
+.showcaseTitle {
+  padding-top: 10px;
   text-align: center;
   font-size: 40px;
   color: rgb(204, 197, 0);
@@ -13,66 +13,84 @@
   padding-top: 20px;
 }
 
-.showcaseTile {
+.projectTile {
   width: 100%;
   margin-bottom: 20px;
-  border: solid black;
-  color: black;
+  border: solid black 4px;
   text-align: center;
   background-color: rgb(204, 197, 0);
 }
 
-.showcaseImage {
+.projectImage {
   width: 100%;
-  height: 75%;
 }
 
-.showcaseTitle {
+.projectTitle {
   width: 100%;
+  color: black;
   font-size: 25px;
   font-weight: bold;
 }
 
-.showcaseDesc {
-  display: none;
+.externalDisplay {
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* display: none; */
 }
 
+.displayProject {
+  width: 80%;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  border: solid black 5px;
+  background-color: rgb(80, 80, 80);
+}
+
+.displayImage {
+  display: block;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  border: groove black 3px;
+}
+
+.displayDisc {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  /* height: 300px; */
+}
+
+.displayTitle {
+  text-align: center;
+  color: rgb(204, 197, 0);
+  text-shadow: 2px 2px 8px black;
+}
+
+.displayProjectDisc {
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 5%;
+  padding-right: 5%;
+  height: 220px;
+  color: black;
+  font-weight: 500;
+  border: solid black 5px;
+  overflow-y: scroll;
+}
 
 @media only screen and (min-width: 768px) {
 
-  .projectTitle {
-    text-align: left;
-    padding-left: 50px;
-    font-size: 50px;
-  }
-
-  .showcaseProjects {
-    width: 85%;
-    display: table;
-  }
-
-  .showcaseTile {
-    float: left;
-    height: 380px;
-    width: 230px;
-    margin-left: 20px;
-  }
-
-  .showcaseImage {
-    height: 32%;
-  }
-
-  .showcaseTitle {
-    font-size: 25px;
-  }
-
-  .showcaseDesc {
-    display: block;
-    padding: 5px;
-  }
 }
-
-
 
 
 @media only screen and (min-width: 1000px) {
