@@ -41,7 +41,7 @@ class Project extends React.Component {
 
   CloseProjectDisplay = () => {
     let display = document.getElementById("display").style.display = "none";
-
+    let demo = document.getElementById("demoButton").style.display = "block";
 
     this.setState({
       imageSlideShow: false
@@ -56,13 +56,15 @@ class Project extends React.Component {
     let display = document.getElementById("display").style.display = "block";
 
     if (project == "Unity"){
+
+      let demo = document.getElementById("demoButton").style.display = "none";
+
       this.setState({
-        projectTitle: "Unity",
+        projectTitle: "Unity VR Game",
         projectImage: process.env.PUBLIC_URL + '/img/project/unityGame.jpg',
-        projectDesc: "A fun take on a 2D game in VR. Currently in a very early stage of development and design. Created using Unity with Oculus SDK, and Blender for 3D assets and animation.",
-        projectSkills: ["Unity", "C#", "3D Dev", "Oculus"],
+        projectDesc: "A fun take on a 2D game in virtual reality where the level is wrapped around the player. Take the role of a forest guardian and defend your homeland from fiery invaders from the top of the mountain.",
+        projectSkills: ["<Unity>", "<C#>", "<Oculus SDK>", "<VR>", "<Blender>"],
         projectGitHub: "https://github.com/asnow4u/UnityNatureProject/",
-        projectDemo: "https://github.com/asnow4u/UnityNatureProject/",
         imageSlideShow: true,
         slideShowImages: [process.env.PUBLIC_URL + '/img/project/unityGame.jpg', process.env.PUBLIC_URL + '/img/project/portfolioScreenshot.jpg'],
         slideNum: 0
@@ -70,11 +72,14 @@ class Project extends React.Component {
     }
 
     else if (project == "Portfolio"){
+
+      let demo = document.getElementById("demoButton").style.display = "none";
+
       this.setState({
-        projectTitle: "Portfolio",
+        projectTitle: "Portfolio Website",
         projectImage: process.env.PUBLIC_URL + '/img/project/portfolioScreenshot.jpg',
-        projectDesc: "Welcome to the website your currently looking at. Built using React and Bootstrap, and hosted using GitPages. Explore around and see what I have to offer you.",
-        projectSkills: ["React"],
+        projectDesc: "Welcome to the website your currently looking at. Built using React.js and hosted using GitPages. Explore around and feel free to contact me at the bottom of the page.",
+        projectSkills: ["<React>", "<Responsive>", "<>", "<JavaScript>", "<GitPages>"], //TODO: put email client here
         projectGitHub: "https://github.com/asnow4u/myPortfolio/",
         projectDemo: ""
       })
@@ -84,13 +89,14 @@ class Project extends React.Component {
       this.setState({
         projectTitle: "SolarAR",
         projectImage: process.env.PUBLIC_URL + '/img/project/solarARScreenShot.png',
-        projectDesc: "A web application using WebXR to help visualize the solar system. Utilizes Three.js to produce the 3D enviroment and replicate the physics of the solar system.",
-        projectSkills: ["WebXR"],
+        projectDesc: "A web application using WebXR to help visualize the solar system. Utilizes Three.js to produce the 3D environment and simulate the physics of the solar system in your own space. Developed as a colab with Intel as a means of educating children about the sun and planets.",
+        projectSkills: ["<WebXR>", "<Three.js>", "<AR>", "<JavaScript>", "<3D Physics>"],
         projectGitHub: "https://github.com/OSU-2019-Capstone-CS19/Educational-AR-WebXR-App",
-        projectDemo: "https://github.com/OSU-2019-Capstone-CS19/Educational-AR-WebXR-App"
+        projectDemo: "https://osu-2019-capstone-cs19.github.io/Educational-AR-WebXR-App/dist"
       })
     }
 
+    //This is currently broken
     else if (project == "MovieStar"){
       this.setState({
         projectTitle: "MovieStar",
@@ -101,19 +107,7 @@ class Project extends React.Component {
         projectDemo: "https://github.com/osu-cs419-w20/final-project-group2"
       })
     }
-
-    else if (project == "DockerAPI"){
-      this.setState({
-        projectTitle: "API",
-        projectImage: process.env.PUBLIC_URL + '/img/project/docker.png',
-        projectDesc: "A small program keeping track of students, information associated with them, the courses their taking, and the assignments associated with them. This utilizes a mongodb database within a seperate docker container.",
-        projectSkills: ["Docker"],
-        projectGitHub: "https://github.com/osu-cs493-sp19/final-project-great-team-name",
-        projectDemo: "https://github.com/osu-cs493-sp19/final-project-great-team-name"
-      })
-    }
   }
-
 
   render(){
     return (
@@ -123,24 +117,24 @@ class Project extends React.Component {
 
         <div className="showcaseProjects">
 
-          <div className="projectTile">
-            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/solarARScreenShot.png'} alt="" onClick={() => this.UpdateProjectDisplay("SolarAR")}/>
+          <div className="projectTile" onClick={() => this.UpdateProjectDisplay("SolarAR")}>
+            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/solarARScreenShot.png'} alt=""/>
             <div className="projectTitle">Solar AR</div>
           </div>
 
-          <div className="projectTile">
-            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/portfolioScreenshot.jpg'} alt="" onClick={() => this.UpdateProjectDisplay("Portfolio")}/>
+          <div className="projectTile" onClick={() => this.UpdateProjectDisplay("Portfolio")}>
+            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/portfolioScreenshot.jpg'} alt=""/>
             <div className="projectTitle">Portfolio Website</div>
           </div>
 
-          <div className="projectTile">
-            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/movieStarScreenShot.jpg'} alt="" onClick={() => this.UpdateProjectDisplay("MovieStar")}/>
+          <div className="projectTile" onClick={() => this.UpdateProjectDisplay("MovieStar")}>
+            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/movieStarScreenShot.jpg'} alt=""/>
             <div className="projectTitle">Movie Star</div>
           </div>
 
-          <div className="projectTile">
-            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/unityGame.jpg'} alt="" onClick={() => this.UpdateProjectDisplay("Unity")}/>
-            <div className="projectTitle">Unity Project</div>
+          <div className="projectTile" onClick={() => this.UpdateProjectDisplay("Unity")}>
+            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/unityGame.jpg'} alt=""/>
+            <div className="projectTitle">Unity VR Game</div>
           </div>
 
         </div>
@@ -159,7 +153,7 @@ class Project extends React.Component {
                   <img className="displayButton" src={process.env.PUBLIC_URL + '/img/project/github.png'} alt=""/>
                 </a>
                 <a href={this.state.projectDemo} target="_blank" rel="noopener noreferrer">
-                  <img className="displayButton" src={process.env.PUBLIC_URL + '/img/project/demo.png'} alt=""/>
+                  <img className="displayButton" id="demoButton" src={process.env.PUBLIC_URL + '/img/project/demo.png'} alt=""/>
                 </a>
                 <img className="displayButton" src={process.env.PUBLIC_URL + '/img/project/exit.png'} alt="" onClick={() => this.CloseProjectDisplay()}/>
               </div>
