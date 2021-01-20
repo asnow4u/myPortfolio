@@ -10,18 +10,23 @@ import './style/app.css';
 
 class App extends React.Component {
 
-  state = { arrowNav: false }
-
-  callbackFunction = (profileInfoData) => {
-    this.setState({ arrowNav: profileInfoData });
-  }
-
   render(){
-
     return (
       <div className="wrapper">
-        <Navbar arrowLink = {this.state.arrowNav} appCallBack = {this.callbackFunction}/>
-        <ProfileInfo appCallBack = {this.callbackFunction} />
+        <div className="backgroundLines">
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
+        </div>
+        <Navbar />
+        <ProfileInfo />
         <AboutMe />
         <Project />
         <Contact />

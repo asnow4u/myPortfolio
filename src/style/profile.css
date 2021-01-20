@@ -1,13 +1,13 @@
 .profileInfo {
   width: 100%;
-  height: 88vh;
+  height: 100vh;
   text-align: center;
   color: white;
   text-shadow: 2px 2px 8px black;
 }
 
 .profileName {
-  padding-top: 40%;
+  padding-top: 60%;
   padding-bottom: 20px;
   font-size: 50px;
 }
@@ -16,8 +16,7 @@
   width: 100%;
   height: 5px;
   margin-bottom: 20px;
-  /* background-color: rgb(170, 169, 173); */
-  background-image : linear-gradient(to left, rgba(255,255,255, 0), rgba(255,255,255, 1) 90%);
+  background-image: linear-gradient(to left, rgba(204, 197, 0, 0), rgba(204, 197, 0, 1) 90%);
 }
 
 .profileJob {
@@ -45,19 +44,16 @@
 
 @media only screen and (min-width: 1000px) {
 
-  .profileInfo {
-    height: 100vh;
-  }
-
   .profileName {
     padding-top: 15%;
+    padding-left: 0;
     font-size: 130px;
     text-align: center;
   }
 
   .profileJob {
     font-size: 80px;
-    padding-left: 0;
+    padding-right: 0;
     text-align: center;
   }
 }

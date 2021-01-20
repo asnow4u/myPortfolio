@@ -1,23 +1,24 @@
 .navWrapper {
-  width: 100%;
-  height: 12vh;
-  position: sticky;
-  top: 0;
-  z-index: 5;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  width: 140px;
+}
+
+.navLink {
+  float: right;
+  width: 50px;
+  height: 60px;
+  margin-right: 20px;
+  margin-bottom: 10px;
 }
 
 .button {
-  width: 16.66%;
-  height: 100%;
-  border-color: black;
-  color: black;
+  width: 100%;
+  height: 80%;
   border: black solid 4px;
+  border-radius: 100%;
   background-color: rgb(204, 197, 0);
-  vertical-align: top;
-}
-
-.homeButton {
-  background-color: black;
 }
 
 .linkImage {
@@ -26,29 +27,20 @@
 }
 
 .tabDesc {
+  display: none;
   font-size: 15px;
   color: rgb(204, 197, 0);
-  height: 10%;
-}
-
-.dropDown {
-  visibility: hidden;
   text-align: center;
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
-  width: 100%;
-  border: black solid 4px;
-  background-color: rgb(204, 197, 0);
 }
 
-a:active, a:focus {
+a:active, a:focus, a:link{
+  text-decoration: none;
   outline: none;
   border: none;
 }
 
 
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
 
   .navWrapper {
     padding-left: 120px;
@@ -73,4 +65,4 @@ a:active, a:focus {
     width: 100%;
     height: 16.66%;
   }
-}
+} */

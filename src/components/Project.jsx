@@ -124,8 +124,8 @@ class Project extends React.Component {
         <div className="showcaseProjects">
 
           <div className="projectTile">
-            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/unityGame.jpg'} alt="" onClick={() => this.UpdateProjectDisplay("Unity")}/>
-            <div className="projectTitle">Unity Project</div>
+            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/solarARScreenShot.png'} alt="" onClick={() => this.UpdateProjectDisplay("SolarAR")}/>
+            <div className="projectTitle">Solar AR</div>
           </div>
 
           <div className="projectTile">
@@ -134,18 +134,13 @@ class Project extends React.Component {
           </div>
 
           <div className="projectTile">
-            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/solarARScreenShot.png'} alt="" onClick={() => this.UpdateProjectDisplay("SolarAR")}/>
-            <div className="projectTitle">Solar AR</div>
-          </div>
-
-          <div className="projectTile">
             <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/movieStarScreenShot.jpg'} alt="" onClick={() => this.UpdateProjectDisplay("MovieStar")}/>
             <div className="projectTitle">Movie Star</div>
           </div>
 
           <div className="projectTile">
-            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/docker.png'} alt=""/>
-            <div className="projectTitle">Tarpaulin Api</div>
+            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/unityGame.jpg'} alt="" onClick={() => this.UpdateProjectDisplay("Unity")}/>
+            <div className="projectTitle">Unity Project</div>
           </div>
 
         </div>
