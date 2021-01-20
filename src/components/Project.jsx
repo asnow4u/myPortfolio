@@ -117,10 +117,9 @@ class Project extends React.Component {
 
   render(){
     return (
-      <div>
-        <div className="showcaseTitle">
-           Projects:
-        </div>
+      <div className="section">
+        <div className="sectionTitle">Projects I've Done...</div>
+        <div className="barDivider"></div>
 
         <div className="showcaseProjects">
 

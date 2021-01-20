@@ -189,7 +189,7 @@ class Navbar extends React.Component {
         <Link to="/aboutme" onClick={() => this.UpdateNavLinks("skill")}>
           <button className="button" id="skillLink" onMouseOver={() => this.HoverNavLink(true, "skill")} onMouseOut={() => this.HoverNavLink(false, "skill")}>
             <img className="linkImage" id="skillImage" src={this.state.skillFile}/>
-            <h5 className="tabDesc">About Me</h5>
+            <h5 className="tabDesc">About</h5>
           </button>
         </Link>
 

@@ -1,0 +1,46 @@
+.contactForm {
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  font-weight: bold;
+  color: black;
+  border: solid black;
+  border-radius: 15px;
+  background-color: rgb(204, 197, 0);
+}
+
+.formGroup {
+  padding-bottom: 10px;
+}
+
+label {
+  width: 50%;
+}
+
+.formControl {
+  float: right;
+  width: 50%;
+}
+
+.submitButton {
+  margin-top: 25px;
+  display: block;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .contactForm {
+    width: 60%;
+    font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .contactForm {
+    width: 40%;
+    font-size: 25px;
+  }
+}

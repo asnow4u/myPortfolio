@@ -1,14 +1,23 @@
 .profileInfo {
   width: 100%;
-  height: 100%;
+  height: 88vh;
   text-align: center;
-  color: rgb(204, 197, 0);
+  color: white;
   text-shadow: 2px 2px 8px black;
 }
 
 .profileName {
-  font-size: 50px;
+  padding-top: 40%;
   padding-bottom: 20px;
+  font-size: 50px;
+}
+
+.barDivider {
+  width: 100%;
+  height: 5px;
+  margin-bottom: 20px;
+  /* background-color: rgb(170, 169, 173); */
+  background-image : linear-gradient(to left, rgba(255,255,255, 0), rgba(255,255,255, 1) 90%);
 }
 
 .profileJob {
@@ -16,73 +25,33 @@
   padding-bottom: 30px;
 }
 
-.continueDiv {
-  height: 100px;
-  /* width: 70%; */
-  width: 100%;
-  float: right;
-  background-color: rgb(204, 197, 0);
-  clip-path:polygon(0% 100%, 100% 0%, 100% 100%);
-}
-
-.continueArrowButton {
-  width: 25%;
-  height: 100%;
-  float: right;
-  padding-top: 15px;
-  border: none;
-  background-color: inherit;
-}
-
-
 
 @media only screen and (min-width: 768px) {
 
-  .profileInfo {
-    position: relative;
-    margin-top: -420px;
-  }
-
   .profileName {
-    font-size: 70px;
-    padding-right: 100px;
-    text-align: right;
-  }
-
-  .profileJob {
+    padding-top: 30%;
     font-size: 70px;
     padding-left: 100px;
     text-align: left;
   }
 
-  .continueDiv {
-    height: 250px;
-    clip-path:polygon(0% 100%, 100% 0%, 100% 55%, 50% 100%);
-  }
-
-  .continueArrowButton {
-    margin-right: 50px;
-    margin-top: 30px;
-    height: 50%;
-    width: 10%;
-    transform: rotate(-18deg);
+  .profileJob {
+    font-size: 70px;
+    padding-right: 100px;
+    text-align: right;
   }
 }
 
 
 @media only screen and (min-width: 1000px) {
 
-  .profileInfo{
-    position: none;
-    margin-top: 10%;
-    margin-right: 50px;
-    width: 60%;
-    float: right;
+  .profileInfo {
+    height: 100vh;
   }
 
   .profileName {
+    padding-top: 15%;
     font-size: 130px;
-    padding-right: 0;
     text-align: center;
   }
 
@@ -90,26 +59,6 @@
     font-size: 80px;
     padding-left: 0;
     text-align: center;
-  }
-
-  .continueDiv {
-    display: none;
-    /* width: 15%;
-    float: none;
-    height: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 200px;
-    background-color: transparent;
-    clip-path:polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); */
-  }
-
-  .continueArrowButton {
-    margin-right: 0;
-    margin-top: 0;
-    height: 100%;
-    width: 100%;
-    transform: rotate(0deg);
   }
 }
 
