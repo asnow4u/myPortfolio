@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 import '../style/project.css';
 
 class Project extends React.Component {
@@ -13,47 +12,52 @@ class Project extends React.Component {
       projectDesc: "",
       projectGitHub: "",
       projectDemo: "",
-      imageSlideShow: false,
       slideShowImages: [],
       slideNum: ""
     }
+    this.timerID = 0;
   }
 
-  SwitchImage = () => {
 
-    if (this.state.slideNum < this.state.slideShowImages.length -1){
-      this.setState({
-        projectImage: this.state.slideShowImages[this.state.slideNum + 1],
-        slideNum: this.state.slideNum + 1
-      });
-    } else {
-      this.setState({
-        projectImage: this.state.slideShowImages[0],
-        slideNum: 0
-      });
-    }
+  componentWillUnmount() {
+    this.ClearTimer(this.timerID);
+  }
 
-    if (this.state.imageSlideShow){
-      setTimeout(this.SwitchImage, 3000);
-    }
+  SlideShowTimer() {
+    this.timerID = setInterval(() => {
+      console.log("Testing");
+
+      if (this.state.slideNum < this.state.slideShowImages.length -1){
+        this.setState({
+          projectImage: this.state.slideShowImages[this.state.slideNum + 1],
+          slideNum: this.state.slideNum + 1
+        });
+      } else {
+        this.setState({
+          projectImage: this.state.slideShowImages[0],
+          slideNum: 0
+        });
+      }
+    }, 2500);
+  }
+
+  ClearTimer() {
+    clearInterval(this.timerID);
   }
 
 
   CloseProjectDisplay = () => {
+
     let display = document.getElementById("display").style.display = "none";
     let demo = document.getElementById("demoButton").style.display = "block";
-
-    this.setState({
-      imageSlideShow: false
-    });
+    clearInterval(this.timerID);
   }
 
 
   UpdateProjectDisplay = (project) => {
 
-    // setTimeout(this.SwitchImage, 3000); need to activate once
-    // window.scrollTo(0,0);
     let display = document.getElementById("display").style.display = "block";
+    this.SlideShowTimer();
 
     if (project == "Unity"){
 
@@ -65,8 +69,7 @@ class Project extends React.Component {
         projectDesc: "A fun take on a 2D game in virtual reality where the level is wrapped around the player. Take the role of a forest guardian and defend your homeland from fiery invaders from the top of the mountain.",
         projectSkills: ["<Unity>", "<C#>", "<Oculus SDK>", "<VR>", "<Blender>"],
         projectGitHub: "https://github.com/asnow4u/UnityNatureProject/",
-        imageSlideShow: true,
-        slideShowImages: [process.env.PUBLIC_URL + '/img/project/unityGame.jpg', process.env.PUBLIC_URL + '/img/project/portfolioScreenshot.jpg'],
+        slideShowImages: [process.env.PUBLIC_URL + '/img/project/unityGame.jpg', process.env.PUBLIC_URL + '/img/project/UnityScreenshot1.PNG', process.env.PUBLIC_URL + '/img/project/UnityScreenshot2.PNG', process.env.PUBLIC_URL + '/img/project/UnityScreenshot3.PNG'],
         slideNum: 0
       });
     }
@@ -81,7 +84,9 @@ class Project extends React.Component {
         projectDesc: "Welcome to the website your currently looking at. Built using React.js and hosted using GitPages. Explore around and feel free to contact me at the bottom of the page.",
         projectSkills: ["<React>", "<Responsive>", "<>", "<JavaScript>", "<GitPages>"], //TODO: put email client here
         projectGitHub: "https://github.com/asnow4u/myPortfolio/",
-        projectDemo: ""
+        projectDemo: "",
+        slideShowImages: [process.env.PUBLIC_URL + '/img/project/portfolioScreenshot.jpg', process.env.PUBLIC_URL + '/img/project/portfolioScreenshot1.jpg', process.env.PUBLIC_URL + '/img/project/portfolioScreenshot2.jpg', process.env.PUBLIC_URL + '/img/project/portfolioScreenshot3.jpg'],
+        slideNum: 0
       })
     }
 
@@ -92,7 +97,9 @@ class Project extends React.Component {
         projectDesc: "A web application using WebXR to help visualize the solar system. Utilizes Three.js to produce the 3D environment and simulate the physics of the solar system in your own space. Developed as a colab with Intel as a means of educating children about the sun and planets.",
         projectSkills: ["<WebXR>", "<Three.js>", "<AR>", "<JavaScript>", "<3D Physics>"],
         projectGitHub: "https://github.com/OSU-2019-Capstone-CS19/Educational-AR-WebXR-App",
-        projectDemo: "https://osu-2019-capstone-cs19.github.io/Educational-AR-WebXR-App/dist"
+        projectDemo: "https://osu-2019-capstone-cs19.github.io/Educational-AR-WebXR-App/dist",
+        slideShowImages: [process.env.PUBLIC_URL + '/img/project/solarARScreenShot.png', process.env.PUBLIC_URL + '/img/project/solarARScreenShot1.jpg', process.env.PUBLIC_URL + '/img/project/solarARScreenShot2.jpg', process.env.PUBLIC_URL + '/img/project/solarARScreenShot3.jpg', process.env.PUBLIC_URL + '/img/project/solarARScreenShot4.jpg', process.env.PUBLIC_URL + '/img/project/solarARScreenShot5.jpg'],
+        slideNum: 0
       })
     }
 
@@ -100,16 +107,19 @@ class Project extends React.Component {
     else if (project == "MovieStar"){
       this.setState({
         projectTitle: "MovieStar",
-        projectImage: process.env.PUBLIC_URL + '/img/project/movieStarScreenShot.jpg',
+        projectImage: process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot1.PNG',
         projectDesc: "A react built website that displays movies based on a criteria such as genre or popularity. The website pulls from themoviedb.org database to provide up to date information about the movie and who stars in them.",
         projectSkills: ["React"],
         projectGitHub: "https://github.com/osu-cs419-w20/final-project-group2",
-        projectDemo: "https://github.com/osu-cs419-w20/final-project-group2"
+        projectDemo: "https://github.com/osu-cs419-w20/final-project-group2",
+        slideShowImages: [process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot1.PNG', process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot2.PNG', process.env.PUBLIC_URL + '/img/project/movieStarScreenShot3.jpg', process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot4.PNG'],
+        slideNum: 0
       })
     }
   }
 
   render(){
+
     return (
       <div className="section">
         <div className="sectionTitle">Projects I've Done...</div>
@@ -128,7 +138,7 @@ class Project extends React.Component {
           </div>
 
           <div className="projectTile" onClick={() => this.UpdateProjectDisplay("MovieStar")}>
-            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/movieStarScreenShot.jpg'} alt=""/>
+            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/movieStarScreenShot1.PNG'} alt=""/>
             <div className="projectTitle">Movie Star</div>
           </div>
 
@@ -168,10 +178,8 @@ class Project extends React.Component {
               <h6 className="projectSkill" id="skill2"> {this.state.projectSkills[3]} </h6>
               <h6 className="projectSkill" id="skill2"> {this.state.projectSkills[4]} </h6>
             </div>
-
           </div>
         </div>
-
       </div>
     );
   }
