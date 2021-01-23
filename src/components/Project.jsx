@@ -69,7 +69,7 @@ class Project extends React.Component {
         projectDesc: "A fun take on a 2D game in virtual reality where the level is wrapped around the player. Take the role of a forest guardian and defend your homeland from fiery invaders from the top of the mountain.",
         projectSkills: ["<Unity>", "<C#>", "<Oculus SDK>", "<VR>", "<Blender>"],
         projectGitHub: "https://github.com/asnow4u/UnityNatureProject/",
-        slideShowImages: [process.env.PUBLIC_URL + '/img/project/unityGame.jpg', process.env.PUBLIC_URL + '/img/project/UnityScreenshot1.PNG', process.env.PUBLIC_URL + '/img/project/UnityScreenshot2.PNG', process.env.PUBLIC_URL + '/img/project/UnityScreenshot3.PNG'],
+        slideShowImages: [process.env.PUBLIC_URL + '/img/project/unityGame.jpg', process.env.PUBLIC_URL + '/img/project/UnityScreenshot1.png', process.env.PUBLIC_URL + '/img/project/UnityScreenshot2.png', process.env.PUBLIC_URL + '/img/project/UnityScreenshot3.png'],
         slideNum: 0
       });
     }
@@ -107,12 +107,12 @@ class Project extends React.Component {
     else if (project == "MovieStar"){
       this.setState({
         projectTitle: "MovieStar",
-        projectImage: process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot1.PNG',
+        projectImage: process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot1.png',
         projectDesc: "A react built website that displays movies based on a criteria such as genre or popularity. The website pulls from themoviedb.org database to provide up to date information about the movie and who stars in them.",
         projectSkills: ["<React>", "<API>", "<Emotion>", "<GitPages>"],
         projectGitHub: "https://github.com/osu-cs419-w20/final-project-group2",
         projectDemo: "https://osu-cs419-w20.github.io/final-project-group2/",
-        slideShowImages: [process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot1.PNG', process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot2.PNG', process.env.PUBLIC_URL + '/img/project/movieStarScreenShot3.jpg', process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot4.PNG'],
+        slideShowImages: [process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot1.png', process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot2.png', process.env.PUBLIC_URL + '/img/project/movieStarScreenShot3.jpg', process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot4.png'],
         slideNum: 0
       })
     }
@@ -138,7 +138,7 @@ class Project extends React.Component {
           </div>
 
           <div className="projectTile" onClick={() => this.UpdateProjectDisplay("MovieStar")}>
-            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/movieStarScreenShot1.PNG'} alt=""/>
+            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/movieStarScreenShot1.png'} alt=""/>
             <div className="projectTitle">Movie Star</div>
           </div>
 
