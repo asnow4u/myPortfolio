@@ -25,7 +25,6 @@ class Project extends React.Component {
 
   SlideShowTimer() {
     this.timerID = setInterval(() => {
-      console.log("Testing");
 
       if (this.state.slideNum < this.state.slideShowImages.length -1){
         this.setState({
@@ -138,7 +137,7 @@ class Project extends React.Component {
           </div>
 
           <div className="projectTile" onClick={() => this.UpdateProjectDisplay("MovieStar")}>
-            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/movieStarScreenShot1.png'} alt=""/>
+            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot.png'} alt=""/>
             <div className="projectTitle">Movie Star</div>
           </div>
 
