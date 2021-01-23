@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../style/navbar.css';
 
 
@@ -67,7 +66,7 @@ class Navbar extends React.Component {
         <div className="navLink">
           <a href={process.env.PUBLIC_URL + '/Resume.pdf'} target="_blank" rel="noopener noreferrer">
             <button className="button" id="resumeLink" onMouseOver={() => this.HoverNavLink(true, "resume")} onMouseOut={() => this.HoverNavLink(false, "resume")}>
-              <img className="linkImage" src={this.state.resumeLinkFile}/>
+              <img className="linkImage" src={this.state.resumeLinkFile} alt=""/>
             </button>
             <h5 className="tabDesc" id="resumeDesc">Resume</h5>
           </a>
@@ -76,7 +75,7 @@ class Navbar extends React.Component {
         <div className="navLink">
           <a href="https://github.com/asnow4u?tab=repositories" target="_blank" rel="noopener noreferrer">
             <button className="button" id="gitLink"  onMouseOver={() => this.HoverNavLink(true, "git")} onMouseOut={() => this.HoverNavLink(false, "git")}>
-              <img className="linkImage" src={this.state.gitLinkFile}/>
+              <img className="linkImage" src={this.state.gitLinkFile} alt=""/>
             </button>
             <h5 className="tabDesc" id="gitDesc">Github</h5>
           </a>
@@ -85,7 +84,7 @@ class Navbar extends React.Component {
         <div className="navLink">
           <a href="https://www.linkedin.com/in/asnow4u/" target="_blank" rel="noopener noreferrer">
             <button className="button" id="linkedInLink"  onMouseOver={() => this.HoverNavLink(true, "linkedIn")} onMouseOut={() => this.HoverNavLink(false, "linkedIn")}>
-              <img className="linkImage" src={this.state.linkedInFile}/>
+              <img className="linkImage" src={this.state.linkedInFile} alt=""/>
             </button>
             <h5 className="tabDesc" id="linkedInDesc">LinkedIn</h5>
           </a>

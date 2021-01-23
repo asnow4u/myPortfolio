@@ -82,7 +82,7 @@ class Project extends React.Component {
         projectTitle: "Portfolio Website",
         projectImage: process.env.PUBLIC_URL + '/img/project/portfolioScreenshot.jpg',
         projectDesc: "Welcome to the website your currently looking at. Built using React.js and hosted using GitPages. Explore around and feel free to contact me at the bottom of the page.",
-        projectSkills: ["<React>", "<Responsive>", "<>", "<JavaScript>", "<GitPages>"], //TODO: put email client here
+        projectSkills: ["<React>", "<Responsive>", "<EmailJS>", "<JavaScript>", "<GitPages>"], //TODO: put email client here
         projectGitHub: "https://github.com/asnow4u/myPortfolio/",
         projectDemo: "",
         slideShowImages: [process.env.PUBLIC_URL + '/img/project/portfolioScreenshot.jpg', process.env.PUBLIC_URL + '/img/project/portfolioScreenshot1.jpg', process.env.PUBLIC_URL + '/img/project/portfolioScreenshot2.jpg', process.env.PUBLIC_URL + '/img/project/portfolioScreenshot3.jpg'],
@@ -109,9 +109,9 @@ class Project extends React.Component {
         projectTitle: "MovieStar",
         projectImage: process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot1.PNG',
         projectDesc: "A react built website that displays movies based on a criteria such as genre or popularity. The website pulls from themoviedb.org database to provide up to date information about the movie and who stars in them.",
-        projectSkills: ["React"],
+        projectSkills: ["<React>", "<API>", "<Emotion>", "<GitPages>"],
         projectGitHub: "https://github.com/osu-cs419-w20/final-project-group2",
-        projectDemo: "https://github.com/osu-cs419-w20/final-project-group2",
+        projectDemo: "https://osu-cs419-w20.github.io/final-project-group2/",
         slideShowImages: [process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot1.PNG', process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot2.PNG', process.env.PUBLIC_URL + '/img/project/movieStarScreenShot3.jpg', process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot4.PNG'],
         slideNum: 0
       })

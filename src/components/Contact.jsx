@@ -1,4 +1,5 @@
 import React from 'react';
+import emailjs from 'emailjs-com';
 import '../style/contact.css';
 
 class Contact extends React.Component {
@@ -24,10 +25,18 @@ class Contact extends React.Component {
     this.setState({message: event.target.value});
   }
 
-  handleSubmit(event) {
-    //TODO: get the email working
-    event.preventDefault();
-    console.log(this.state);
+  sendEmail(e) {
+    e.preventDefault();
+
+    emailjs.sendForm('service_7aclidw', 'template_zs0o21o', e.target, 'user_TTUupRfAYvDalWIqcNqW2')
+     .then((result) => {
+        alert("Thanks For The Email");
+        console.log(result.text);
+     }, (error) => {
+         console.log(error.text);
+     });
+
+     e.target.reset();
   }
 
   render() {
@@ -36,25 +45,39 @@ class Contact extends React.Component {
         <div className="sectionTitle">Lets Talk...</div>
         <div className="barDivider"></div>
 
-        <form className="contactForm" id="contactForm" onSubmit={this.handleSubmit.bind(this)} method="POST">
+        <form className="contactForm" id="contactForm" onSubmit={this.sendEmail.bind(this)} method="POST">
           <div className="formGroup">
             <label htmlFor="name">Name:</label>
-            <input type="text" className="formControl" value={this.state.name} onChange={this.onNameChange.bind(this)} />
+            <input type="text" className="formControl" value={this.state.name} onChange={this.onNameChange.bind(this)} name='name'/>
           </div>
 
           <div className="formGroup">
             <label htmlFor="exampleEmail">Email address:</label>
-            <input type="email" className="formControl" aria-describedby="emailHelp" value={this.state.email} onChange={this.onEmailChange.bind(this)}/>
+            <input type="email" className="formControl" aria-describedby="emailHelp" value={this.state.email} onChange={this.onEmailChange.bind(this)} name='email'/>
           </div>
           <div className="formGroup">
             <label htmlFor="message">Message:</label>
-            <textarea className="formControl" value={this.state.message} onChange={this.onMessageChange.bind(this)}></textarea>
+            <textarea className="formControl" value={this.state.message} onChange={this.onMessageChange.bind(this)} name='message'></textarea>
           </div>
           <button type="submit" className="submitButton">Send</button>
         </form>
+
       </div>
     );
   }
 }
 
 export default Contact;
+
+
+
+
+// <form className="contact-form" onSubmit={this.sendEmail}>
+//   <label>Name</label>
+//   <input type="text" name="name" />
+//   <label>Email</label>
+//   <input type="email" name="email" />
+//   <label>Message</label>
+//   <textarea name="message" />
+//   <input type="submit" value="Send" />
+// </form>
