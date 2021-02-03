@@ -81,7 +81,7 @@ class Project extends React.Component {
         projectTitle: "Portfolio Website",
         projectImage: process.env.PUBLIC_URL + '/img/project/portfolioScreenshot.jpg',
         projectDesc: "Welcome to the website your currently looking at. Built using React.js and hosted using GitPages. Explore around and feel free to contact me at the bottom of the page.",
-        projectSkills: ["<React>", "<Responsive>", "<EmailJS>", "<JavaScript>", "<GitPages>"], //TODO: put email client here
+        projectSkills: ["<React>", "<Responsive>", "<EmailJS>", "<JavaScript>", "<GitPages>"],
         projectGitHub: "https://github.com/asnow4u/myPortfolio/",
         projectDemo: "",
         slideShowImages: [process.env.PUBLIC_URL + '/img/project/portfolioScreenshot.jpg', process.env.PUBLIC_URL + '/img/project/portfolioScreenshot1.jpg', process.env.PUBLIC_URL + '/img/project/portfolioScreenshot2.jpg', process.env.PUBLIC_URL + '/img/project/portfolioScreenshot3.jpg'],
@@ -93,7 +93,7 @@ class Project extends React.Component {
       this.setState({
         projectTitle: "SolarAR",
         projectImage: process.env.PUBLIC_URL + '/img/project/solarARScreenShot.png',
-        projectDesc: "A web application using WebXR to help visualize the solar system. Utilizes Three.js to produce the 3D environment and simulate the physics of the solar system in your own space. Developed as a colab with Intel as a means of educating children about the sun and planets.",
+        projectDesc: "A web application using WebXR to help visualize the solar system. Utilizes Three.js to produce the 3D environment and simulate the physics of the solar system in your own space. Developed as a collab with Intel as a means of educating children about the sun and planets.",
         projectSkills: ["<WebXR>", "<Three.js>", "<AR>", "<JavaScript>", "<3D Physics>"],
         projectGitHub: "https://github.com/OSU-2019-Capstone-CS19/Educational-AR-WebXR-App",
         projectDemo: "https://osu-2019-capstone-cs19.github.io/Educational-AR-WebXR-App/dist",
