@@ -73,7 +73,7 @@ class Project extends React.Component {
       });
     }
 
-    else if (project == "Portfolio"){
+    else if (project === "Portfolio"){
 
       let demo = document.getElementById("demoButton").style.display = "none";
 
@@ -89,7 +89,7 @@ class Project extends React.Component {
       })
     }
 
-    else if (project == "SolarAR"){
+    else if (project === "SolarAR"){
       this.setState({
         projectTitle: "SolarAR",
         projectImage: process.env.PUBLIC_URL + '/img/project/solarARScreenShot.png',
@@ -102,16 +102,31 @@ class Project extends React.Component {
       })
     }
 
-    //This is currently broken
-    else if (project == "MovieStar"){
+    else if (project === "MovieStar"){
       this.setState({
         projectTitle: "MovieStar",
-        projectImage: process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot.png',
-        projectDesc: "A react built website that displays movies based on a criteria such as genre or popularity. The website pulls from themoviedb.org database to provide up to date information about the movie and who stars in them.",
-        projectSkills: ["<React>", "<API>", "<Emotion>", "<GitPages>"],
-        projectGitHub: "https://github.com/osu-cs419-w20/final-project-group2",
-        projectDemo: "https://osu-cs419-w20.github.io/final-project-group2/",
-        slideShowImages: [process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot.png', process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot1.png', process.env.PUBLIC_URL + '/img/project/movieStarScreenShot2.jpg', process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot3.png'],
+        projectImage: process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot.jpg',
+        projectDesc: "A react built website that displays an up to date movie and tv show catelog. The website pulls from themoviedb.org database to provide up to date information about the movies and tv shows.",
+        projectSkills: ["<React>", "<API>", "<GitPages>"],
+        projectGitHub: "https://github.com/asnow4u/MovieStar",
+        projectDemo: "https://asnow4u.github.io/MovieStar/",
+        slideShowImages: [process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot.jpg', process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot1.jpg', process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot2.jpg', process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot3.jpg'],
+        slideNum: 0
+      })
+    }
+
+    else if (project === "ShootingGallery"){
+
+      let demo = document.getElementById("demoButton").style.display = "none";
+
+      this.setState({
+        projectTitle: "AR Shooting Gallery",
+        projectImage: process.env.PUBLIC_URL + '/img/project/ARShootingGallery.jpg',
+        projectDesc: "A unity game bringing the carnival shooting gallery game to any wall using AR technology.",
+        projectSkills: ["<Unity>", "<AR>", "<C#>"],
+        projectGitHub: "https://github.com/asnow4u/ShootingGalleryAR",
+        projectDemo: "",
+        slideShowImages: [process.env.PUBLIC_URL + '/img/project/ARShootingGallery.jpg', process.env.PUBLIC_URL + '/img/project/ARShootingGallery1.jpg', process.env.PUBLIC_URL + '/img/project/ARShootingGallery2.jpg', process.env.PUBLIC_URL + '/img/project/ARShootingGallery3.jpg'],
         slideNum: 0
       })
     }
@@ -137,13 +152,18 @@ class Project extends React.Component {
           </div>
 
           <div className="projectTile" onClick={() => this.UpdateProjectDisplay("MovieStar")}>
-            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot.png'} alt=""/>
+            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/MovieStarScreenShot.jpg'} alt=""/>
             <div className="projectTitle">Movie Star</div>
           </div>
 
           <div className="projectTile" onClick={() => this.UpdateProjectDisplay("Unity")}>
             <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/unityGame.jpg'} alt=""/>
             <div className="projectTitle">Unity VR Game</div>
+          </div>
+
+          <div className="projectTile" onClick={() => this.UpdateProjectDisplay("ShootingGallery")}>
+            <img className="projectImage" src={process.env.PUBLIC_URL + '/img/project/ARShootingGallery.jpg'} alt=""/>
+            <div className="projectTitle">AR Shooting Gallery Game</div>
           </div>
 
         </div>
