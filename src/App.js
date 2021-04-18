@@ -7,7 +7,6 @@ import Contact from './components/Contact';
 import CubeView from './components/cubeView/CubeView';
 import './style/app.css';
 
-
 const App = () => {
 
   const [visual3DState, setVisual3DState] = React.useState(true);
@@ -16,7 +15,7 @@ const App = () => {
 
     return (
       <div>
-        <CubeView />
+        <CubeView changeVisual={setVisual3DState}/>
       </div>
     );
   } else {
