@@ -59,7 +59,7 @@ export const loadAboutPages = (pageArray) => {
         side: THREE.DoubleSide
       });
 
-      const shape = font.generateShapes( "About Page", 0.5);
+      const shape = font.generateShapes( "About Page" + i, 0.4);
       const geo = new THREE.ShapeGeometry(shape);
 
       geo.computeBoundingBox();
@@ -168,7 +168,7 @@ export const loadContactPages = (pageArray) => {
         side: THREE.DoubleSide
       });
 
-      const shape = font.generateShapes( "Contact Page", 0.4);
+      const shape = font.generateShapes( "Contact Page" + i, 0.4);
       const geo = new THREE.ShapeGeometry(shape);
 
       geo.computeBoundingBox();
@@ -186,40 +186,246 @@ export const loadContactPages = (pageArray) => {
 
 
 
-export const updateFaces = (counter, pageArray, cube) => {
+export const updateFaces = (counter, pageArray, cube, direction) => {
 
+  //Up Movement
+  if (direction === "up") {
 
+    let temp = new THREE.Group();
+    let backFaceIndex;
+
+    cube.children.forEach((face, index) => {
+
+      if (face.cubePosition === "top") {
+        face.cubePosition = "front";
+      }
+
+      else if (face.cubePosition === "bottom") {
+        face.cubePosition = "back";
+
+        while (face.children.length) {
+          temp.add(face.children[0]);
+        }
+      }
+
+      else if (face.cubePosition === "front") {
+        face.cubePosition = "bottom";
+      }
+
+      else if (face.cubePosition === "left") {
+
+        while (face.children.length) {
+          face.remove(face.children[0]);
+        }
+
+        if (counter - 1 < 0) {
+          face.add(pageArray[pageArray.length -1]);
+        } else {
+          face.add(pageArray[counter -1]);
+        }
+
+        face.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI/2);
+      }
+
+      else if (face.cubePosition === "right") {
+
+        while (face.children.length) {
+          face.remove(face.children[0]);
+        }
+
+        if (counter + 1 >= pageArray.length) {
+          face.add(pageArray[0]);
+        } else {
+          face.add(pageArray[counter + 1]);
+        }
+
+        face.rotateOnAxis(new THREE.Vector3(0, 0, 1), -Math.PI/2);
+      }
+
+      else if (face.cubePosition === "back") {
+        face.cubePosition = "top";
+        backFaceIndex = index;
+      }
+    });
+
+    //Place the back face children to the top
+    while (temp.children.length) {
+      cube.children[backFaceIndex].add(temp.children[0]);
+    }
+  }
+
+  //Down Movement
+  else if (direction === "down") {
+
+    let temp = new THREE.Group();
+    let backFaceIndex;
+
+    cube.children.forEach((face, index) => {
+
+      if (face.cubePosition === "top") {
+        face.cubePosition = "back";
+
+        while (face.children.length) {
+          temp.add(face.children[0]);
+        }
+      }
+
+      else if (face.cubePosition === "bottom") {
+        face.cubePosition = "front";
+      }
+
+      else if (face.cubePosition === "front") {
+        face.cubePosition = "top";
+      }
+
+      else if (face.cubePosition === "left") {
+
+        while (face.children.length) {
+          face.remove(face.children[0]);
+        }
+
+        if (counter - 1 < 0) {
+          face.add(pageArray[pageArray.length -1]);
+        } else {
+          face.add(pageArray[counter -1]);
+        }
+
+        face.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI/2);
+      }
+
+      else if (face.cubePosition === "right") {
+
+        while (face.children.length) {
+          face.remove(face.children[0]);
+        }
+
+        if (counter + 1 >= pageArray.length) {
+          face.add(pageArray[0]);
+        } else {
+          face.add(pageArray[counter + 1]);
+        }
+
+        face.rotateOnAxis(new THREE.Vector3(0, 0, 1), -Math.PI/2);
+      }
+
+      else if (face.cubePosition === "back") {
+        face.cubePosition = "bottom";
+        backFaceIndex = index;
+      }
+    });
+
+    //Place the back face children to the top
+    while (temp.children.length) {
+      cube.children[backFaceIndex].add(temp.children[0]);
+    }
+
+  }
+
+  //Left/Right movement
+  else {
+
+    let axis = new THREE.Vector3();
+
+    if (direction === "right") {
+      axis.set(0, 0, 1);
+    } else if (direction === "left") {
+      axis.set(0, 0, -1);
+    }
+
+    cube.children.forEach((face) => {
+
+      if (face.cubePosition === "top") {
+        face.rotateOnAxis(axis, Math.PI/2);
+      }
+
+      else if (face.cubePosition === "bottom") {
+        face.rotateOnAxis(axis, -Math.PI/2);
+      }
+
+      else if (face.cubePosition === "front") {
+
+        if (direction === "right") {
+          face.cubePosition = "left";
+
+        } else if (direction === "left") {
+          face.cubePosition = "right";
+        }
+      }
+
+      else if (face.cubePosition === "back") {
+
+        if (direction === "right") {
+          face.cubePosition = "right";
+
+          if (counter + 1 >= pageArray.length) {
+            face.add(pageArray[0]);
+          } else {
+            face.add(pageArray[counter +1]);
+          }
+
+          //TODO: TEST MORE (Might need to adjust position of children)
+          if (face.position.z < 0) { //-2.01
+            face.rotation.y = Math.PI;
+          }
+
+        } else if (direction === "left") {
+          face.cubePosition = "left";
+
+          if (counter - 1 < 0) {
+            face.add(pageArray[pageArray.length -1]);
+          } else {
+            face.add(pageArray[counter -1]);
+          }
+
+          //TODO: TEST MORE (Might need to adjust position of children)
+          if (face.position.z < 0) { //-2.01
+            face.rotation.y = Math.PI;
+          }
+        }
+      }
+
+      else if (face.cubePosition === "left") {
+
+        if (direction === "right") {
+          face.cubePosition = "back";
+
+          while (face.children.length) {
+            face.remove(face.children[0]);
+          }
+
+        } else if (direction === "left") {
+          face.cubePosition = "front";
+        }
+      }
+
+      else if (face.cubePosition === "right") {
+
+        if (direction === "right") {
+          face.cubePosition = "front";
+
+        } else if (direction === "left") {
+          face.cubePosition = "back";
+
+          while (face.children.length) {
+            face.remove(face.children[0]);
+          }
+        }
+      }
+
+    });
+
+  }
 }
 
 
-export const arrowEvent = (cube, obj) => {
+export const arrowEvent = (cube, axis) => {
 
   let cubeAngle = 0;
   let start = {angle: cubeAngle};
   let end = {angle: cubeAngle + Math.PI / 2};
   let lastAngle = 0;
-  let axis = new THREE.Vector3(0, 0, 0);
 
   cube.canRotate = false;
-
-  if (obj.object.name === "leftTriangle") {
-    axis.y = 1;
-  }
-
-  else if (obj.object.name === "rightTriangle") {
-    axis.y = 1;
-    end.angle *= -1;
-  }
-
-  else if (obj.object.name === "topTriangle") {
-    axis.x = 1;
-  }
-
-  else if (obj.object.name === "bottomTriangle") {
-    axis.x = 1;
-    end.angle *= -1;
-  }
-
 
   let rotate = new TWEEN.Tween(start)
     .to(end, 1000)

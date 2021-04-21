@@ -24,8 +24,6 @@ const CubeView = (props) => {
    // const controls = new OrbitControls(camera, renderer.domElement);
    // controls.enableZoom = false;
 
-    const imageLoader = new THREE.TextureLoader();
-    const textLoader = new THREE.FontLoader();
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
 
@@ -34,9 +32,8 @@ const CubeView = (props) => {
     let material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
     const cube = new THREE.Mesh( geometry, material );
     cube.canRotate = true;
+    cube.currentPage = "about";
     scene.add( cube );
-
-    let currentPage = "projects"; //Todo: will start on about page
 
     let aboutCounter = 0;
     const aboutPages = [];
@@ -52,7 +49,7 @@ const CubeView = (props) => {
 
     //Cube Faces
     const cubeFaces = [6];
-    initFaces(cubeFaces, cube, aboutPages, projectPages[0], contactPages[0]); 
+    initFaces(cubeFaces, cube, aboutPages, projectPages[0], contactPages[0]);
 
     //Rotate Indicators
     let distance = 4;
@@ -120,12 +117,125 @@ const CubeView = (props) => {
 
         const intersects = raycaster.intersectObjects( scene.children);
 
-        if (intersects.length > 0) {
+        if (intersects.length > 0 && cube.canRotate) {
 
-          if (intersects[0].object.name === "leftTriangle" || intersects[0].object.name === "rightTriangle" || intersects[0].object.name === "topTriangle" || intersects[0].object.name === "bottomTriangle") {
+          if (intersects[0].object.name === "leftTriangle") {
+            arrowEvent(cube, new THREE.Vector3(0, 1, 0));
 
-            if (cube.canRotate) {
-              arrowEvent(cube, intersects[0]);
+            //Check that about is being displayed
+            if (cube.currentPage === "about") {
+
+              //Increment Counter
+              aboutCounter--;
+
+              if (aboutCounter < 0) {
+                aboutCounter = aboutPages.length - 1;
+              }
+
+              updateFaces(aboutCounter, aboutPages, cube, "left");
+            }
+
+            else if (cube.currentPage === "project") {
+
+              //Increment Counter
+              projectCounter--;
+
+              if (projectCounter < 0) {
+                projectCounter = projectPages.length - 1;
+              }
+
+              updateFaces(projectCounter, projectPages, cube, "left");
+            }
+
+            else if (cube.currentPage === "contact") {
+
+              //Increment Counter
+              contactCounter--;
+
+              if (contactCounter < 0) {
+                contactCounter = contactPages.length - 1;
+              }
+
+              updateFaces(contactCounter, contactPages, cube, "left");
+            }
+          }
+
+          else if (intersects[0].object.name === "rightTriangle") {
+            arrowEvent(cube, new THREE.Vector3(0, -1, 0));
+
+            //Check that about is being displayed
+            if (cube.currentPage === "about") {
+
+              //Increment Counter
+              aboutCounter++;
+
+              if (aboutCounter === aboutPages.length) {
+                aboutCounter = 0;
+              }
+
+              updateFaces(aboutCounter, aboutPages, cube, "right");
+            }
+
+            else if (cube.currentPage === "project") {
+
+              //Increment Counter
+              projectCounter++;
+
+              if (projectCounter === projectPages.length) {
+                projectCounter = 0;
+              }
+
+              updateFaces(projectCounter, projectPages, cube, "right");
+            }
+
+            else if (cube.currentPage === "contact") {
+
+              //Increment Counter
+              contactCounter++;
+
+              if (contactCounter === contactPages.length) {
+                contactCounter = 0;
+              }
+
+              updateFaces(contactCounter, contactPages, cube, "right");
+            }
+          }
+
+          else if (intersects[0].object.name === "topTriangle") {
+            arrowEvent(cube, new THREE.Vector3(1, 0, 0));
+
+            if (cube.currentPage === "about") {
+              cube.currentPage = "project";
+              updateFaces(projectCounter, projectPages, cube, "up");
+            }
+
+            else if (cube.currentPage === "project") {
+              cube.currentPage = "contact";
+              updateFaces(contactCounter, contactPages, cube, "up");
+            }
+
+            else if (cube.currentPage === "contact") {
+              cube.currentPage = "about";
+              updateFaces(aboutCounter, aboutPages, cube, "up");
+            }
+          }
+
+          else if (intersects[0].object.name === "bottomTriangle") {
+            arrowEvent(cube, new THREE.Vector3(-1, 0, 0));
+
+            if (cube.currentPage === "about") {
+              cube.currentPage = "contact";
+              updateFaces(contactCounter, contactPages, cube, "down");
+            }
+
+            else if (cube.currentPage === "project") {
+              cube.currentPage = "about";
+              updateFaces(aboutCounter, aboutPages, cube, "down");
+            }
+
+            else if (cube.currentPage === "contact") {
+              cube.currentPage = "project";
+              updateFaces(projectCounter, projectPages, cube, "down");
             }
           }
         }
