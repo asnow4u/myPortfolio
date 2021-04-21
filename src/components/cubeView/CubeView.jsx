@@ -1,6 +1,7 @@
 import React from 'react';
 import * as THREE from "three";
 import * as TWEEN from "@tweenjs/tween.js";
+import {arrowEvent, arrowHover, initFaces, loadAboutPages, loadProjectPages, loadContactPages, updateFaces} from "./SceneFunctions";
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
@@ -10,18 +11,18 @@ const CubeView = (props) => {
   const mount = React.useRef(null);
 
   React.useEffect(() => {
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
     camera.position.z = 6;
     const renderer = new THREE.WebGLRenderer( {alpha: true});
     renderer.setSize( window.innerWidth, window.innerHeight );
 
+    mount.current.appendChild(renderer.domElement);
 
     //TEMP
-    // const controls = new OrbitControls(camera, renderer.domElement);
-    // controls.enableZoom = false;
-
-    mount.current.appendChild(renderer.domElement);
+   // const controls = new OrbitControls(camera, renderer.domElement);
+   // controls.enableZoom = false;
 
     const imageLoader = new THREE.TextureLoader();
     const textLoader = new THREE.FontLoader();
@@ -32,147 +33,68 @@ const CubeView = (props) => {
     let geometry = new THREE.BoxGeometry( 4, 4, 4 );
     let material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
     const cube = new THREE.Mesh( geometry, material );
+    cube.canRotate = true;
     scene.add( cube );
 
-    let cubeRotate = false;
+    let currentPage = "projects"; //Todo: will start on about page
 
+    let aboutCounter = 0;
+    const aboutPages = [];
+    loadAboutPages(aboutPages);
 
-    //ButtonAnimation
-    let leftTriangleTween;
-    let rightTriangleTween;
-    let topTriangleTween;
-    let bottomTriangleTween;
+    let projectCounter = 0;
+    const projectPages = []; //TODO read from json to determine how many projects are needed
+    loadProjectPages(projectPages);
 
-    const buttonInit = () => {
+    let contactCounter = 0;
+    const contactPages = [];
+    loadContactPages(contactPages);
 
-      //Rotate Indicators
-      let distance = 4;
-      let triangleHeight = 0.5;
-      let triangleWidth = 1;
-      geometry = new THREE.ConeGeometry( triangleWidth, triangleHeight, 2);
-      material = new THREE.MeshBasicMaterial( {color: 0x0b4480} );
+    //Cube Faces
+    const cubeFaces = [6];
+    initFaces(cubeFaces, cube, aboutPages, projectPages[0], contactPages[0]); 
 
-      //Left
-      const leftTriangleMesh = new THREE.Mesh(geometry, material);
-      leftTriangleMesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
-      leftTriangleMesh.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI / 2);
-      leftTriangleMesh.position.add(new THREE.Vector3(-distance, 0, 0));
-      leftTriangleMesh.name = "leftTriangle";
+    //Rotate Indicators
+    let distance = 4;
+    let triangleHeight = 0.5;
+    let triangleWidth = 1;
+    geometry = new THREE.ConeGeometry( triangleWidth, triangleHeight, 2);
+    material = new THREE.MeshBasicMaterial( {color: 0x0b4480} );
 
-      let startPos = new THREE.Vector3().copy(leftTriangleMesh.position);
-      let endPos = new THREE.Vector3().copy(leftTriangleMesh.position);
-      endPos.add(new THREE.Vector3(-0.07, 0, 0));
+    //Left
+    const leftTriangleMesh = new THREE.Mesh(geometry, material);
+    leftTriangleMesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
+    leftTriangleMesh.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI / 2);
+    leftTriangleMesh.position.add(new THREE.Vector3(-distance, 0, 0));
+    leftTriangleMesh.name = "leftTriangle";
+    leftTriangleMesh.hoverAnimation = false;
+    scene.add(leftTriangleMesh);
 
-      leftTriangleTween = new TWEEN.Tween(startPos)
-        .to(endPos, 400)
-        .delay(400)
-        .easing(TWEEN.Easing.Quadratic.InOut)
-        .onUpdate(function() {
-          leftTriangleMesh.position.x = startPos.x;
-        })
-        .onComplete(() => {
-          endPos.add(new THREE.Vector3(0.07, 0, 0));
-        });
+    //Right
+    const rightTriangleMesh = new THREE.Mesh(geometry, material);
+    rightTriangleMesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
+    rightTriangleMesh.rotateOnAxis(new THREE.Vector3(1, 0, 0), -Math.PI / 2);
+    rightTriangleMesh.position.add(new THREE.Vector3(distance, 0, 0));
+    rightTriangleMesh.name = "rightTriangle";
+    rightTriangleMesh.hoverAnimation = false;
+    scene.add(rightTriangleMesh);
 
-      let leftTriangleReturnTween = new TWEEN.Tween(startPos)
-        .to(endPos, 400)
-        .easing(TWEEN.Easing.Quadratic.InOut)
-        .onUpdate(function() {
-          leftTriangleMesh.position.x = startPos.x;
-        })
-        .onComplete(() => {
-          endPos.add(new THREE.Vector3(-0.07, 0, 0));
-        })
+    //Top
+    const topTriangleMesh = new THREE.Mesh(geometry, material);
+    topTriangleMesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
+    topTriangleMesh.position.add(new THREE.Vector3(0, distance, 0));
+    topTriangleMesh.name = "topTriangle";
+    topTriangleMesh.hoverAnimation = false;
+    scene.add(topTriangleMesh);
 
-      leftTriangleTween.chain(leftTriangleReturnTween);
-
-
-      //Right
-      const rightTriangleMesh = new THREE.Mesh(geometry, material);
-      rightTriangleMesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
-      rightTriangleMesh.rotateOnAxis(new THREE.Vector3(1, 0, 0), -Math.PI / 2);
-      rightTriangleMesh.position.add(new THREE.Vector3(distance, 0, 0));
-      rightTriangleMesh.name = "rightTriangle";
-
-      //Top
-      const topTriangleMesh = new THREE.Mesh(geometry, material);
-      topTriangleMesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
-      // topTriangleMesh.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI / 2);
-      topTriangleMesh.position.add(new THREE.Vector3(0, distance, 0));
-      topTriangleMesh.name = "topTriangle";
-
-      //Bottom
-      const bottomTriangleMesh = new THREE.Mesh(geometry, material);
-      bottomTriangleMesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
-      bottomTriangleMesh.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI);
-      bottomTriangleMesh.position.add(new THREE.Vector3(0, -distance, 0));
-      bottomTriangleMesh.name = "bottomTriangle";
-
-      scene.add(leftTriangleMesh);
-      scene.add(rightTriangleMesh);
-      scene.add(topTriangleMesh);
-      scene.add(bottomTriangleMesh);
-    }
-
-    const projectInit = () => {
-      const group = new THREE.Group();
-      group.position.z += 2.01;
-
-      geometry = new THREE.CircleGeometry( 0.2, 10);
-      material = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + '/img/project/github.png')});
-      let projectGitButton = new THREE.Mesh( geometry, material);
-      projectGitButton.position.add(new THREE.Vector3(1.5, 1.5, 0));
-      group.add(projectGitButton);
-
-      material = new THREE.MeshBasicMaterial({color: 0x000000});
-      // material = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + '/img/project/demo.png')});
-      let projectDemoButton = new THREE.Mesh( geometry, material);
-      projectDemoButton.position.add(new THREE.Vector3(1.5, 1, 0));
-      group.add(projectDemoButton);
-
-      //text
-
-
-      // textLoader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', function ( font ) {
-      //
-      //     material = new THREE.LineBasicMaterial({
-      //       color: 0x000000,
-      //       side: THREE.DoubleSide
-      //     });
-      //
-      //     const message = "A web application using WebXR to help visualize the solar system. Utilizes Three.js to produce the 3D environment and simulate the physics of the solar system in your own space. Developed as a collab with Intel as a means of educating children about the sun and planets.";
-      //     const shapes = font.generateShapes( message, 0.1);
-      //
-      //     geometry = new THREE.ShapeGeometry( shapes);
-      //
-      //     //Center text
-      //     geometry.computeBoundingBox();
-      //     const xMid = - 0.5 * ( geometry.boundingBox.max.x - geometry.boundingBox.min.x );
-			// 		geometry.translate( xMid, 0, 0 );
-      //
-      //     const text = new THREE.Mesh( geometry, material);
-      //
-      //     group.add(text);
-      //   }
-      // );
-
-      //image
-      geometry = new THREE.PlaneGeometry(2.09, 1);
-      material = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + '/img/project/solarARScreenShot.png')});
-      let projectImage = new THREE.Mesh( geometry, material);
-      projectImage.position.add(new THREE.Vector3(-0.5, 1, 0));
-      group.add(projectImage);
-
-      cube.add(group);
-    }
-
-    // const infoInit = () => {
-    //
-    // }
-    //
-    // const contactInit = () => {
-    //
-    // }
+    //Bottom
+    const bottomTriangleMesh = new THREE.Mesh(geometry, material);
+    bottomTriangleMesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
+    bottomTriangleMesh.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI);
+    bottomTriangleMesh.position.add(new THREE.Vector3(0, -distance, 0));
+    bottomTriangleMesh.name = "bottomTriangle";
+    bottomTriangleMesh.hoverAnimation = false;
+    scene.add(bottomTriangleMesh);
 
 
     const animate = () => {
@@ -185,63 +107,43 @@ const CubeView = (props) => {
 
       if (intersects.length > 0) {
 
-        if (intersects[0].object.name === "leftTriangle") {
-          leftTriangleTween.start();
+        if (!intersects[0].object.hoverAnimation) {
+          arrowHover(intersects[0]);
         }
-        // console.log(intersects[0].object.name);
       }
 
-      // cube.rotation.x += 0.01;
-      // cube.rotation.y += 0.01;
       renderer.render( scene, camera);
     }
 
-    const clickEvent = () => {
 
-      const intersects = raycaster.intersectObjects( scene.children);
+    window.addEventListener('mousedown', () => {
 
-      if (intersects.length > 0) {
+        const intersects = raycaster.intersectObjects( scene.children);
 
-        if (intersects[0].object.name === "leftTriangle") {
-          if (!cubeRotate) {
+        if (intersects.length > 0) {
 
-            cubeRotate = true;
+          if (intersects[0].object.name === "leftTriangle" || intersects[0].object.name === "rightTriangle" || intersects[0].object.name === "topTriangle" || intersects[0].object.name === "bottomTriangle") {
 
-            new TWEEN.Tween(cube.rotation)
-              .to({ y: "-" + Math.PI/2}, 1000)
-              .delay(200)
-              .onComplete(() => {
-                if (Math.abs(cube.rotation.y) >= 2*Math.PI) {
-                  cube.rotation.y = cube.rotation.y % (2*Math.PI);
-                }
-
-                cubeRotate = false;
-              })
-              .start();
+            if (cube.canRotate) {
+              arrowEvent(cube, intersects[0]);
+            }
           }
         }
-      }
 
-    }
+      }, false);
 
-    const mouseUpdate = (event) => {
-      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
-    }
+    window.addEventListener('mousemove', (event) => {
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+      }, false);
 
-    const handleResize = () => {
-      renderer.setSize( window.innerWidth, window.innerHeight );
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.render( scene, camera);
-    }
+    window.addEventListener('resize', () => {
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.render( scene, camera);
+      });
 
-    window.addEventListener('mousedown', clickEvent, false);
-    window.addEventListener('mousemove', mouseUpdate, false);
-    window.addEventListener('resize', handleResize);
-
-    buttonInit();
-    projectInit();
     animate();
 
   }, [])
