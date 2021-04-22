@@ -51,6 +51,14 @@ const CubeView = (props) => {
     const cubeFaces = [6];
     initFaces(cubeFaces, cube, aboutPages, projectPages[0], contactPages[0]);
 
+    cube.children.forEach((face, index) => {
+      console.log(index + " " + face.cubePosition + " " + face.rotation.x + ", " + face.rotation.y + ", " + face.rotation.z);
+    })
+
+    //TEST
+    // arrowEvent(cube, new THREE.Vector3(-1, 0, 0));
+    // updateFaces(contactCounter, contactPages, cube, "down");
+
     //Rotate Indicators
     let distance = 4;
     let triangleHeight = 0.5;

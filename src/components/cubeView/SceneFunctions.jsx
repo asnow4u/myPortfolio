@@ -34,12 +34,13 @@ export const initFaces = (faces, cube, aboutPageArray, topPage, bottomPage) => {
   faces[4].cubePosition = "right";
   faces[4].position.x += 2.01;
   faces[4].rotateOnAxis(new THREE.Vector3(0, 1, 0), Math.PI/2);
-  faces[4].add(aboutPageArray[1])
+  faces[4].add(aboutPageArray[1]);
   cube.add(faces[4]);
 
   faces[5] = new THREE.Group();
   faces[5].cubePosition = "back";
   faces[5].position.z -= 2.01;
+  faces[5].rotateOnAxis(new THREE.Vector3(0, 1, 0), Math.PI);
   cube.add(faces[5]);
 }
 
@@ -68,7 +69,7 @@ export const loadAboutPages = (pageArray) => {
 
       const mesh = new THREE.Mesh( geo, material);
       mesh.position.y += 1.25;
-      mesh.position.z += 0.01;
+      // mesh.position.z += 0.01;
 
       pageArray[i].add(mesh);
     });
@@ -123,7 +124,7 @@ export const loadProjectPages = (projects) => {
       const backText = new THREE.Mesh(backGeometry, backFontMaterial);
       backText.position.x -= 0.02;
       backText.position.y += 1.25;
-      backText.position.z += 0.005;
+      // backText.position.z += 0.005;
 
       //Text Outline
       let edges = new THREE.EdgesGeometry(frontGeometry);
@@ -177,7 +178,7 @@ export const loadContactPages = (pageArray) => {
 
       const mesh = new THREE.Mesh( geo, material);
       mesh.position.y += 1.25;
-      mesh.position.z += 0.01;
+      // mesh.position.z += 0.01;
 
       pageArray[i].add(mesh);
     });
@@ -206,6 +207,8 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
         while (face.children.length) {
           temp.add(face.children[0]);
         }
+
+        face.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI);
       }
 
       else if (face.cubePosition === "front") {
@@ -245,6 +248,7 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
       else if (face.cubePosition === "back") {
         face.cubePosition = "top";
         backFaceIndex = index;
+        face.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI);
       }
     });
 
@@ -268,6 +272,8 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
         while (face.children.length) {
           temp.add(face.children[0]);
         }
+
+        face.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI);
       }
 
       else if (face.cubePosition === "bottom") {
@@ -290,7 +296,7 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
           face.add(pageArray[counter -1]);
         }
 
-        face.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI/2);
+        face.rotateOnAxis(new THREE.Vector3(0, 0, 1), -Math.PI/2);
       }
 
       else if (face.cubePosition === "right") {
@@ -305,12 +311,13 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
           face.add(pageArray[counter + 1]);
         }
 
-        face.rotateOnAxis(new THREE.Vector3(0, 0, 1), -Math.PI/2);
+        face.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI/2);
       }
 
       else if (face.cubePosition === "back") {
         face.cubePosition = "bottom";
         backFaceIndex = index;
+        face.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI);
       }
     });
 
@@ -363,11 +370,6 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
             face.add(pageArray[counter +1]);
           }
 
-          //TODO: TEST MORE (Might need to adjust position of children)
-          if (face.position.z < 0) { //-2.01
-            face.rotation.y = Math.PI;
-          }
-
         } else if (direction === "left") {
           face.cubePosition = "left";
 
@@ -375,11 +377,6 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
             face.add(pageArray[pageArray.length -1]);
           } else {
             face.add(pageArray[counter -1]);
-          }
-
-          //TODO: TEST MORE (Might need to adjust position of children)
-          if (face.position.z < 0) { //-2.01
-            face.rotation.y = Math.PI;
           }
         }
       }
@@ -437,6 +434,10 @@ export const arrowEvent = (cube, axis) => {
     })
     .onComplete(() => {
       cube.canRotate = true;
+
+      cube.children.forEach((face, index) => {
+        console.log(index + " " + face.cubePosition + " " + face.rotation.x + ", " + face.rotation.y + ", " + face.rotation.z);
+      })
     })
     .start();
 }
