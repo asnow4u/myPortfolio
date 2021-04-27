@@ -23,6 +23,7 @@ const CubeView = (props) => {
     //TEMP
    // const controls = new OrbitControls(camera, renderer.domElement);
    // controls.enableZoom = false;
+   // console.log(props.data.default);
 
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
@@ -41,7 +42,7 @@ const CubeView = (props) => {
 
     let projectCounter = 0;
     const projectPages = []; //TODO read from json to determine how many projects are needed
-    loadProjectPages(projectPages);
+    loadProjectPages(projectPages, props.data.default.projects);
 
     let contactCounter = 0;
     const contactPages = [];
@@ -50,14 +51,6 @@ const CubeView = (props) => {
     //Cube Faces
     const cubeFaces = [6];
     initFaces(cubeFaces, cube, aboutPages, projectPages[0], contactPages[0]);
-
-    cube.children.forEach((face, index) => {
-      console.log(index + " " + face.cubePosition + " " + face.rotation.x + ", " + face.rotation.y + ", " + face.rotation.z);
-    })
-
-    //TEST
-    // arrowEvent(cube, new THREE.Vector3(-1, 0, 0));
-    // updateFaces(contactCounter, contactPages, cube, "down");
 
     //Rotate Indicators
     let distance = 4;

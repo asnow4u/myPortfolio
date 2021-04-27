@@ -6,6 +6,7 @@ import Project from './components/Project';
 import Contact from './components/Contact';
 import CubeView from './components/cubeView/CubeView';
 import './style/app.css';
+import * as data from './data.json';
 
 const App = () => {
 
@@ -15,7 +16,7 @@ const App = () => {
 
     return (
       <div>
-        <CubeView changeVisual={setVisual3DState}/>
+        <CubeView changeVisual={setVisual3DState} data={data}/>
       </div>
     );
   } else {

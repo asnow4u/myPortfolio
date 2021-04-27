@@ -48,6 +48,7 @@ export const initFaces = (faces, cube, aboutPageArray, topPage, bottomPage) => {
 export const loadAboutPages = (pageArray) => {
 
   const textLoader = new THREE.FontLoader();
+  const imageLoader = new THREE.TextureLoader();
 
   for (let i=0; i<3; i++) { //TODO: get length from json
 
@@ -55,53 +56,72 @@ export const loadAboutPages = (pageArray) => {
 
     textLoader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', ( font ) => {
 
-      let material = new THREE.LineBasicMaterial({
-        color: 0x000000,
-        side: THREE.DoubleSide
-      });
+      let material = new THREE.LineBasicMaterial({ color: 0xffffff});
 
-      const shape = font.generateShapes( "About Page" + i, 0.4);
-      const geo = new THREE.ShapeGeometry(shape);
+      const name = font.generateShapes( "Andrew Snow", 0.4);
+      const title = font.generateShapes( "Software Engineer", 0.3);
+      const nameGeometry = new THREE.ShapeGeometry(name);
+      const titleGeometry = new THREE.ShapeGeometry(title);
 
-      geo.computeBoundingBox();
-      let offset = - 0.5 * ( geo.boundingBox.max.x - geo.boundingBox.min.x );
-      geo.translate( offset, 0, 0 );
+      nameGeometry.computeBoundingBox();
+      titleGeometry.computeBoundingBox();
 
-      const mesh = new THREE.Mesh( geo, material);
-      mesh.position.y += 1.25;
-      // mesh.position.z += 0.01;
+      let offset = - 0.5 * ( nameGeometry.boundingBox.max.x - nameGeometry.boundingBox.min.x );
+      nameGeometry.translate( offset, 0, 0 );
+      offset = - 0.5 * ( titleGeometry.boundingBox.max.x - titleGeometry.boundingBox.min.x );
+      titleGeometry.translate( offset, 0, 0 );
 
-      pageArray[i].add(mesh);
+      const nameMesh = new THREE.Mesh( nameGeometry, material);
+      nameMesh.position.y += 0.5;
+      const titleMesh = new THREE.Mesh( titleGeometry, material);
+      titleMesh.position.y -= 0.5;
+
+      pageArray[i].add(nameMesh);
+      pageArray[i].add(titleMesh);
+
+      //image
+      let imageGeometry = new THREE.PlaneGeometry(4, 4);
+      let imageMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + '/img/project3DView/gradiantView.png')});
+      let image = new THREE.Mesh( imageGeometry, imageMaterial);
+      image.position.z -= 0.001;
+      pageArray[i].add(image);
     });
   }
 }
 
-export const loadProjectPages = (projects) => {
+
+//Load all projects based on data.json
+export const loadProjectPages = (projects, data) => {
 
   const textLoader = new THREE.FontLoader();
   const imageLoader = new THREE.TextureLoader();
 
-  for (let i=0; i<6; i++) { //TODO: get length from json
+  //Loop through data
+  for (let i=0; i<data.length; i++) { //TODO: get length from json
 
     projects[i] = new THREE.Group();
 
-    //text
+    //Load text
     textLoader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', ( font ) => {
 
-      //Font materials
-      let frontFontMaterial = new THREE.LineBasicMaterial({
-        color: 0xCCC500,
-        side: THREE.DoubleSide
-      });
+      /* Title
+         => Set up the title for the project group utilizing three meshes to accomplish the effect I'm looking for
+      */
 
+      //Front font materials
+      let frontFontMaterial = new THREE.LineBasicMaterial({ color: data[i].color});
+
+      //Background font materials
       let backFontMaterial = new THREE.LineBasicMaterial({
         color: 0x000000,
         side: THREE.DoubleSide
-      })
+      });
 
-      //Geometry
-      const frontShapes = font.generateShapes( "SolarAR", 0.5);
-      const backShapes = font.generateShapes( "SolarAR", 0.5);
+      //Title geometry
+      const title = new THREE.Group();
+
+      const frontShapes = font.generateShapes( data[i].name, data[i].fontSize);
+      const backShapes = font.generateShapes( data[i].name, data[i].fontSize);
 
       let frontGeometry = new THREE.ShapeGeometry( frontShapes);
       let backGeometry = new THREE.ShapeGeometry( backShapes);
@@ -112,43 +132,114 @@ export const loadProjectPages = (projects) => {
 
       let offset = - 0.5 * ( frontGeometry.boundingBox.max.x - frontGeometry.boundingBox.min.x );
       frontGeometry.translate( offset, 0, 0 );
-
       offset = - 0.5 * ( backGeometry.boundingBox.max.x - backGeometry.boundingBox.min.x );
       backGeometry.translate( offset, 0, 0 );
 
-      //Mesh
+      //Title mesh
       const frontText = new THREE.Mesh( frontGeometry, frontFontMaterial);
       frontText.position.y += 1.25;
       frontText.position.z += 0.01;
+      title.add(frontText);
 
       const backText = new THREE.Mesh(backGeometry, backFontMaterial);
       backText.position.x -= 0.02;
       backText.position.y += 1.25;
-      // backText.position.z += 0.005;
+      title.add(backText);
 
-      //Text Outline
+      //Title Outline
       let edges = new THREE.EdgesGeometry(frontGeometry);
       let outline = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( {color: 0x000000}));
       outline.position.y += 1.25;
       outline.position.z += 0.01;
+      title.add(outline);
 
-      projects[i].add(frontText);
-      projects[i].add(backText);
-      projects[i].add(outline);
+      /* Discription
+         => Set up short discription based on the project
+      */
+
+      const discription = new THREE.Group();
+      discription.position.y += 0.8;
+      discription.position.z += 0.01;
+
+      //Discription material
+      let material = new THREE.LineBasicMaterial({ color: data[i].color});
+
+      //Discription geometry
+      let shapes = font.generateShapes(data[i].shortDiscription, 0.16);
+      let geometry = new THREE.ShapeGeometry( shapes);
+
+      //Fix offset
+      geometry.computeBoundingBox();
+      offset = - 0.5 * ( geometry.boundingBox.max.x - geometry.boundingBox.min.x );
+      geometry.translate( offset, 0, 0 );
+
+      //Discription mesh
+      let text = new THREE.Mesh( geometry, material);
+      discription.add(text);
+
+      edges = new THREE.EdgesGeometry(geometry);
+      outline = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( {color: 0x000000}));
+      outline.position.z += 0.01;
+      discription.add(outline);
+
+
+      /* Skills
+         => List out the skills based on the project
+      */
+
+      const skillList = new THREE.Group();
+      skillList.position.x += 1;
+      skillList.position.z += 0.01;
+
+      material = new THREE.LineBasicMaterial({ color: data[i].color});
+
+      //Loop through skills
+      for (let j=0; j<data[i].skills.length; j++) {
+
+        let shapes = font.generateShapes("<" + data[i].skills[j] + ">", 0.16);
+        let geometry = new THREE.ShapeGeometry( shapes);
+
+        geometry.computeBoundingBox();
+        offset = - 0.5 * ( geometry.boundingBox.max.x - geometry.boundingBox.min.x );
+        geometry.translate( offset, 0, 0 );
+        let skill = new THREE.Mesh( geometry, material);
+        skill.position.y -= 0.4*j;
+        skillList.add(skill);
+
+        let edges = new THREE.EdgesGeometry(geometry);
+        let outline = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( {color: 0x000000}));
+        outline.position.y -= 0.4*j;
+        outline.position.z += 0.01;
+
+        skillList.add(outline);
+      }
+
+      //Add text to scene
+      projects[i].add(title);
+      projects[i].add(discription);
+      projects[i].add(skillList);
     });
 
-    //image
-    let imageGeometry = new THREE.PlaneGeometry(4, 4);
-    let imageMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + '/img/project3DView/solarARScreenShotTest.png')});
+    //Background image
+    let imageGeometry = new THREE.PlaneGeometry(4, 4); //2.09, 1
+    let imageMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + data[i].cubeImage), transparent: true, opacity: 0.7});
     let projectImage = new THREE.Mesh( imageGeometry, imageMaterial);
     projects[i].add(projectImage);
 
-    //Links
-    // geometry = new THREE.CircleGeometry( 0.2, 50);
-    // material = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + '/img/project/github.png')});
-    // let projectGitButton = new THREE.Mesh( geometry, material);
-    // projectGitButton.position.add(new THREE.Vector3(-1.5, -1.5, 0));
+    // imageGeometry = new THREE.PlaneGeometry(2.09, 1);
+    // imageMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + '/img/project/SolarARScreenShot.png')});
+    // projectImage = new THREE.Mesh( imageGeometry, imageMaterial);
+    // projectImage.position.y -= 0.5;
+    // projectImage.position.x -= 0.8;
+    // projectImage.position.z += 0.01;
+    // projects[i].add(projectImage);
 
+    //Github links
+    let linkGeometry = new THREE.CircleGeometry( 0.3, 50);
+    let linkMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + '/img/project3DView/githubLink.png'), transparent: true});
+    let projectGitButton = new THREE.Mesh( linkGeometry, linkMaterial);
+    projectGitButton.position.add(new THREE.Vector3(-1.4, -1.4, 0.01));
+    projects[i].add(projectGitButton);
   }
 }
 
@@ -181,29 +272,39 @@ export const loadContactPages = (pageArray) => {
       // mesh.position.z += 0.01;
 
       pageArray[i].add(mesh);
+
     });
   }
 }
 
 
-
+/*
+  => Updates each face to have the correct orientation
+  => Updates the cubePosition property of each face
+  => Updates visual elements(children) of the face based on the pageArray arg
+*/
 export const updateFaces = (counter, pageArray, cube, direction) => {
 
-  //Up Movement
+  //Upward Arrow was clicked
   if (direction === "up") {
 
+    //Based on rotational movement of the cube, need to remove the children from the bottom face (becoming back) and add them to the back face (becoming top)
     let temp = new THREE.Group();
     let backFaceIndex;
 
+    //Loop through each face on the cube
     cube.children.forEach((face, index) => {
 
+      //Top Face => Front Face
       if (face.cubePosition === "top") {
         face.cubePosition = "front";
       }
 
+      //Bottom Face => Back Face
       else if (face.cubePosition === "bottom") {
         face.cubePosition = "back";
 
+        //Remove the children element to temp, later to be placed in the new top face
         while (face.children.length) {
           temp.add(face.children[0]);
         }
@@ -211,16 +312,21 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
         face.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI);
       }
 
+      //Front Face => Bottom Face
       else if (face.cubePosition === "front") {
         face.cubePosition = "bottom";
       }
 
+      //Left Face
+      //Update Face Elements
       else if (face.cubePosition === "left") {
 
+        //Remove previous children elements
         while (face.children.length) {
           face.remove(face.children[0]);
         }
 
+        //Add new children
         if (counter - 1 < 0) {
           face.add(pageArray[pageArray.length -1]);
         } else {
@@ -230,12 +336,16 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
         face.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI/2);
       }
 
+      //Right Face
+      //Update Face Elements
       else if (face.cubePosition === "right") {
 
+        //Remove previous children elements
         while (face.children.length) {
           face.remove(face.children[0]);
         }
 
+        //Add new children
         if (counter + 1 >= pageArray.length) {
           face.add(pageArray[0]);
         } else {
@@ -245,30 +355,39 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
         face.rotateOnAxis(new THREE.Vector3(0, 0, 1), -Math.PI/2);
       }
 
+      //Back Face => Top Face
       else if (face.cubePosition === "back") {
         face.cubePosition = "top";
+
+        //Grab index to update with new child elements
         backFaceIndex = index;
+
         face.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI);
       }
     });
 
-    //Place the back face children to the top
+    //Place the back face children to the top face
     while (temp.children.length) {
       cube.children[backFaceIndex].add(temp.children[0]);
     }
   }
 
-  //Down Movement
+
+  //Downward Arrow was clicked
   else if (direction === "down") {
 
+    //Based on rotational movement of the cube, need to remove the children from the top face (becoming back) and add them to the back face (becoming bottom)
     let temp = new THREE.Group();
     let backFaceIndex;
 
+    //Loop through each face on the cube
     cube.children.forEach((face, index) => {
 
+      //Top Face => Back Face
       if (face.cubePosition === "top") {
         face.cubePosition = "back";
 
+        //Remove the children elements to temp, later to be placed in the new bottom face
         while (face.children.length) {
           temp.add(face.children[0]);
         }
@@ -276,20 +395,26 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
         face.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI);
       }
 
+      //Bottom Face => Front Face
       else if (face.cubePosition === "bottom") {
         face.cubePosition = "front";
       }
 
+      //Front Face => Top Face
       else if (face.cubePosition === "front") {
         face.cubePosition = "top";
       }
 
+      //Left Face
+      //Update Face Elements
       else if (face.cubePosition === "left") {
 
+        //Remove previous children elements
         while (face.children.length) {
           face.remove(face.children[0]);
         }
 
+        //Add new children
         if (counter - 1 < 0) {
           face.add(pageArray[pageArray.length -1]);
         } else {
@@ -299,12 +424,16 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
         face.rotateOnAxis(new THREE.Vector3(0, 0, 1), -Math.PI/2);
       }
 
+      //Right Face
+      //Update Face Elements
       else if (face.cubePosition === "right") {
 
+        //Remove previous children elements
         while (face.children.length) {
           face.remove(face.children[0]);
         }
 
+        //Add new children
         if (counter + 1 >= pageArray.length) {
           face.add(pageArray[0]);
         } else {
@@ -314,23 +443,28 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
         face.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI/2);
       }
 
+      //Back Face => Bottom Face
       else if (face.cubePosition === "back") {
         face.cubePosition = "bottom";
+
+        //Grab index to update with new child elements
         backFaceIndex = index;
+
         face.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI);
       }
     });
 
-    //Place the back face children to the top
+    //Place the back face children to the bottom face
     while (temp.children.length) {
       cube.children[backFaceIndex].add(temp.children[0]);
     }
 
   }
 
-  //Left/Right movement
+  //Left or Right arrow was clicked
   else {
 
+    //Defined rotation axis based on direction arg
     let axis = new THREE.Vector3();
 
     if (direction === "right") {
@@ -339,16 +473,22 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
       axis.set(0, 0, -1);
     }
 
+    //Loop through each face on the cube
     cube.children.forEach((face) => {
 
+      //Top Face
+      //Rotate face based on axis
       if (face.cubePosition === "top") {
         face.rotateOnAxis(axis, Math.PI/2);
       }
 
+      //Bottom Face
+      //Rotate face based on axis
       else if (face.cubePosition === "bottom") {
         face.rotateOnAxis(axis, -Math.PI/2);
       }
 
+      //Front Face => Right Face || Left Face
       else if (face.cubePosition === "front") {
 
         if (direction === "right") {
@@ -359,6 +499,8 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
         }
       }
 
+      //Back Face => Right Face || Left Face
+      //Add new element based on pageArray and counter
       else if (face.cubePosition === "back") {
 
         if (direction === "right") {
@@ -381,11 +523,14 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
         }
       }
 
+      //Left Face => Front Face || Back Face
+      //Remove elements if becoming new Back face
       else if (face.cubePosition === "left") {
 
         if (direction === "right") {
           face.cubePosition = "back";
 
+          //Remove elements
           while (face.children.length) {
             face.remove(face.children[0]);
           }
@@ -395,6 +540,8 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
         }
       }
 
+      //Right Face => Front Face || Back Face
+      //Remove elements if becoming new Back face
       else if (face.cubePosition === "right") {
 
         if (direction === "right") {
@@ -403,14 +550,13 @@ export const updateFaces = (counter, pageArray, cube, direction) => {
         } else if (direction === "left") {
           face.cubePosition = "back";
 
+          //Remove elements
           while (face.children.length) {
             face.remove(face.children[0]);
           }
         }
       }
-
     });
-
   }
 }
 
@@ -434,10 +580,6 @@ export const arrowEvent = (cube, axis) => {
     })
     .onComplete(() => {
       cube.canRotate = true;
-
-      cube.children.forEach((face, index) => {
-        console.log(index + " " + face.cubePosition + " " + face.rotation.x + ", " + face.rotation.y + ", " + face.rotation.z);
-      })
     })
     .start();
 }
