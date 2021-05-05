@@ -38,7 +38,7 @@ const CubeView = (props) => {
 
     let aboutCounter = 0;
     const aboutPages = [];
-    loadAboutPages(aboutPages);
+    loadAboutPages(aboutPages, props.data.default.main);
 
     let projectCounter = 0;
     const projectPages = []; //TODO read from json to determine how many projects are needed

@@ -45,48 +45,110 @@ export const initFaces = (faces, cube, aboutPageArray, topPage, bottomPage) => {
 }
 
 
-export const loadAboutPages = (pageArray) => {
+export const loadAboutPages = (pageArray, data) => {
 
   const textLoader = new THREE.FontLoader();
   const imageLoader = new THREE.TextureLoader();
 
-  for (let i=0; i<3; i++) { //TODO: get length from json
+  //Title, About, and Skills
+  pageArray[0] = new THREE.Group();
+  pageArray[1] = new THREE.Group();
+  pageArray[2] = new THREE.Group();
 
-    pageArray[i] = new THREE.Group();
+  textLoader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', ( font ) => {
 
-    textLoader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', ( font ) => {
+    //Material
+    let material = new THREE.LineBasicMaterial({ color: 0xffffff});
 
-      let material = new THREE.LineBasicMaterial({ color: 0xffffff});
+    //Title Geometry
+    const name = font.generateShapes( data.title.name, 0.4);
+    const title = font.generateShapes( data.title.jobTitle, 0.3);
+    const nameGeometry = new THREE.ShapeGeometry(name);
+    const titleGeometry = new THREE.ShapeGeometry(title);
 
-      const name = font.generateShapes( "Andrew Snow", 0.4);
-      const title = font.generateShapes( "Software Engineer", 0.3);
-      const nameGeometry = new THREE.ShapeGeometry(name);
-      const titleGeometry = new THREE.ShapeGeometry(title);
+    nameGeometry.computeBoundingBox();
+    titleGeometry.computeBoundingBox();
 
-      nameGeometry.computeBoundingBox();
-      titleGeometry.computeBoundingBox();
+    //Fix offset
+    let offset = - 0.5 * ( nameGeometry.boundingBox.max.x - nameGeometry.boundingBox.min.x );
+    nameGeometry.translate( offset, 0, 0 );
+    offset = - 0.5 * ( titleGeometry.boundingBox.max.x - titleGeometry.boundingBox.min.x );
+    titleGeometry.translate( offset, 0, 0 );
 
-      let offset = - 0.5 * ( nameGeometry.boundingBox.max.x - nameGeometry.boundingBox.min.x );
-      nameGeometry.translate( offset, 0, 0 );
-      offset = - 0.5 * ( titleGeometry.boundingBox.max.x - titleGeometry.boundingBox.min.x );
-      titleGeometry.translate( offset, 0, 0 );
+    //Title Mesh
+    const nameMesh = new THREE.Mesh( nameGeometry, material);
+    nameMesh.position.y += 0.5;
+    nameMesh.position.z += 0.01;
+    const titleMesh = new THREE.Mesh( titleGeometry, material);
+    titleMesh.position.y -= 0.5;
+    titleMesh.position.z += 0.01;
 
-      const nameMesh = new THREE.Mesh( nameGeometry, material);
-      nameMesh.position.y += 0.5;
-      const titleMesh = new THREE.Mesh( titleGeometry, material);
-      titleMesh.position.y -= 0.5;
+    pageArray[0].add(nameMesh);
+    pageArray[0].add(titleMesh);
 
-      pageArray[i].add(nameMesh);
-      pageArray[i].add(titleMesh);
+    //About Geometry
+    const about = font.generateShapes( data.aboutme.title, 0.4);
+    const discription = font.generateShapes( "discription", 0.1);
+    const aboutGeometry = new THREE.ShapeGeometry(about);
+    const discriptionGeometry = new THREE.ShapeGeometry(discription);
 
-      //image
-      let imageGeometry = new THREE.PlaneGeometry(4, 4);
-      let imageMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + '/img/project3DView/gradiantView.png')});
-      let image = new THREE.Mesh( imageGeometry, imageMaterial);
-      image.position.z -= 0.001;
-      pageArray[i].add(image);
-    });
-  }
+    aboutGeometry.computeBoundingBox();
+    discriptionGeometry.computeBoundingBox();
+
+    //Fix offset
+    offset = - 0.5 * ( aboutGeometry.boundingBox.max.x - aboutGeometry.boundingBox.min.x );
+    aboutGeometry.translate( offset, 0, 0 );
+    offset = - 0.5 * ( discriptionGeometry.boundingBox.max.x - discriptionGeometry.boundingBox.min.x );
+    discriptionGeometry.translate( offset, 0, 0 );
+
+    //About mesh
+    const aboutMesh = new THREE.Mesh( aboutGeometry, material);
+    aboutMesh.position.y += 0.8;
+    aboutMesh.position.z += 0.01;
+    const discriptionMesh = new THREE.Mesh( discriptionGeometry, material);
+    discriptionMesh.position.z += 0.01;
+
+    pageArray[1].add(aboutMesh);
+    pageArray[1].add(discriptionMesh);
+
+    //Skill Geometry
+    const skillTitle = font.generateShapes( data.skill.title, 0.4);
+
+    const skillTitleGeometry = new THREE.ShapeGeometry(skillTitle);
+
+    skillTitleGeometry.computeBoundingBox();
+
+    //Fix offSet
+    offset = - 0.5 * ( skillTitleGeometry.boundingBox.max.x - skillTitleGeometry.boundingBox.min.x );
+    skillTitleGeometry.translate( offset, 0, 0 );
+
+    //Skill mesh
+    const skillTitleMesh = new THREE.Mesh( skillTitleGeometry, material);
+    skillTitleMesh.position.y += 0.8;
+    skillTitleMesh.position.z += 0.01;
+    pageArray[2].add(skillTitleMesh);
+
+
+  });
+
+  //image
+  let imageGeometry = new THREE.PlaneGeometry(4, 4);
+
+  //Title Image
+  let imageMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + data.title.backgroundImage)});
+  let image = new THREE.Mesh( imageGeometry, imageMaterial);
+  image.position.z -= 0.001;
+  pageArray[0].add(image);
+
+  //About Me Image
+  imageMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + data.aboutme.backgroundImage)});
+  image = new THREE.Mesh( imageGeometry, imageMaterial);
+  pageArray[1].add(image);
+
+  //Skill Image
+  image = new THREE.Mesh( imageGeometry, imageMaterial);
+  pageArray[2].add(image);
+
 }
 
 
@@ -247,6 +309,7 @@ export const loadProjectPages = (projects, data) => {
 export const loadContactPages = (pageArray) => {
 
   const textLoader = new THREE.FontLoader();
+  const imageLoader = new THREE.TextureLoader();
 
   //NOTE: The array needs to be at least 3 elements long. We can not have a child to two parents, only one. If less then 3 duplicate the array
   for (let i=0; i<3; i++) { //TODO: get length from json
@@ -256,11 +319,10 @@ export const loadContactPages = (pageArray) => {
     textLoader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', ( font ) => {
 
       let material = new THREE.LineBasicMaterial({
-        color: 0x000000,
-        side: THREE.DoubleSide
+        color: 0x000000
       });
 
-      const shape = font.generateShapes( "Contact Page" + i, 0.4);
+      const shape = font.generateShapes( "Contact Me", 0.4);
       const geo = new THREE.ShapeGeometry(shape);
 
       geo.computeBoundingBox();
@@ -274,6 +336,13 @@ export const loadContactPages = (pageArray) => {
       pageArray[i].add(mesh);
 
     });
+
+    //Background image
+    let imageGeometry = new THREE.PlaneGeometry(4, 4);
+    let imageMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + '/img/project3DView/contact2.png')});
+    let image = new THREE.Mesh( imageGeometry, imageMaterial);
+    image.position.z -= 0.001;
+    pageArray[i].add(image);
   }
 }
 
