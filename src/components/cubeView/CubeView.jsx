@@ -1,7 +1,7 @@
 import React from 'react';
 import * as THREE from "three";
 import * as TWEEN from "@tweenjs/tween.js";
-import {arrowEvent, arrowHover, initFaces, loadAboutPages, loadProjectPages, loadContactPages, updateFaces} from "./SceneFunctions";
+import {arrowEvent, arrowHover, initFaces, loadAboutPages, loadProjectPages, loadContactPages, updateFaces, startCubeSway} from "./SceneFunctions";
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
@@ -21,7 +21,7 @@ const CubeView = (props) => {
     mount.current.appendChild(renderer.domElement);
 
     //TEMP
-   // const controls = new OrbitControls(camera, renderer.domElement);
+   const controls = new OrbitControls(camera, renderer.domElement);
    // controls.enableZoom = false;
    // console.log(props.data.default);
 
@@ -46,7 +46,7 @@ const CubeView = (props) => {
 
     let contactCounter = 0;
     const contactPages = [];
-    loadContactPages(contactPages);
+    loadContactPages(contactPages, props.data.default.contact);
 
     //Cube Faces
     const cubeFaces = [6];
@@ -94,6 +94,7 @@ const CubeView = (props) => {
     bottomTriangleMesh.hoverAnimation = false;
     scene.add(bottomTriangleMesh);
 
+    startCubeSway(cube);
 
     const animate = () => {
       requestAnimationFrame( animate);

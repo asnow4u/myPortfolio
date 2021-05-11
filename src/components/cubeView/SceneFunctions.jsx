@@ -60,7 +60,7 @@ export const loadAboutPages = (pageArray, data) => {
     //Material
     let material = new THREE.LineBasicMaterial({ color: 0xffffff});
 
-    //Title Geometry
+    //Home Title
     const name = font.generateShapes( data.title.name, 0.4);
     const title = font.generateShapes( data.title.jobTitle, 0.3);
     const nameGeometry = new THREE.ShapeGeometry(name);
@@ -86,34 +86,69 @@ export const loadAboutPages = (pageArray, data) => {
     pageArray[0].add(nameMesh);
     pageArray[0].add(titleMesh);
 
-    //About Geometry
+
+    //About Title
     const about = font.generateShapes( data.aboutme.title, 0.4);
-    const discription = font.generateShapes( "discription", 0.1);
     const aboutGeometry = new THREE.ShapeGeometry(about);
-    const discriptionGeometry = new THREE.ShapeGeometry(discription);
 
     aboutGeometry.computeBoundingBox();
-    discriptionGeometry.computeBoundingBox();
 
     //Fix offset
     offset = - 0.5 * ( aboutGeometry.boundingBox.max.x - aboutGeometry.boundingBox.min.x );
     aboutGeometry.translate( offset, 0, 0 );
-    offset = - 0.5 * ( discriptionGeometry.boundingBox.max.x - discriptionGeometry.boundingBox.min.x );
-    discriptionGeometry.translate( offset, 0, 0 );
 
     //About mesh
     const aboutMesh = new THREE.Mesh( aboutGeometry, material);
     aboutMesh.position.y += 0.8;
     aboutMesh.position.z += 0.01;
-    const discriptionMesh = new THREE.Mesh( discriptionGeometry, material);
-    discriptionMesh.position.z += 0.01;
 
     pageArray[1].add(aboutMesh);
-    pageArray[1].add(discriptionMesh);
 
-    //Skill Geometry
+
+    //Discription
+    let strings = data.aboutme.discription.split(" ");
+    let charLength = 0;
+    let discriptions = [];
+    let discriptionIndex = 0;
+    discriptions[0] = "";
+
+    //Divide discription into chunks that meet a char length limit
+    strings.forEach((string) => {
+
+      if (charLength + string.length > 40) {
+        discriptionIndex++;
+        discriptions[discriptionIndex] = string + " ";
+        charLength = string.length;
+
+      } else {
+        discriptions[discriptionIndex] = discriptions[discriptionIndex].concat(string + " ");
+        charLength += string.length;
+      }
+    })
+
+    //Create mesh for each discription chunk
+    discriptions.forEach((disc, index) => {
+      let discription = font.generateShapes( disc, 0.12);
+      let discriptionGeometry = new THREE.ShapeGeometry(discription);
+
+      discriptionGeometry.computeBoundingBox();
+
+      //Fix offset
+      offset = - 0.5 * ( discriptionGeometry.boundingBox.max.x - discriptionGeometry.boundingBox.min.x );
+      discriptionGeometry.translate( offset, 0, 0 );
+
+      let discriptionMesh = new THREE.Mesh( discriptionGeometry, material);
+
+      //Set linewidth based on index
+      discriptionMesh.position.y -= 0.2 * index;
+      discriptionMesh.position.z += 0.01;
+
+      pageArray[1].add(discriptionMesh);
+    });
+
+
+    //Skill Title
     const skillTitle = font.generateShapes( data.skill.title, 0.4);
-
     const skillTitleGeometry = new THREE.ShapeGeometry(skillTitle);
 
     skillTitleGeometry.computeBoundingBox();
@@ -126,8 +161,43 @@ export const loadAboutPages = (pageArray, data) => {
     const skillTitleMesh = new THREE.Mesh( skillTitleGeometry, material);
     skillTitleMesh.position.y += 0.8;
     skillTitleMesh.position.z += 0.01;
+
     pageArray[2].add(skillTitleMesh);
 
+
+    //Skill List
+    data.skill.skills.forEach((skill, index) => {
+      let skillShape = font.generateShapes( skill, 0.12);
+      let skillGeometry = new THREE.ShapeGeometry(skillShape);
+      skillGeometry.computeBoundingBox();
+
+      //Fix offSet
+      offset = - 0.5 * ( skillGeometry.boundingBox.max.x - skillGeometry.boundingBox.min.x );
+      skillGeometry.translate( offset, 0, 0 );
+
+      let skillMesh = new THREE.Mesh( skillGeometry, material);
+      skillMesh.position.x -= 0.8;
+      skillMesh.position.y -= 0.2 * index;
+      skillMesh.position.z += 0.01;
+      pageArray[2].add(skillMesh);
+    });
+
+    //language List
+    data.skill.languages.forEach((language, index) => {
+      let languageShape = font.generateShapes( language, 0.12);
+      let languageGeometry = new THREE.ShapeGeometry(languageShape);
+      languageGeometry.computeBoundingBox();
+
+      //Fix offSet
+      offset = - 0.5 * ( languageGeometry.boundingBox.max.x - languageGeometry.boundingBox.min.x );
+      languageGeometry.translate( offset, 0, 0 );
+
+      let languageMesh = new THREE.Mesh( languageGeometry, material);
+      languageMesh.position.x += 0.8;
+      languageMesh.position.y -= 0.2 * index;
+      languageMesh.position.z += 0.01;
+      pageArray[2].add(languageMesh);
+    });
 
   });
 
@@ -306,7 +376,8 @@ export const loadProjectPages = (projects, data) => {
 }
 
 
-export const loadContactPages = (pageArray) => {
+//Load contact page based on links from data.json
+export const loadContactPages = (pageArray, data) => {
 
   const textLoader = new THREE.FontLoader();
   const imageLoader = new THREE.TextureLoader();
@@ -331,7 +402,6 @@ export const loadContactPages = (pageArray) => {
 
       const mesh = new THREE.Mesh( geo, material);
       mesh.position.y += 1.25;
-      // mesh.position.z += 0.01;
 
       pageArray[i].add(mesh);
 
@@ -339,10 +409,43 @@ export const loadContactPages = (pageArray) => {
 
     //Background image
     let imageGeometry = new THREE.PlaneGeometry(4, 4);
-    let imageMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + '/img/project3DView/contact2.png')});
+    let imageMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + data.backgroundImage)});
     let image = new THREE.Mesh( imageGeometry, imageMaterial);
     image.position.z -= 0.001;
     pageArray[i].add(image);
+
+    imageGeometry = new THREE.PlaneGeometry(4, 1.5);
+    imageMaterial = new THREE.MeshBasicMaterial({color: 0xffffff});
+    image = new THREE.Mesh( imageGeometry, imageMaterial);
+    image.position.y -= 0.2;
+    pageArray[i].add(image);
+
+    //Underline
+    let lineGeometry = new THREE.PlaneGeometry(3, 0.05);
+    let lineMaterial = new THREE.MeshBasicMaterial({color:0x000000});
+    let line = new THREE.Mesh( lineGeometry, lineMaterial);
+    // line.position.z -= 0.001;
+    line.position.y += 1.1;
+    pageArray[i].add(line);
+
+    //Github links
+    let linkGeometry = new THREE.CircleGeometry( 0.7, 50);
+    let linkMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + data.githubIcon), transparent: true});
+    let contactGitButton = new THREE.Mesh( linkGeometry, linkMaterial);
+    contactGitButton.position.add(new THREE.Vector3(0, -0.2, 0.01));
+    pageArray[i].add(contactGitButton);
+
+    // let linkGeometry = new THREE.CircleGeometry( 0.7, 50);
+    linkMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + data.linkedInIcon), transparent: true});
+    let contactLinkedInButton = new THREE.Mesh( linkGeometry, linkMaterial);
+    contactLinkedInButton.position.add(new THREE.Vector3(1.25, -0.2, 0.01));
+    pageArray[i].add(contactLinkedInButton);
+
+    // let linkGeometry = new THREE.CircleGeometry( 0.7, 50);
+    linkMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + data.emailIcon), transparent: true});
+    let contactEmailButton = new THREE.Mesh( linkGeometry, linkMaterial);
+    contactEmailButton.position.add(new THREE.Vector3(-1.25, -0.2, 0.01));
+    pageArray[i].add(contactEmailButton);
   }
 }
 
@@ -733,4 +836,63 @@ export const arrowHover = (obj) => {
 
       .start();
   }
+}
+
+
+export const startCubeSway = (cube) => {
+
+  let angleX = 0;
+  let angleY = 0;
+
+  let lastX = 0;
+  let lastY = 0;
+
+  let startPosX = {angle: angleX}
+  let startPosY = {angle: angleY}
+
+  let endPosX = {angle: angleX + 0.3}
+  let endPosY = {angle: angleY + 0.3}
+
+
+  let swayX = new TWEEN.Tween(startPosX)
+    .to(endPosX, 5000)
+    .delay(100)
+    .onUpdate(() => {
+      angleX = swayX._object.angle;
+      cube.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), angleX - lastX);
+      lastX = angleX;
+    })
+    .start();
+
+  let swayY = new TWEEN.Tween(startPosY)
+    .to(endPosY, 5000)
+    .delay(100)
+    .onUpdate(() => {
+      angleY = swayY._object.angle;
+      cube.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), angleY - lastY);
+      lastY = angleY;
+    })
+    .start();
+
+  // let swayX = new TWEEN.Tween(startPosX)
+  //   .to(endPosX, 5000)
+  //   .delay(100)
+  //   .onUpdate(() => {
+  //     angleX = swayX._object.angle;
+  //     cube.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), angleX - lastX);
+  //     lastX = angleX;
+  //   })
+  //   .start();
+
+  // let swayY = new TWEEN.Tween(startPosY)
+  //   .to(endPosY, 5000)
+  //   .delay(100)
+  //   .onUpdate(() => {
+  //     angleY = swayY._object.angle;
+  //     cube.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), angleY - lastY);
+  //     lastY = angleY;
+  //   })
+  //   .start();
+
+
 }

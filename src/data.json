@@ -1,19 +1,41 @@
 {
   "main": {
     "title": {
-    "name": "Andrew Snow",
-    "jobTitle": "Software Engineer",
-    "backgroundImage": "/img/project3DView/gradiantView.png"
+      "name": "Andrew Snow",
+      "jobTitle": "Software Engineer",
+      "backgroundImage": "/img/project3DView/homeBackground.png"
     },
 
     "aboutme": {
       "title": "About Me",
       "discription": "I'm a software engineer and developer with a passion to create new and innovative experiences. I pride myself with my unique and diverse set of skills and ability to see a project to the end. I design, build, and test 3D environments and web based applications that enhance the users experience and provides a lasting impression.",
-      "backgroundImage": "/img/project3DView/gradiantView2.png"
+      "backgroundImage": "/img/project3DView/aboutBackground.png"
     },
 
     "skill": {
-      "title": "Skills"
+      "title": "Skill Set",
+
+      "skills": [
+        "Augmented Reality",
+        "Virtual Reality",
+        "Unity",
+        "Three.js",
+        "React",
+        "Node.js",
+        "UI/UX",
+        "Trello/Jira"
+      ],
+
+      "languages": [
+        "C++",
+        "C#",
+        "Java",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "PHP",
+        "Python"
+      ]
     }
   },
 
@@ -139,8 +161,12 @@
   ],
 
   "contact": {
+    "backgroundImage": "/img/project3DView/contactBackground.png",
+    "githubIcon": "/img/project3DView/githubLink.png",
     "githubLink": "https://github.com/asnow4u?tab=repositories",
-    "linkedinLink": "https://www.linkedin.com/in/asnow4u/"
+    "linkedInIcon": "/img/project3DView/linkedInLink.png",
+    "linkedinLink": "https://www.linkedin.com/in/asnow4u/",
+    "emailIcon": "/img/project3DView/emailLink.png"
   }
 
 }
