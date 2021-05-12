@@ -21,7 +21,7 @@ const CubeView = (props) => {
     mount.current.appendChild(renderer.domElement);
 
     //TEMP
-   const controls = new OrbitControls(camera, renderer.domElement);
+   // const controls = new OrbitControls(camera, renderer.domElement);
    // controls.enableZoom = false;
    // console.log(props.data.default);
 
@@ -41,7 +41,7 @@ const CubeView = (props) => {
     loadAboutPages(aboutPages, props.data.default.main);
 
     let projectCounter = 0;
-    const projectPages = []; //TODO read from json to determine how many projects are needed
+    const projectPages = [];
     loadProjectPages(projectPages, props.data.default.projects);
 
     let contactCounter = 0;
@@ -94,7 +94,7 @@ const CubeView = (props) => {
     bottomTriangleMesh.hoverAnimation = false;
     scene.add(bottomTriangleMesh);
 
-    startCubeSway(cube);
+    // startCubeSway(cube);
 
     const animate = () => {
       requestAnimationFrame( animate);
@@ -109,6 +109,26 @@ const CubeView = (props) => {
         if (!intersects[0].object.hoverAnimation) {
           arrowHover(intersects[0]);
         }
+
+        // else if (intersects[0].object.name === "gitIcon") {
+        //   if (intersects[0].object.position.z < 0.5) {
+        //     intersects[0].object.position.z += 0.1;
+        //   }
+        // }
+        //
+        // else if (intersects[0].object.name === "linkedInIcon") {
+        //   if (intersects[0].object.position.z < 0.5) {
+        //     intersects[0].object.position.x -= 0.03;
+        //     intersects[0].object.position.z += 0.1;
+        //   }
+        // }
+        //
+        // else if (intersects[0].object.name === "emailIcon") {
+        //   if (intersects[0].object.position.z < 0.5) {
+        //     intersects[0].object.position.x += 0.03;
+        //     intersects[0].object.position.z += 0.1;
+        //   }
+        // }
       }
 
       renderer.render( scene, camera);
@@ -119,127 +139,151 @@ const CubeView = (props) => {
 
         const intersects = raycaster.intersectObjects( scene.children);
 
-        if (intersects.length > 0 && cube.canRotate) {
+        if (intersects.length > 0) {
 
-          if (intersects[0].object.name === "leftTriangle") {
-            arrowEvent(cube, new THREE.Vector3(0, 1, 0));
+          if (cube.canRotate) {
 
-            //Check that about is being displayed
-            if (cube.currentPage === "about") {
+            if (intersects[0].object.name === "leftTriangle") {
+              arrowEvent(cube, new THREE.Vector3(0, 1, 0));
 
-              //Increment Counter
-              aboutCounter--;
+              //Check that about is being displayed
+              if (cube.currentPage === "about") {
 
-              if (aboutCounter < 0) {
-                aboutCounter = aboutPages.length - 1;
+                //Increment Counter
+                aboutCounter--;
+
+                if (aboutCounter < 0) {
+                  aboutCounter = aboutPages.length - 1;
+                }
+
+                updateFaces(aboutCounter, aboutPages, cube, "left");
               }
 
-              updateFaces(aboutCounter, aboutPages, cube, "left");
+              else if (cube.currentPage === "project") {
+
+                //Increment Counter
+                projectCounter--;
+
+                if (projectCounter < 0) {
+                  projectCounter = projectPages.length - 1;
+                }
+
+                updateFaces(projectCounter, projectPages, cube, "left");
+              }
+
+              else if (cube.currentPage === "contact") {
+
+                //Increment Counter
+                contactCounter--;
+
+                if (contactCounter < 0) {
+                  contactCounter = contactPages.length - 1;
+                }
+
+                updateFaces(contactCounter, contactPages, cube, "left");
+              }
             }
 
-            else if (cube.currentPage === "project") {
+            else if (intersects[0].object.name === "rightTriangle") {
+              arrowEvent(cube, new THREE.Vector3(0, -1, 0));
 
-              //Increment Counter
-              projectCounter--;
+              //Check that about is being displayed
+              if (cube.currentPage === "about") {
 
-              if (projectCounter < 0) {
-                projectCounter = projectPages.length - 1;
+                //Increment Counter
+                aboutCounter++;
+
+                if (aboutCounter === aboutPages.length) {
+                  aboutCounter = 0;
+                }
+
+                updateFaces(aboutCounter, aboutPages, cube, "right");
               }
 
-              updateFaces(projectCounter, projectPages, cube, "left");
+              else if (cube.currentPage === "project") {
+
+                //Increment Counter
+                projectCounter++;
+
+                if (projectCounter === projectPages.length) {
+                  projectCounter = 0;
+                }
+
+                updateFaces(projectCounter, projectPages, cube, "right");
+              }
+
+              else if (cube.currentPage === "contact") {
+
+                //Increment Counter
+                contactCounter++;
+
+                if (contactCounter === contactPages.length) {
+                  contactCounter = 0;
+                }
+
+                updateFaces(contactCounter, contactPages, cube, "right");
+              }
             }
 
-            else if (cube.currentPage === "contact") {
+            else if (intersects[0].object.name === "topTriangle") {
+              arrowEvent(cube, new THREE.Vector3(1, 0, 0));
 
-              //Increment Counter
-              contactCounter--;
-
-              if (contactCounter < 0) {
-                contactCounter = contactPages.length - 1;
+              if (cube.currentPage === "about") {
+                cube.currentPage = "project";
+                updateFaces(projectCounter, projectPages, cube, "up");
               }
 
-              updateFaces(contactCounter, contactPages, cube, "left");
+              else if (cube.currentPage === "project") {
+                cube.currentPage = "contact";
+                updateFaces(contactCounter, contactPages, cube, "up");
+              }
+
+              else if (cube.currentPage === "contact") {
+                cube.currentPage = "about";
+                updateFaces(aboutCounter, aboutPages, cube, "up");
+              }
+            }
+
+            else if (intersects[0].object.name === "bottomTriangle") {
+              arrowEvent(cube, new THREE.Vector3(-1, 0, 0));
+
+              if (cube.currentPage === "about") {
+                cube.currentPage = "contact";
+                updateFaces(contactCounter, contactPages, cube, "down");
+              }
+
+              else if (cube.currentPage === "project") {
+                cube.currentPage = "about";
+                updateFaces(aboutCounter, aboutPages, cube, "down");
+              }
+
+              else if (cube.currentPage === "contact") {
+                cube.currentPage = "project";
+                updateFaces(projectCounter, projectPages, cube, "down");
+              }
             }
           }
 
-          else if (intersects[0].object.name === "rightTriangle") {
-            arrowEvent(cube, new THREE.Vector3(0, -1, 0));
-
-            //Check that about is being displayed
-            if (cube.currentPage === "about") {
-
-              //Increment Counter
-              aboutCounter++;
-
-              if (aboutCounter === aboutPages.length) {
-                aboutCounter = 0;
-              }
-
-              updateFaces(aboutCounter, aboutPages, cube, "right");
-            }
-
-            else if (cube.currentPage === "project") {
-
-              //Increment Counter
-              projectCounter++;
-
-              if (projectCounter === projectPages.length) {
-                projectCounter = 0;
-              }
-
-              updateFaces(projectCounter, projectPages, cube, "right");
-            }
-
-            else if (cube.currentPage === "contact") {
-
-              //Increment Counter
-              contactCounter++;
-
-              if (contactCounter === contactPages.length) {
-                contactCounter = 0;
-              }
-
-              updateFaces(contactCounter, contactPages, cube, "right");
-            }
-          }
-
-          else if (intersects[0].object.name === "topTriangle") {
-            arrowEvent(cube, new THREE.Vector3(1, 0, 0));
-
-            if (cube.currentPage === "about") {
-              cube.currentPage = "project";
-              updateFaces(projectCounter, projectPages, cube, "up");
-            }
-
-            else if (cube.currentPage === "project") {
-              cube.currentPage = "contact";
-              updateFaces(contactCounter, contactPages, cube, "up");
-            }
-
-            else if (cube.currentPage === "contact") {
-              cube.currentPage = "about";
-              updateFaces(aboutCounter, aboutPages, cube, "up");
-            }
-          }
-
-          else if (intersects[0].object.name === "bottomTriangle") {
-            arrowEvent(cube, new THREE.Vector3(-1, 0, 0));
-
-            if (cube.currentPage === "about") {
-              cube.currentPage = "contact";
-              updateFaces(contactCounter, contactPages, cube, "down");
-            }
-
-            else if (cube.currentPage === "project") {
-              cube.currentPage = "about";
-              updateFaces(aboutCounter, aboutPages, cube, "down");
-            }
-
-            else if (cube.currentPage === "contact") {
-              cube.currentPage = "project";
-              updateFaces(projectCounter, projectPages, cube, "down");
-            }
-          }
+          // if (cube.currentPage === "project") {
+          //   if (intersects[0].object.name === "gitIcon") {
+          //     window.open(props.data.default.project)
+          //   }
+          // }
+          //
+          // else if (cube.currentPage === "contact") {
+          //
+          //   if (intersects[0].object.name === "gitIcon") {
+          //     window.open(props.data.default.contact.githubLink);
+          //   }
+          //
+          //   else if (intersects[0].object.name === "linkedInIcon") {
+          //     window.open(props.data.default.contact.linkedinLink);
+          //   }
+          //
+          //   else if (intersects[0].object.name === "emailIcon") {
+          //     window.location.href = "mailto:asnow4u@gmail.com";
+          //   }
+          // }
         }
 
       }, false);

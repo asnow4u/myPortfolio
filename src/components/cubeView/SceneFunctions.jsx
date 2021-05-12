@@ -357,14 +357,7 @@ export const loadProjectPages = (projects, data) => {
     let imageMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + data[i].cubeImage), transparent: true, opacity: 0.7});
     let projectImage = new THREE.Mesh( imageGeometry, imageMaterial);
     projects[i].add(projectImage);
-
-    // imageGeometry = new THREE.PlaneGeometry(2.09, 1);
-    // imageMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + '/img/project/SolarARScreenShot.png')});
-    // projectImage = new THREE.Mesh( imageGeometry, imageMaterial);
-    // projectImage.position.y -= 0.5;
-    // projectImage.position.x -= 0.8;
-    // projectImage.position.z += 0.01;
-    // projects[i].add(projectImage);
+    
 
     //Github links
     let linkGeometry = new THREE.CircleGeometry( 0.3, 50);
@@ -424,7 +417,6 @@ export const loadContactPages = (pageArray, data) => {
     let lineGeometry = new THREE.PlaneGeometry(3, 0.05);
     let lineMaterial = new THREE.MeshBasicMaterial({color:0x000000});
     let line = new THREE.Mesh( lineGeometry, lineMaterial);
-    // line.position.z -= 0.001;
     line.position.y += 1.1;
     pageArray[i].add(line);
 
@@ -432,19 +424,22 @@ export const loadContactPages = (pageArray, data) => {
     let linkGeometry = new THREE.CircleGeometry( 0.7, 50);
     let linkMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + data.githubIcon), transparent: true});
     let contactGitButton = new THREE.Mesh( linkGeometry, linkMaterial);
-    contactGitButton.position.add(new THREE.Vector3(0, -0.2, 0.01));
+    contactGitButton.position.add(new THREE.Vector3(0, -0.2, 0.1));
+    contactGitButton.name = "gitIcon";
     pageArray[i].add(contactGitButton);
 
     // let linkGeometry = new THREE.CircleGeometry( 0.7, 50);
     linkMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + data.linkedInIcon), transparent: true});
     let contactLinkedInButton = new THREE.Mesh( linkGeometry, linkMaterial);
-    contactLinkedInButton.position.add(new THREE.Vector3(1.25, -0.2, 0.01));
+    contactLinkedInButton.position.add(new THREE.Vector3(1.25, -0.2, 0.1));
+    contactLinkedInButton.name = "linkedInIcon";
     pageArray[i].add(contactLinkedInButton);
 
     // let linkGeometry = new THREE.CircleGeometry( 0.7, 50);
     linkMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + data.emailIcon), transparent: true});
     let contactEmailButton = new THREE.Mesh( linkGeometry, linkMaterial);
-    contactEmailButton.position.add(new THREE.Vector3(-1.25, -0.2, 0.01));
+    contactEmailButton.position.add(new THREE.Vector3(-1.25, -0.2, 0.1));
+    contactEmailButton.name = "emailIcon";
     pageArray[i].add(contactEmailButton);
   }
 }
@@ -842,57 +837,87 @@ export const arrowHover = (obj) => {
 export const startCubeSway = (cube) => {
 
   let angleX = 0;
-  let angleY = 0;
-
   let lastX = 0;
-  let lastY = 0;
 
-  let startPosX = {angle: angleX}
-  let startPosY = {angle: angleY}
+  let sway1 = new TWEEN.Tween({angle: 0})
+  .to({angle: 0.1}, 3000)
 
-  let endPosX = {angle: angleX + 0.3}
-  let endPosY = {angle: angleY + 0.3}
+  .onUpdate(() => {
+    angleX = sway1._object.angle;
+    cube.rotateOnAxis(new THREE.Vector3(-1, 1, 0), angleX - lastX);
+    lastX = angleX;
+  })
+  .onComplete(() => {
+    angleX = 0;
+    lastX = 0;
+  });
 
-
-  let swayX = new TWEEN.Tween(startPosX)
-    .to(endPosX, 5000)
-    .delay(100)
+  let sway2 = new TWEEN.Tween({angle: 0})
+    .to({angle: 0.1}, 3000)
     .onUpdate(() => {
-      angleX = swayX._object.angle;
-      cube.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), angleX - lastX);
+      angleX = sway2._object.angle;
+      cube.rotateOnAxis(new THREE.Vector3(1, 0, 1), angleX - lastX);
       lastX = angleX;
     })
-    .start();
+    .onComplete(() => {
+      angleX = 0;
+      lastX = 0;
+    });
 
-  let swayY = new TWEEN.Tween(startPosY)
-    .to(endPosY, 5000)
-    .delay(100)
+  let sway3 = new TWEEN.Tween({angle: 0})
+    .to({angle: 0.1}, 3000)
     .onUpdate(() => {
-      angleY = swayY._object.angle;
-      cube.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), angleY - lastY);
-      lastY = angleY;
+      angleX = sway3._object.angle;
+      cube.rotateOnAxis(new THREE.Vector3(1, -1, 0), angleX - lastX);
+      lastX = angleX;
     })
-    .start();
+    .onComplete(() => {
+      angleX = 0;
+      lastX = 0;
+    });
 
-  // let swayX = new TWEEN.Tween(startPosX)
-  //   .to(endPosX, 5000)
-  //   .delay(100)
-  //   .onUpdate(() => {
-  //     angleX = swayX._object.angle;
-  //     cube.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), angleX - lastX);
-  //     lastX = angleX;
-  //   })
-  //   .start();
+  let sway4 = new TWEEN.Tween({angle: 0})
+  .to({angle: 0.1}, 3000)
 
-  // let swayY = new TWEEN.Tween(startPosY)
-  //   .to(endPosY, 5000)
-  //   .delay(100)
-  //   .onUpdate(() => {
-  //     angleY = swayY._object.angle;
-  //     cube.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), angleY - lastY);
-  //     lastY = angleY;
-  //   })
-  //   .start();
+  .onUpdate(() => {
+    angleX = sway4._object.angle;
+    cube.rotateOnAxis(new THREE.Vector3(-1, 0, -1), angleX - lastX);
+    lastX = angleX;
+  })
+  .onComplete(() => {
+    angleX = 0;
+    lastX = 0;
+  });
 
+  let sway5 = new TWEEN.Tween({angle: 0})
+    .to({angle: 0.1}, 3000)
+    .onUpdate(() => {
+      angleX = sway5._object.angle;
+      cube.rotateOnAxis(new THREE.Vector3(-1, -1, 0), angleX - lastX);
+      lastX = angleX;
+    })
+    .onComplete(() => {
+      angleX = 0;
+      lastX = 0;
+    });
 
+  let sway6 = new TWEEN.Tween({angle: 0})
+    .to({angle: 0.1}, 3000)
+    .onUpdate(() => {
+      angleX = sway6._object.angle;
+      cube.rotateOnAxis(new THREE.Vector3(1, 1, 0), angleX - lastX);
+      lastX = angleX;
+    })
+    .onComplete(() => {
+      angleX = 0;
+      lastX = 0;
+    });
+
+  sway1.chain(sway2);
+  sway2.chain(sway3);
+  sway3.chain(sway4);
+  sway4.chain(sway5);
+  sway5.chain(sway6);
+  sway6.chain(sway1);
+  sway1.start();
 }
