@@ -2,6 +2,7 @@ import React from 'react';
 import * as THREE from "three";
 import * as TWEEN from "@tweenjs/tween.js";
 import {arrowEvent, arrowHover, initFaces, loadAboutPages, loadProjectPages, loadContactPages, updateFaces, startCubeSway} from "./SceneFunctions";
+import {rotateClickEvent, hoverButtonEvent, iconClickEvent} from "./UserInteraction";
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
@@ -27,6 +28,7 @@ const CubeView = (props) => {
 
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
+    const clickableObjects = [];
 
     //Cube
     let geometry = new THREE.BoxGeometry( 4, 4, 4 );
@@ -42,11 +44,11 @@ const CubeView = (props) => {
 
     let projectCounter = 0;
     const projectPages = [];
-    loadProjectPages(projectPages, props.data.default.projects);
+    loadProjectPages(projectPages, props.data.default.projects, clickableObjects);
 
     let contactCounter = 0;
     const contactPages = [];
-    loadContactPages(contactPages, props.data.default.contact);
+    loadContactPages(contactPages, props.data.default.contact, clickableObjects);
 
     //Cube Faces
     const cubeFaces = [6];
@@ -66,6 +68,7 @@ const CubeView = (props) => {
     leftTriangleMesh.position.add(new THREE.Vector3(-distance, 0, 0));
     leftTriangleMesh.name = "leftTriangle";
     leftTriangleMesh.hoverAnimation = false;
+    clickableObjects.push(leftTriangleMesh);
     scene.add(leftTriangleMesh);
 
     //Right
@@ -75,6 +78,7 @@ const CubeView = (props) => {
     rightTriangleMesh.position.add(new THREE.Vector3(distance, 0, 0));
     rightTriangleMesh.name = "rightTriangle";
     rightTriangleMesh.hoverAnimation = false;
+    clickableObjects.push(rightTriangleMesh);
     scene.add(rightTriangleMesh);
 
     //Top
@@ -83,6 +87,7 @@ const CubeView = (props) => {
     topTriangleMesh.position.add(new THREE.Vector3(0, distance, 0));
     topTriangleMesh.name = "topTriangle";
     topTriangleMesh.hoverAnimation = false;
+    clickableObjects.push(topTriangleMesh);
     scene.add(topTriangleMesh);
 
     //Bottom
@@ -92,9 +97,10 @@ const CubeView = (props) => {
     bottomTriangleMesh.position.add(new THREE.Vector3(0, -distance, 0));
     bottomTriangleMesh.name = "bottomTriangle";
     bottomTriangleMesh.hoverAnimation = false;
+    clickableObjects.push(bottomTriangleMesh);
     scene.add(bottomTriangleMesh);
 
-    // startCubeSway(cube);
+    startCubeSway(cube);
 
     const animate = () => {
       requestAnimationFrame( animate);
@@ -102,34 +108,28 @@ const CubeView = (props) => {
       TWEEN.update();
 
       raycaster.setFromCamera( mouse, camera);
-      const intersects = raycaster.intersectObjects( scene.children);
+
+      const intersects = raycaster.intersectObjects( clickableObjects);
 
       if (intersects.length > 0) {
 
-        if (!intersects[0].object.hoverAnimation) {
-          arrowHover(intersects[0]);
+        if (intersects[0].object.name === "leftTriangle" || intersects[0].object.name === "rightTriangle" || intersects[0].object.name === "topTriangle" || intersects[0].object.name === "bottomTriangle") {
+          if (!intersects[0].object.hoverAnimation) {
+            arrowHover(intersects[0]);
+          }
         }
 
-        // else if (intersects[0].object.name === "gitIcon") {
-        //   if (intersects[0].object.position.z < 0.5) {
-        //     intersects[0].object.position.z += 0.1;
-        //   }
-        // }
-        //
-        // else if (intersects[0].object.name === "linkedInIcon") {
-        //   if (intersects[0].object.position.z < 0.5) {
-        //     intersects[0].object.position.x -= 0.03;
-        //     intersects[0].object.position.z += 0.1;
-        //   }
-        // }
-        //
-        // else if (intersects[0].object.name === "emailIcon") {
-        //   if (intersects[0].object.position.z < 0.5) {
-        //     intersects[0].object.position.x += 0.03;
-        //     intersects[0].object.position.z += 0.1;
-        //   }
-        // }
+        if (intersects[0].object.name === "gitIcon" || intersects[0].object.name === "linkedInIcon" || intersects[0].object.name === "emailIcon") {
+
+          intersects[0].object.hover = true;
+
+          if (intersects[0].object.scale.x < 1.2) {
+            intersects[0].object.scale.addScalar(0.05);
+          }
+        }
       }
+
+      hoverButtonEvent(clickableObjects);
 
       renderer.render( scene, camera);
     }
@@ -137,156 +137,69 @@ const CubeView = (props) => {
 
     window.addEventListener('mousedown', () => {
 
-        const intersects = raycaster.intersectObjects( scene.children);
+      const intersects = raycaster.intersectObjects( clickableObjects);
 
-        if (intersects.length > 0) {
+      if (intersects.length > 0) {
 
-          if (cube.canRotate) {
+        if (cube.canRotate) {
+          if (intersects[0].object.name === "leftTriangle" || intersects[0].object.name === "rightTriangle") {
 
-            if (intersects[0].object.name === "leftTriangle") {
-              arrowEvent(cube, new THREE.Vector3(0, 1, 0));
-
-              //Check that about is being displayed
-              if (cube.currentPage === "about") {
-
-                //Increment Counter
-                aboutCounter--;
-
-                if (aboutCounter < 0) {
-                  aboutCounter = aboutPages.length - 1;
-                }
-
-                updateFaces(aboutCounter, aboutPages, cube, "left");
-              }
-
-              else if (cube.currentPage === "project") {
-
-                //Increment Counter
-                projectCounter--;
-
-                if (projectCounter < 0) {
-                  projectCounter = projectPages.length - 1;
-                }
-
-                updateFaces(projectCounter, projectPages, cube, "left");
-              }
-
-              else if (cube.currentPage === "contact") {
-
-                //Increment Counter
-                contactCounter--;
-
-                if (contactCounter < 0) {
-                  contactCounter = contactPages.length - 1;
-                }
-
-                updateFaces(contactCounter, contactPages, cube, "left");
-              }
+            if (cube.currentPage === "about") {
+              aboutCounter = rotateClickEvent(intersects[0].object, cube, aboutPages, aboutCounter);
             }
 
-            else if (intersects[0].object.name === "rightTriangle") {
-              arrowEvent(cube, new THREE.Vector3(0, -1, 0));
-
-              //Check that about is being displayed
-              if (cube.currentPage === "about") {
-
-                //Increment Counter
-                aboutCounter++;
-
-                if (aboutCounter === aboutPages.length) {
-                  aboutCounter = 0;
-                }
-
-                updateFaces(aboutCounter, aboutPages, cube, "right");
-              }
-
-              else if (cube.currentPage === "project") {
-
-                //Increment Counter
-                projectCounter++;
-
-                if (projectCounter === projectPages.length) {
-                  projectCounter = 0;
-                }
-
-                updateFaces(projectCounter, projectPages, cube, "right");
-              }
-
-              else if (cube.currentPage === "contact") {
-
-                //Increment Counter
-                contactCounter++;
-
-                if (contactCounter === contactPages.length) {
-                  contactCounter = 0;
-                }
-
-                updateFaces(contactCounter, contactPages, cube, "right");
-              }
+            else if (cube.currentPage === "project") {
+              projectCounter = rotateClickEvent(intersects[0].object, cube, projectPages, projectCounter);
             }
 
-            else if (intersects[0].object.name === "topTriangle") {
-              arrowEvent(cube, new THREE.Vector3(1, 0, 0));
-
-              if (cube.currentPage === "about") {
-                cube.currentPage = "project";
-                updateFaces(projectCounter, projectPages, cube, "up");
-              }
-
-              else if (cube.currentPage === "project") {
-                cube.currentPage = "contact";
-                updateFaces(contactCounter, contactPages, cube, "up");
-              }
-
-              else if (cube.currentPage === "contact") {
-                cube.currentPage = "about";
-                updateFaces(aboutCounter, aboutPages, cube, "up");
-              }
-            }
-
-            else if (intersects[0].object.name === "bottomTriangle") {
-              arrowEvent(cube, new THREE.Vector3(-1, 0, 0));
-
-              if (cube.currentPage === "about") {
-                cube.currentPage = "contact";
-                updateFaces(contactCounter, contactPages, cube, "down");
-              }
-
-              else if (cube.currentPage === "project") {
-                cube.currentPage = "about";
-                updateFaces(aboutCounter, aboutPages, cube, "down");
-              }
-
-              else if (cube.currentPage === "contact") {
-                cube.currentPage = "project";
-                updateFaces(projectCounter, projectPages, cube, "down");
-              }
+            else if (cube.currentPage === "contact") {
+              contactCounter = rotateClickEvent(intersects[0].object, cube, contactPages, contactCounter);
             }
           }
 
-          // if (cube.currentPage === "project") {
-          //   if (intersects[0].object.name === "gitIcon") {
-          //     window.open(props.data.default.project)
-          //   }
-          // }
-          //
-          // else if (cube.currentPage === "contact") {
-          //
-          //   if (intersects[0].object.name === "gitIcon") {
-          //     window.open(props.data.default.contact.githubLink);
-          //   }
-          //
-          //   else if (intersects[0].object.name === "linkedInIcon") {
-          //     window.open(props.data.default.contact.linkedinLink);
-          //   }
-          //
-          //   else if (intersects[0].object.name === "emailIcon") {
-          //     window.location.href = "mailto:asnow4u@gmail.com";
-          //   }
-          // }
+          else if (intersects[0].object.name === "topTriangle") {
+            arrowEvent(cube, new THREE.Vector3(1, 0, 0));
+
+            if (cube.currentPage === "about") {
+              cube.currentPage = "project";
+              updateFaces(projectCounter, projectPages, cube, "up");
+            }
+
+            else if (cube.currentPage === "project") {
+              cube.currentPage = "contact";
+              updateFaces(contactCounter, contactPages, cube, "up");
+            }
+
+            else if (cube.currentPage === "contact") {
+              cube.currentPage = "about";
+              updateFaces(aboutCounter, aboutPages, cube, "up");
+            }
+          }
+
+          else if (intersects[0].object.name === "bottomTriangle") {
+            arrowEvent(cube, new THREE.Vector3(-1, 0, 0));
+
+            if (cube.currentPage === "about") {
+              cube.currentPage = "contact";
+              updateFaces(contactCounter, contactPages, cube, "down");
+            }
+
+            else if (cube.currentPage === "project") {
+              cube.currentPage = "about";
+              updateFaces(aboutCounter, aboutPages, cube, "down");
+            }
+
+            else if (cube.currentPage === "contact") {
+              cube.currentPage = "project";
+              updateFaces(projectCounter, projectPages, cube, "down");
+            }
+          }
         }
 
-      }, false);
+        iconClickEvent(intersects[0].object, cube.currentPage);
+      }
+
+    }, false);
 
     window.addEventListener('mousemove', (event) => {
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;

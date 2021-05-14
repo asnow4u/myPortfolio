@@ -223,7 +223,7 @@ export const loadAboutPages = (pageArray, data) => {
 
 
 //Load all projects based on data.json
-export const loadProjectPages = (projects, data) => {
+export const loadProjectPages = (projects, data, clickable) => {
 
   const textLoader = new THREE.FontLoader();
   const imageLoader = new THREE.TextureLoader();
@@ -357,20 +357,23 @@ export const loadProjectPages = (projects, data) => {
     let imageMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + data[i].cubeImage), transparent: true, opacity: 0.7});
     let projectImage = new THREE.Mesh( imageGeometry, imageMaterial);
     projects[i].add(projectImage);
-    
 
     //Github links
     let linkGeometry = new THREE.CircleGeometry( 0.3, 50);
     let linkMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + '/img/project3DView/githubLink.png'), transparent: true});
     let projectGitButton = new THREE.Mesh( linkGeometry, linkMaterial);
     projectGitButton.position.add(new THREE.Vector3(-1.4, -1.4, 0.01));
+    projectGitButton.name = "gitIcon";
+    projectGitButton.link = data[i].githubLink;
+    projectGitButton.hover = false;
+    clickable.push(projectGitButton);
     projects[i].add(projectGitButton);
   }
 }
 
 
 //Load contact page based on links from data.json
-export const loadContactPages = (pageArray, data) => {
+export const loadContactPages = (pageArray, data, clickable) => {
 
   const textLoader = new THREE.FontLoader();
   const imageLoader = new THREE.TextureLoader();
@@ -426,6 +429,9 @@ export const loadContactPages = (pageArray, data) => {
     let contactGitButton = new THREE.Mesh( linkGeometry, linkMaterial);
     contactGitButton.position.add(new THREE.Vector3(0, -0.2, 0.1));
     contactGitButton.name = "gitIcon";
+    contactGitButton.link = data.githubLink;
+    contactGitButton.hover = false;
+    clickable.push(contactGitButton);
     pageArray[i].add(contactGitButton);
 
     // let linkGeometry = new THREE.CircleGeometry( 0.7, 50);
@@ -433,6 +439,9 @@ export const loadContactPages = (pageArray, data) => {
     let contactLinkedInButton = new THREE.Mesh( linkGeometry, linkMaterial);
     contactLinkedInButton.position.add(new THREE.Vector3(1.25, -0.2, 0.1));
     contactLinkedInButton.name = "linkedInIcon";
+    contactLinkedInButton.link = data.linkedinLink;
+    contactLinkedInButton.hover = false;
+    clickable.push(contactLinkedInButton);
     pageArray[i].add(contactLinkedInButton);
 
     // let linkGeometry = new THREE.CircleGeometry( 0.7, 50);
@@ -440,6 +449,9 @@ export const loadContactPages = (pageArray, data) => {
     let contactEmailButton = new THREE.Mesh( linkGeometry, linkMaterial);
     contactEmailButton.position.add(new THREE.Vector3(-1.25, -0.2, 0.1));
     contactEmailButton.name = "emailIcon";
+    contactEmailButton.link = "mailto:asnow4u@gmail.com";
+    contactEmailButton.hover = false;
+    clickable.push(contactEmailButton);
     pageArray[i].add(contactEmailButton);
   }
 }
