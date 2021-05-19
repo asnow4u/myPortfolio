@@ -33,15 +33,46 @@ export const rotateClickEvent = (object, cube, pages, counter) => {
 }
 
 
-export const hoverButtonEvent = (objects) => {
+export const hoverButtonEvent = (objects, page) => {
 
   objects.forEach((object) => {
 
     if (object.hover) {
+
+      //Show discription for object hovered over
+      if (page === "contact") {
+
+        if (object.name === "emailIcon") {
+          object.parent.children[5].children[0].visible = false;
+          object.parent.children[5].children[1].visible = true;
+        }
+
+        else if (object.name === "gitIcon") {
+          object.parent.children[5].children[0].visible = false;
+          object.parent.children[5].children[2].visible = true;
+        }
+
+        else if (object.name === "linkedInIcon") {
+          object.parent.children[5].children[0].visible = false;
+          object.parent.children[5].children[3].visible = true;
+        }
+      }
+
       object.hover = false;
     }
 
     else if (object.scale.x > 1) {
+
+      //disable discription for object hovered over
+      if (page === "contact") {
+
+        object.parent.children[5].children.forEach((discription) => {
+          discription.visible = false;
+        });
+
+        object.parent.children[5].children[0].visible = true;
+      }
+
       object.scale.addScalar(-0.05);
     }
 

@@ -67,28 +67,6 @@
     },
 
     {
-      "name": "MovieStar",
-      "discription": "A react built website that displays an up to date movie and tv show catelog. The website pulls from themoviedb.org database to provide up to date information about the movies and tv shows.",
-      "shortDiscription": "Visual catelog of movies and tv \nshows pulled from a database.",
-      "webImage": [
-        "/img/project/MovieStarScreenShot.jpg",
-        "/img/project/MovieStarScreenShot1.jpg",
-        "/img/project/MovieStarScreenShot2.jpg",
-        "/img/project/MovieStarScreenShot3.jpg"
-      ],
-      "cubeImage": "/img/project3DView/MovieStarScreenShot.png",
-      "fontSize": 0.5,
-      "color": "#ff3300",
-      "skills": [
-        "React",
-        "API",
-        "GitPages"
-      ],
-      "githubLink": "https://github.com/asnow4u/MovieStar",
-      "demoLink": "https://asnow4u.github.io/MovieStar/"
-    },
-
-    {
       "name": "Unity VR Game",
       "discription": "A fun take on a 2D game in virtual reality where the level is wrapped around the player. Take the role of a forest guardian and defend your homeland from fiery invaders from the top of the mountain.",
       "shortDiscription": "A virtual reality game built in unity \nusing Oculus SDK.",
@@ -128,8 +106,7 @@
       "skills": [
         "Unity",
         "C#",
-        "Mobile",
-        "Unity"
+        "Mobile"
       ],
       "githubLink": "https://github.com/asnow4u/ShootingGalleryAR",
       "demoLink": ""
@@ -162,11 +139,15 @@
 
   "contact": {
     "backgroundImage": "/img/project3DView/contactBackground.png",
+    "defaultDiscription": "Let's Connect",
     "githubIcon": "/img/project3DView/githubLink.png",
+    "gitHubDiscription": "Check Out My\n Repositories",
     "githubLink": "https://github.com/asnow4u?tab=repositories",
     "linkedInIcon": "/img/project3DView/linkedInLink.png",
+    "linkedInDiscription": "Join My Network",
     "linkedinLink": "https://www.linkedin.com/in/asnow4u/",
-    "emailIcon": "/img/project3DView/emailLink.png"
+    "emailIcon": "/img/project3DView/emailLink.png",
+    "emailDiscription": "Send Me An Email"
   }
 
 }

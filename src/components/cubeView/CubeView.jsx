@@ -1,7 +1,8 @@
 import React from 'react';
 import * as THREE from "three";
 import * as TWEEN from "@tweenjs/tween.js";
-import {arrowEvent, arrowHover, initFaces, loadAboutPages, loadProjectPages, loadContactPages, updateFaces, startCubeSway} from "./SceneFunctions";
+import {initFaces, loadAboutPages, loadProjectPages, loadContactPages} from "./CubeInit";
+import {arrowEvent, arrowHover, updateFaces, startCubeSway} from "./SceneFunctions";
 import {rotateClickEvent, hoverButtonEvent, iconClickEvent} from "./UserInteraction";
 import {initStarBackGround, backgroundStarAnimation} from "./StarBackGround";
 
@@ -132,7 +133,7 @@ const CubeView = (props) => {
         }
       }
 
-      hoverButtonEvent(clickableObjects);
+      hoverButtonEvent(clickableObjects, cube.currentPage);
 
       backgroundStarAnimation(scene.children[5]);
 
