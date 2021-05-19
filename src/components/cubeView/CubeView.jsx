@@ -3,6 +3,7 @@ import * as THREE from "three";
 import * as TWEEN from "@tweenjs/tween.js";
 import {arrowEvent, arrowHover, initFaces, loadAboutPages, loadProjectPages, loadContactPages, updateFaces, startCubeSway} from "./SceneFunctions";
 import {rotateClickEvent, hoverButtonEvent, iconClickEvent} from "./UserInteraction";
+import {initStarBackGround, backgroundStarAnimation} from "./StarBackGround";
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
@@ -100,6 +101,8 @@ const CubeView = (props) => {
     clickableObjects.push(bottomTriangleMesh);
     scene.add(bottomTriangleMesh);
 
+    initStarBackGround(scene);
+
     startCubeSway(cube);
 
     const animate = () => {
@@ -130,6 +133,8 @@ const CubeView = (props) => {
       }
 
       hoverButtonEvent(clickableObjects);
+
+      backgroundStarAnimation(scene.children[5]);
 
       renderer.render( scene, camera);
     }
