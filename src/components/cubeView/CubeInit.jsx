@@ -327,7 +327,7 @@ export const loadProjectPages = (projects, data, clickable) => {
 
       //Loop through skills
       for (let j=0; j<data[i].skills.length; j++) {
-
+        
         let shapes = font.generateShapes("<" + data[i].skills[j] + ">", 0.16);
         let geometry = new THREE.ShapeGeometry( shapes);
 
@@ -353,19 +353,22 @@ export const loadProjectPages = (projects, data, clickable) => {
     });
 
     //Background image
-    let imageGeometry = new THREE.PlaneGeometry(4, 4); //2.09, 1
+    let imageGeometry = new THREE.PlaneGeometry(4, 4);
     let imageMaterial = new THREE.MeshBasicMaterial({map: imageLoader.load(process.env.PUBLIC_URL + data[i].cubeImage), transparent: true, opacity: 0.7});
     let projectImage = new THREE.Mesh( imageGeometry, imageMaterial);
+    projectImage.renderOrder = 1;
     projects[i].add(projectImage);
 
     //Github links
     let linkGeometry = new THREE.CircleGeometry( 0.28, 50);
     let linkMaterial = new THREE.MeshBasicMaterial({
-      map: imageLoader.load(process.env.PUBLIC_URL + '/img/project3DView/githubLink.png')
+      map: imageLoader.load(process.env.PUBLIC_URL + '/img/project3DView/githubLink.png'),
+      transparent: true
     });
 
     let projectGitButton = new THREE.Mesh( linkGeometry, linkMaterial);
 
+    projectGitButton.renderOrder = 2;
     projectGitButton.position.add(new THREE.Vector3(-1.4, -1.4, 0.01));
     projectGitButton.name = "gitIcon";
     projectGitButton.link = data[i].githubLink;

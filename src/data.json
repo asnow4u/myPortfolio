@@ -102,7 +102,7 @@
       ],
       "cubeImage": "/img/project3DView/ARShootingScreenShot.jpg",
       "fontSize": 0.3,
-      "color": "#e6e600",
+      "color": "#ff471a",
       "skills": [
         "Unity",
         "C#",
@@ -122,9 +122,9 @@
         "/img/project/portfolioScreenshot2.jpg",
         "/img/project/portfolioScreenshot3.jpg"
       ],
-      "cubeImage": "",
+      "cubeImage": "/img/project3DView/PortfolioScreenShot.png",
       "fontSize": 0.5,
-      "color": "#e6e600",
+      "color": "#ffff33",
       "skills": [
         "React",
         "Responsive",
