@@ -115,7 +115,7 @@
     {
       "name": "Portfolio",
       "discription": "Welcome to the website your currently looking at. Built using React.js and hosted using GitPages. Explore around and feel free to contact me at the bottom of the page.",
-      "shortDiscription": "Have a look around to see what I've done",
+      "shortDiscription": "Have a look around to see what\n I've done",
       "webImage": [
         "/img/project/portfolioScreenshot.jpg",
         "/img/project/portfolioScreenshot1.jpg",
