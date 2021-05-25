@@ -1,5 +1,6 @@
 import * as THREE from "three";
 
+//Init star background
 export const initStarBackGround = (scene) => {
 
   const starCount = 2000;
@@ -25,6 +26,7 @@ export const initStarBackGround = (scene) => {
 }
 
 
+//Animate star background
 export const backgroundStarAnimation = (stars) => {
 
   //Star Field

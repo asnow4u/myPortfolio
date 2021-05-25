@@ -33,17 +33,3 @@ label {
   color: black;
   font-weight: bold;
 }
-
-@media only screen and (min-width: 768px) {
-  .contactForm {
-    width: 60%;
-    font-size: 20px;
-  }
-}
-
-@media only screen and (min-width: 1000px) {
-  .contactForm {
-    width: 40%;
-    font-size: 25px;
-  }
-}

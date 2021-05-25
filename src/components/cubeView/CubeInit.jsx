@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import * as TWEEN from "@tweenjs/tween.js";
 
+//Init each face for the cube
 export const initFaces = (faces, cube, aboutPageArray, topPage, bottomPage) => {
 
   faces[0] = new THREE.Group();
@@ -45,6 +45,7 @@ export const initFaces = (faces, cube, aboutPageArray, topPage, bottomPage) => {
 }
 
 
+//Init the about pages with associated counter
 export const loadAboutPages = (pageArray, data) => {
 
   const textLoader = new THREE.FontLoader();
@@ -327,7 +328,7 @@ export const loadProjectPages = (projects, data, clickable) => {
 
       //Loop through skills
       for (let j=0; j<data[i].skills.length; j++) {
-        
+
         let shapes = font.generateShapes("<" + data[i].skills[j] + ">", 0.16);
         let geometry = new THREE.ShapeGeometry( shapes);
 

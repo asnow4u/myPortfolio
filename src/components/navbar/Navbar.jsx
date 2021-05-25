@@ -7,8 +7,7 @@ const Navbar = (props) => {
   const [gitHubLink, setGitHubLink] = React.useState(process.env.PUBLIC_URL + '/img/navBar/gitTab.png');
   const [resumeLink, setResumeLink] = React.useState(process.env.PUBLIC_URL + '/img/navBar/resumeLink.png');
   const [linkedInLink, setLinkedInLink] = React.useState(process.env.PUBLIC_URL + '/img/navBar/linkedin.png');
-  const [visualView, setVisualView] = React.useState(process.env.PUBLIC_URL + '/img/navBar/view3D.png');
-
+  
   return (
     <>
 

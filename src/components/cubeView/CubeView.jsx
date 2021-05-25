@@ -6,20 +6,19 @@ import {arrowEvent, arrowHover, updateFaces, startCubeSway} from "./SceneFunctio
 import {rotateClickEvent, hoverButtonEvent, iconClickEvent} from "./UserInteraction";
 import {initStarBackGround, backgroundStarAnimation} from "./StarBackGround";
 
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-
 const CubeView = (props) => {
 
+  //Navigation Links
   const [gitHubLink, setGitHubLink] = React.useState(process.env.PUBLIC_URL + '/img/navBar/gitTab.png');
   const [resumeLink, setResumeLink] = React.useState(process.env.PUBLIC_URL + '/img/navBar/resumeLink.png');
   const [linkedInLink, setLinkedInLink] = React.useState(process.env.PUBLIC_URL + '/img/navBar/linkedin.png');
-  const [visualView, setVisualView] = React.useState(process.env.PUBLIC_URL + '/img/navBar/view3D.png');
 
-  const [buttonImg, setButtonImg] = React.useState(process.env.PUBLIC_URL + '/img/navBar/view2D.png')
   const mount = React.useRef(null);
 
+  //Init component
   React.useEffect(() => {
 
+    //Init scene componenets
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
     camera.position.z = 6;
@@ -28,16 +27,11 @@ const CubeView = (props) => {
 
     mount.current.appendChild(renderer.domElement);
 
-    //TEMP
-   // const controls = new OrbitControls(camera, renderer.domElement);
-   // controls.enableZoom = false;
-   // console.log(props.data.default);
-
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
     const clickableObjects = [];
 
-    //Cube
+    //Init Cube
     let geometry = new THREE.BoxGeometry( 4, 4, 4 );
     let material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
     const cube = new THREE.Mesh( geometry, material );
@@ -61,14 +55,14 @@ const CubeView = (props) => {
     const cubeFaces = [6];
     initFaces(cubeFaces, cube, aboutPages, projectPages[0], contactPages[0]);
 
-    //Rotate Indicators
+    //Init arrow indicators
     let distance = 4;
     let triangleHeight = 0.5;
     let triangleWidth = 1;
     geometry = new THREE.ConeGeometry( triangleWidth, triangleHeight, 2);
     material = new THREE.MeshBasicMaterial( {color: 0x0b4480} );
 
-    //Left
+    //Left arrow indicator
     const leftTriangleMesh = new THREE.Mesh(geometry, material);
     leftTriangleMesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
     leftTriangleMesh.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI / 2);
@@ -78,7 +72,7 @@ const CubeView = (props) => {
     clickableObjects.push(leftTriangleMesh);
     scene.add(leftTriangleMesh);
 
-    //Right
+    //Right arrow indicator
     const rightTriangleMesh = new THREE.Mesh(geometry, material);
     rightTriangleMesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
     rightTriangleMesh.rotateOnAxis(new THREE.Vector3(1, 0, 0), -Math.PI / 2);
@@ -88,7 +82,7 @@ const CubeView = (props) => {
     clickableObjects.push(rightTriangleMesh);
     scene.add(rightTriangleMesh);
 
-    //Top
+    //Top arrow indicator
     const topTriangleMesh = new THREE.Mesh(geometry, material);
     topTriangleMesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
     topTriangleMesh.position.add(new THREE.Vector3(0, distance, 0));
@@ -97,7 +91,7 @@ const CubeView = (props) => {
     clickableObjects.push(topTriangleMesh);
     scene.add(topTriangleMesh);
 
-    //Bottom
+    //Bottom arrow indicator
     const bottomTriangleMesh = new THREE.Mesh(geometry, material);
     bottomTriangleMesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
     bottomTriangleMesh.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI);
@@ -107,27 +101,34 @@ const CubeView = (props) => {
     clickableObjects.push(bottomTriangleMesh);
     scene.add(bottomTriangleMesh);
 
+    //Init background
     initStarBackGround(scene);
 
+    //Init twit sway on cube
     startCubeSway(cube);
 
+
+    //Animate each frame
     const animate = () => {
       requestAnimationFrame( animate);
 
       TWEEN.update();
 
+      //Mouse raycast
       raycaster.setFromCamera( mouse, camera);
-
       const intersects = raycaster.intersectObjects( clickableObjects);
 
+      //Check intersection
       if (intersects.length > 0) {
 
+        //Check for arrow indicator intersection
         if (intersects[0].object.name === "leftTriangle" || intersects[0].object.name === "rightTriangle" || intersects[0].object.name === "topTriangle" || intersects[0].object.name === "bottomTriangle") {
           if (!intersects[0].object.hoverAnimation) {
             arrowHover(intersects[0]);
           }
         }
 
+        //Check for contact icon intersection
         if (intersects[0].object.name === "gitIcon" || intersects[0].object.name === "linkedInIcon" || intersects[0].object.name === "emailIcon") {
 
           intersects[0].object.hover = true;
@@ -138,21 +139,28 @@ const CubeView = (props) => {
         }
       }
 
+      //Check if contact icon is being hovered over or not
       hoverButtonEvent(clickableObjects, cube.currentPage);
 
+      //Animate background
       backgroundStarAnimation(scene.children[5]);
 
       renderer.render( scene, camera);
     }
 
 
+    //Check for mouse click
     window.addEventListener('mousedown', () => {
 
       const intersects = raycaster.intersectObjects( clickableObjects);
 
+      //Check that an intersection exists
       if (intersects.length > 0) {
 
+        //Check if cube is currently not rotating
         if (cube.canRotate) {
+
+          //Check for left or right arrow indicator as click object
           if (intersects[0].object.name === "leftTriangle" || intersects[0].object.name === "rightTriangle") {
 
             if (cube.currentPage === "about") {
@@ -168,6 +176,7 @@ const CubeView = (props) => {
             }
           }
 
+          //Check for top arrow indicator as click object
           else if (intersects[0].object.name === "topTriangle") {
             arrowEvent(cube, new THREE.Vector3(1, 0, 0));
 
@@ -187,6 +196,7 @@ const CubeView = (props) => {
             }
           }
 
+          //Check for bottom arrow indicator as click object
           else if (intersects[0].object.name === "bottomTriangle") {
             arrowEvent(cube, new THREE.Vector3(-1, 0, 0));
 
@@ -207,27 +217,33 @@ const CubeView = (props) => {
           }
         }
 
+        //Check for icon intersection
         iconClickEvent(intersects[0].object, cube.currentPage);
       }
 
     }, false);
 
+
+    //Update mouse coordinates
     window.addEventListener('mousemove', (event) => {
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
       }, false);
 
-    window.addEventListener('resize', () => {
 
+    //Update window
+    window.addEventListener('resize', () => {
       renderer.setSize( window.innerWidth, window.innerHeight );
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.render( scene, camera);
     });
 
+    //Start animation loop
     animate();
 
-  }, [])
+  }, []);
+
 
   return (
     <div className="viewContainer">

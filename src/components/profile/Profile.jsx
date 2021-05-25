@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style/profile.css';
+import './profile.css';
 
 
 class ProfileInfo extends React.Component {

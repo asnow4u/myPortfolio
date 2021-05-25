@@ -2,7 +2,7 @@ import * as THREE from "three";
 import {arrowEvent, updateFaces} from "./SceneFunctions";
 
 
-
+//Rotate cube to the left or right, updating the counter for the current page
 export const rotateClickEvent = (object, cube, pages, counter) => {
 
   if (object.name === "leftTriangle") {
@@ -33,13 +33,15 @@ export const rotateClickEvent = (object, cube, pages, counter) => {
 }
 
 
+//Update objects that have a hover event or no longer be hovered over
 export const hoverButtonEvent = (objects, page) => {
 
   objects.forEach((object) => {
 
+    //Check for mouse over object
     if (object.hover) {
 
-      //Show discription for object hovered over
+      //Show discription for object hovered over and hide default discription
       if (page === "contact") {
 
         if (object.name === "emailIcon") {
@@ -61,6 +63,7 @@ export const hoverButtonEvent = (objects, page) => {
       object.hover = false;
     }
 
+    //Update objects when not hovered over but previously was
     else if (object.scale.x > 1) {
 
       //disable discription for object hovered over
@@ -73,6 +76,7 @@ export const hoverButtonEvent = (objects, page) => {
         object.parent.children[5].children[0].visible = true;
       }
 
+      //Shrink down object
       object.scale.addScalar(-0.05);
     }
 
@@ -80,6 +84,7 @@ export const hoverButtonEvent = (objects, page) => {
 }
 
 
+//Fire click event based on what icon was clicked on
 export const iconClickEvent = (object, curPage) => {
 
   if (curPage === "project") {

@@ -1,11 +1,11 @@
 import React from 'react';
 import Navbar from './components/navbar/Navbar';
-import ProfileInfo from './components/Profile';
-import AboutMe from './components/AboutMe';
-import Project from './components/Project';
-import Contact from './components/Contact';
+import ProfileInfo from './components/profile/Profile';
+import AboutMe from './components/aboutMe/AboutMe';
+import Project from './components/project/Project';
+import Contact from './components/contact/Contact';
 import CubeView from './components/cubeView/CubeView';
-import './style/app.css';
+import './app.css';
 import * as data from './data.json';
 
 const App = () => {
