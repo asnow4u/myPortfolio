@@ -1,7 +1,6 @@
 import React from 'react';
 import * as THREE from "three";
 import * as TWEEN from "@tweenjs/tween.js";
-import './cubeView.css';
 import {initFaces, loadAboutPages, loadProjectPages, loadContactPages} from "./CubeInit";
 import {arrowEvent, arrowHover, updateFaces, startCubeSway} from "./SceneFunctions";
 import {rotateClickEvent, hoverButtonEvent, iconClickEvent} from "./UserInteraction";
@@ -15,7 +14,7 @@ const CubeView = (props) => {
   const [resumeLink, setResumeLink] = React.useState(process.env.PUBLIC_URL + '/img/navBar/resumeLink.png');
   const [linkedInLink, setLinkedInLink] = React.useState(process.env.PUBLIC_URL + '/img/navBar/linkedin.png');
   const [visualView, setVisualView] = React.useState(process.env.PUBLIC_URL + '/img/navBar/view3D.png');
-  
+
   const [buttonImg, setButtonImg] = React.useState(process.env.PUBLIC_URL + '/img/navBar/view2D.png')
   const mount = React.useRef(null);
 
@@ -219,11 +218,12 @@ const CubeView = (props) => {
       }, false);
 
     window.addEventListener('resize', () => {
-        renderer.setSize( window.innerWidth, window.innerHeight );
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.render( scene, camera);
-      });
+
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.render( scene, camera);
+    });
 
     animate();
 
@@ -232,32 +232,6 @@ const CubeView = (props) => {
   return (
     <div className="viewContainer">
       <div className="view" ref={mount} />
-      <div className= "visualChangeWrapper">
-        <button className="button" id="backButton"
-
-          onMouseOver={() => {
-            document.getElementById("backButton").style.backgroundColor = "black";
-            document.getElementById("backButtonDesc").style.display = "block";
-            setButtonImg(process.env.PUBLIC_URL + '/img/navBar/view2D_hover.png');
-          }}
-
-          onMouseOut={() => {
-            document.getElementById("backButton").style.backgroundColor = "rgb(204, 197, 0)";
-            document.getElementById("backButtonDesc").style.display = "none";
-            setButtonImg(process.env.PUBLIC_URL + '/img/navBar/view2D.png');
-          }}
-
-          onClick={() => {
-            props.changeVisual(false);
-
-          }}>
-
-          <img className="linkImage" src={buttonImg} alt=""/>
-
-        </button>
-
-        <h5 className="tabDesc" id="backButtonDesc">Change to 2D</h5>
-      </div>
 
       <div className="navWrapper">
 

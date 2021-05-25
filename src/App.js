@@ -10,7 +10,16 @@ import * as data from './data.json';
 
 const App = () => {
 
-  const [visual3DState, setVisual3DState] = React.useState(true);
+  const [visual3DState, setVisual3DState] = React.useState(window.innerWidth<700 ? false : true);
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth < 700 || window.innerHeight < 600) {
+      setVisual3DState(false);
+    } else {
+      setVisual3DState(true);
+    }
+  });
+
 
   if (visual3DState) {
 

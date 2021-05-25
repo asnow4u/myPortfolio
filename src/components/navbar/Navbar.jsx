@@ -11,31 +11,6 @@ const Navbar = (props) => {
 
   return (
     <>
-    <div className="visualChangeWrapper">
-      <button className="button" id="visualViewButton"
-
-        onMouseOver={() => {
-          document.getElementById("visualViewButton").style.backgroundColor = "black";
-          document.getElementById("visualViewDesc").style.display = "block";
-          setVisualView(process.env.PUBLIC_URL + '/img/navBar/view3D_hover.png');
-        }}
-
-        onMouseOut={() => {
-          document.getElementById("visualViewButton").style.backgroundColor = "rgb(204, 197, 0)";
-          document.getElementById("visualViewDesc").style.display = "none";
-          setVisualView(process.env.PUBLIC_URL + '/img/navBar/view3D.png');
-        }}
-
-        onClick={() => {
-          props.changeVisual(true)
-        }}>
-
-        <img className="linkImage" src={visualView} alt=""/>
-
-      </button>
-
-      <h5 className="tabDesc" id="visualViewDesc">Change to 3D</h5>
-    </div>
 
     <div className="navWrapper">
 
