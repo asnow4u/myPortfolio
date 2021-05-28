@@ -28,6 +28,7 @@ const App = () => {
         <CubeView changeVisual={setVisual3DState} data={data}/>
       </div>
     );
+
   } else {
 
     return (
@@ -45,9 +46,9 @@ const App = () => {
           <div className="line"></div>
         </div>
         <Navbar changeVisual={setVisual3DState}/>
-        <ProfileInfo />
-        <AboutMe />
-        <Project />
+        <ProfileInfo data={data.default.main.title}/>
+        <AboutMe data={data.default.main.aboutme}/>
+        <Project data={data.default.project}/>
         <Contact />
       </div>
     );

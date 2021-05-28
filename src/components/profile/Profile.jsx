@@ -2,23 +2,21 @@ import React from 'react';
 import './profile.css';
 
 
-class ProfileInfo extends React.Component {
+const ProfileInfo = (props) => {
 
-  render() {
-    return (
-      <div className="profileInfo">
+  return (
+    <div className="profileInfo">
 
-        <div className="profileName">
-          Andrew Snow
-        </div>
-        <div className="barDivider"></div>
-        <div className="profileJob">
-          Software Engineer
-        </div>
-
+      <div className="profileName">
+        {props.data.name}
       </div>
-    );
-  }
+      <div className="barDivider"></div>
+      <div className="profileJob">
+        {props.data.jobTitle}
+      </div>
+
+    </div>
+  );
 }
 
 export default ProfileInfo;

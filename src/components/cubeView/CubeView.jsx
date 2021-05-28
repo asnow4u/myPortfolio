@@ -45,7 +45,7 @@ const CubeView = (props) => {
 
     let projectCounter = 0;
     const projectPages = [];
-    loadProjectPages(projectPages, props.data.default.projects, clickableObjects);
+    loadProjectPages(projectPages, props.data.default.project.projects, clickableObjects);
 
     let contactCounter = 0;
     const contactPages = [];

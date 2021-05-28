@@ -61,23 +61,9 @@ class Contact extends React.Component {
           </div>
           <button type="submit" className="submitButton">Send</button>
         </form>
-
       </div>
     );
   }
 }
 
 export default Contact;
-
-
-
-
-// <form className="contact-form" onSubmit={this.sendEmail}>
-//   <label>Name</label>
-//   <input type="text" name="name" />
-//   <label>Email</label>
-//   <input type="email" name="email" />
-//   <label>Message</label>
-//   <textarea name="message" />
-//   <input type="submit" value="Send" />
-// </form>

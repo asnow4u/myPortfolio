@@ -8,6 +8,7 @@
 
     "aboutme": {
       "title": "About Me",
+      "sectionTitle": "Learn About Me...",
       "discription": "I'm a software engineer and developer with a passion to create new and innovative experiences. I pride myself with my unique and diverse set of skills and ability to see a project to the end. I design, build, and test 3D environments and web based applications that enhance the users experience and provides a lasting impression.",
       "backgroundImage": "/img/project3DView/aboutBackground.png"
     },
@@ -39,103 +40,114 @@
     }
   },
 
-  "projects": [
-    {
-      "name": "SolarAR",
-      "discription": "A web application using WebXR to help visualize the solar system. Utilizes Three.js to produce the 3D environment and simulate the physics of the solar system in your own space. Developed as a collab with Intel as a means of educating children about the sun and planets.",
-      "shortDiscription": "A web application using AR \ntechnologies to visualize the \nsolar system.",
-      "webImage": [
-        "/img/project/SolarARScreenShot.png",
-        "/img/project/SolarARScreenShot1.jpg",
-        "/img/project/SolarARScreenShot2.jpg",
-        "/img/project/SolarARScreenShot3.jpg",
-        "/img/project/SolarARScreenShot4.jpg",
-        "/img/project/SolarARScreenShot5.jpg"
-      ],
-      "cubeImage": "/img/project3DView/SolarARScreenShot.png",
-      "fontSize": 0.5,
-      "color": "#ff8000",
-      "skills": [
-        "WebXR",
-        "Three.js",
-        "AR",
-        "JavaScript",
-        "3D Physics"
-      ],
-      "githubLink": "https://github.com/OSU-2019-Capstone-CS19/Educational-AR-WebXR-App",
-      "demoLink": "https://osu-2019-capstone-cs19.github.io/Educational-AR-WebXR-App/dist/"
-    },
+  "project": {
+    "sectionTitle": "Projects I've Done...",
+    "projects": [
+      {
+        "name": "SolarAR",
+        "shortDiscription": "A web application using AR \ntechnologies to visualize the \nsolar system.",
+        "cubeImage": "/img/project3DView/SolarARScreenShot.png",
+        "fontSize": 0.5,
+        "color": "#ff8000",
+        "mobile": {
+          "discription": "A web application using WebXR to help visualize the solar system. Utilizes Three.js to produce the 3D environment and simulate the physics of the solar system in your own space. Developed as a collab with Intel as a means of educating children about the sun and planets.",
+          "image": [
+            "/img/project/SolarARScreenShot.png",
+            "/img/project/SolarARScreenShot1.jpg",
+            "/img/project/SolarARScreenShot2.jpg",
+            "/img/project/SolarARScreenShot3.jpg",
+            "/img/project/SolarARScreenShot4.jpg",
+            "/img/project/SolarARScreenShot5.jpg"
+          ]
+        },
+        "skills": [
+          "WebXR",
+          "Three.js",
+          "AR",
+          "JavaScript",
+          "3D Physics"
+        ],
+        "githubLink": "https://github.com/OSU-2019-Capstone-CS19/Educational-AR-WebXR-App",
+        "demoLink": "https://osu-2019-capstone-cs19.github.io/Educational-AR-WebXR-App/dist/"
+      },
 
-    {
-      "name": "Unity VR Game",
-      "discription": "A fun take on a 2D game in virtual reality where the level is wrapped around the player. Take the role of a forest guardian and defend your homeland from fiery invaders from the top of the mountain.",
-      "shortDiscription": "A virtual reality game built in unity \nusing Oculus SDK.",
-      "webImage": [
-        "/img/project/unityGame.jpg",
-        "/img/project/unityGame1.png",
-        "/img/project/unityGame2.png",
-        "/img/project/unityGame3.png"
-      ],
-      "cubeImage": "/img/project3DView/UnityGameScreenShot.png",
-      "fontSize": 0.35,
-      "color": "#0066ff",
-      "skills": [
-        "Unity",
-        "C#",
-        "Oculus SDK",
-        "VR",
-        "Blender"
-      ],
-      "githubLink": "https://github.com/asnow4u/UnityNatureProject/",
-      "demoLink": ""
-    },
+      {
+        "name": "Unity VR Game",
+        "shortDiscription": "A virtual reality game built in unity \nusing Oculus SDK.",
+        "cubeImage": "/img/project3DView/UnityGameScreenShot.png",
+        "fontSize": 0.35,
+        "color": "#0066ff",
+        "mobile": {
+          "discription": "A fun take on a 2D game in virtual reality where the level is wrapped around the player. Take the role of a forest guardian and defend your homeland from fiery invaders from the top of the mountain.",
+          "image": [
+            "/img/project/unityGame.jpg",
+            "/img/project/unityGame1.png",
+            "/img/project/unityGame2.png",
+            "/img/project/unityGame3.png"
+          ]
+        },
+        "skills": [
+          "Unity",
+          "C#",
+          "Oculus SDK",
+          "VR",
+          "Blender"
+        ],
+        "githubLink": "https://github.com/asnow4u/UnityNatureProject/",
+        "demoLink": ""
+      },
 
-    {
-      "name": "AR Shooting Game",
-      "discription": "A unity game bringing the carnival shooting gallery game to any wall using AR technology.",
-      "shortDiscription": "An augmented reality game built \nin unity for a local gamejam.",
-      "webImage": [
-        "/img/project/ARShootingGallery.jpg",
-        "/img/project/ARShootingGallery1.jpg",
-        "/img/project/ARShootingGallery2.jpg",
-        "/img/project/ARShootingGallery3.jpg"
-      ],
-      "cubeImage": "/img/project3DView/ARShootingScreenShot.jpg",
-      "fontSize": 0.3,
-      "color": "#ff471a",
-      "skills": [
-        "Unity",
-        "C#",
-        "Mobile"
-      ],
-      "githubLink": "https://github.com/asnow4u/ShootingGalleryAR",
-      "demoLink": ""
-    },
+      {
+        "name": "AR Shooting Game",
+        "shortDiscription": "An augmented reality game built \nin unity for a local gamejam.",
+        "cubeImage": "/img/project3DView/ARShootingScreenShot.jpg",
+        "fontSize": 0.3,
+        "color": "#ff471a",
+        "mobile": {
+          "discription": "A unity game bringing the carnival shooting gallery game to any wall using AR technology.",
+          "image": [
+            "/img/project/ARShootingGallery.jpg",
+            "/img/project/ARShootingGallery1.jpg",
+            "/img/project/ARShootingGallery2.jpg",
+            "/img/project/ARShootingGallery3.jpg"
+          ]
+        },
+        "skills": [
+          "Unity",
+          "C#",
+          "Mobile"
+        ],
+        "githubLink": "https://github.com/asnow4u/ShootingGalleryAR",
+        "demoLink": ""
+      },
 
-    {
-      "name": "Portfolio",
-      "discription": "Welcome to the website your currently looking at. Built using React.js and hosted using GitPages. Explore around and feel free to contact me at the bottom of the page.",
-      "shortDiscription": "Have a look around to see what\n I've done",
-      "webImage": [
-        "/img/project/portfolioScreenshot.jpg",
-        "/img/project/portfolioScreenshot1.jpg",
-        "/img/project/portfolioScreenshot2.jpg",
-        "/img/project/portfolioScreenshot3.jpg"
-      ],
-      "cubeImage": "/img/project3DView/PortfolioScreenShot.png",
-      "fontSize": 0.5,
-      "color": "#ffff33",
-      "skills": [
-        "React",
-        "Responsive",
-        "EmailJS",
-        "JavaScript",
-        "GitPages"
-      ],
-      "githubLink": "https://github.com/asnow4u/myPortfolio/",
-      "demoLink": ""
-    }
-  ],
+      {
+        "name": "Portfolio",
+        "shortDiscription": "Have a look around to see what\n I've done",
+        "cubeImage": "/img/project3DView/PortfolioScreenShot.png",
+        "fontSize": 0.5,
+        "color": "#ffff33",
+        "mobile": {
+          "discription": "Welcome to the website your currently looking at. Built using React.js and hosted using GitPages. Explore around and feel free to contact me at the bottom of the page.",
+          "image": [
+            "/img/project/portfolioScreenshot.jpg",
+            "/img/project/portfolioScreenshot1.jpg",
+            "/img/project/portfolioScreenshot2.jpg",
+            "/img/project/portfolioScreenshot3.jpg"
+          ]
+        },
+        "skills": [
+          "React",
+          "Responsive",
+          "EmailJS",
+          "JavaScript",
+          "GitPages"
+        ],
+        "githubLink": "https://github.com/asnow4u/myPortfolio/",
+        "demoLink": ""
+      }
+    ]
+  },
 
   "contact": {
     "backgroundImage": "/img/project3DView/contactBackground.png",
