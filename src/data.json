@@ -52,12 +52,12 @@
         "mobile": {
           "discription": "A web application using WebXR to help visualize the solar system. Utilizes Three.js to produce the 3D environment and simulate the physics of the solar system in your own space. Developed as a collab with Intel as a means of educating children about the sun and planets.",
           "image": [
-            "/img/project/SolarARScreenShot.png",
-            "/img/project/SolarARScreenShot1.jpg",
-            "/img/project/SolarARScreenShot2.jpg",
-            "/img/project/SolarARScreenShot3.jpg",
-            "/img/project/SolarARScreenShot4.jpg",
-            "/img/project/SolarARScreenShot5.jpg"
+            "/img/project/solarARScreenShot.png",
+            "/img/project/solarARScreenShot1.jpg",
+            "/img/project/solarARScreenShot2.jpg",
+            "/img/project/solarARScreenShot3.jpg",
+            "/img/project/solarARScreenShot4.jpg",
+            "/img/project/solarARScreenShot5.jpg"
           ]
         },
         "skills": [

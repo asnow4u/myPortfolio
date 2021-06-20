@@ -5,29 +5,28 @@ const ExDisplay = (props) => {
 
   const [slideCounter, setSlideCounter] = React.useState(0);
 
-  // //Increment counter
-  // React.useEffect(() => {
-  //
-  //   let timer = setInterval(() => {
-  //
-  //     if (slideCounter >= props.length -1) {
-  //       setSlideCounter(0);
-  //     } else {
-  //       setSlideCounter(slideCounter + 1);
-  //     }
-  //
-  //   }, 2500);
-  //
-  //   return () => clearInterval(timer);
-  //
-  // }, [slideCounter]);
-  //
-  //
-  // //Reset counter when new project is selected
-  // React.useEffect(() => {
-  //   setSlideCounter(0);
-  // }, [props.data]);
+  //Increment counter
+  React.useEffect(() => {
 
+    let timer = setInterval(() => {
+
+      if (slideCounter >= props.length -1) {
+        setSlideCounter(0);
+      } else {
+        setSlideCounter(slideCounter + 1);
+      }
+
+    }, 2500);
+
+    return () => clearInterval(timer);
+
+  }, [slideCounter]);
+
+
+  //Reset counter when new project is selected
+  React.useEffect(() => {
+    setSlideCounter(0);
+  }, [props.data]);
 
   return (
 
