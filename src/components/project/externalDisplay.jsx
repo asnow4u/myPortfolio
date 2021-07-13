@@ -1,32 +1,8 @@
 import React from 'react';
+import GifPlayer from 'react-gif-player';
 
 
 const ExDisplay = (props) => {
-
-  const [slideCounter, setSlideCounter] = React.useState(0);
-
-  //Increment counter
-  React.useEffect(() => {
-
-    let timer = setInterval(() => {
-
-      if (slideCounter >= props.length -1) {
-        setSlideCounter(0);
-      } else {
-        setSlideCounter(slideCounter + 1);
-      }
-
-    }, 2500);
-
-    return () => clearInterval(timer);
-
-  }, [slideCounter]);
-
-
-  //Reset counter when new project is selected
-  React.useEffect(() => {
-    setSlideCounter(0);
-  }, [props.data]);
 
   return (
 
@@ -59,24 +35,34 @@ const ExDisplay = (props) => {
 
             <img className="displayButton" src={process.env.PUBLIC_URL + '/img/project/exit.png'} alt="" onClick={() => {document.getElementById("display").style.display = "none";}}/>
           </div>
-
         </div>
 
-        <img className="displayProjectImage"  src={process.env.PUBLIC_URL + props.data.mobile.image[slideCounter]} alt=""/>
+        <div className="displayInfo">
 
-        <div className="displaySkills">
+          <GifPlayer className="displayGifPlayer"
+            gif={process.env.PUBLIC_URL + props.data.mobile.image[0]}
+            autoplay={true}
+          />
 
-          {props.data.skills.map((skill, index) => {
-            return (
-              <h6 key={index} className="projectSkill"> {skill} </h6>
-            );
-          })}
+          <div className="displaySkills">
+            {props.data.skills.map((skill, index) => {
+              return (
+                <h6 key={index} className="projectSkill"> {"<" + skill + ">"} </h6>
+              );
+            })}
+          </div>
 
         </div>
-
       </div>
     </div>
   );
 }
 
 export default ExDisplay;
+
+// <GifPlayer
+//   gif={process.env.PUBLIC_URL + '/img/project/test.gif'}
+//   still={process.env.PUBLIC_URL + props.data.cubeImage}
+// />
+// <img className="displayProjectImage"  src={process.env.PUBLIC_URL + props.data.cubeImage} alt=""/>
+// <img className="displayProjectImage"  src={process.env.PUBLIC_URL + props.data.mobile.image[slideCounter]} alt=""/>

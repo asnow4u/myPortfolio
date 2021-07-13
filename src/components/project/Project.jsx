@@ -31,7 +31,7 @@ const Project = (props) => {
         })}
       </div>
 
-      <ExDisplay data={props.data.projects[displayProjectID]} length={props.data.projects[displayProjectID].mobile.image.length}/>
+      <ExDisplay data={props.data.projects[displayProjectID]}/>
 
     </div>
   );

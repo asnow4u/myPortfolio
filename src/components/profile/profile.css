@@ -1,4 +1,5 @@
 .profileInfo {
+
   width: 100%;
   height: 800px;
   text-align: center;
@@ -7,9 +8,9 @@
 }
 
 .profileName {
-  padding-top: 50%;
+  padding-top: 250px;
   padding-bottom: 20px;
-  font-size: 50px;
+  font-size: 60px;
 }
 
 .barDivider {
@@ -20,6 +21,22 @@
 }
 
 .profileJob {
-  font-size: 35px;
+  font-size: 40px;
   padding-bottom: 30px;
+}
+
+
+@media only screen and (min-width: 768px) {
+
+  .profileName {
+    font-size: 100px;
+  }
+
+  .barDivider {
+    height: 10px;
+  }
+
+  .profileJob {
+    font-size: 70px;
+  }
 }

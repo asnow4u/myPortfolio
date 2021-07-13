@@ -14,10 +14,18 @@
   margin-right: auto;
   margin-top: 5px;
   margin-bottom: 5px;
-  width: 90%;
+  padding-right: 10px;
+  width: 95%;
   height: 200px;
   overflow-y: auto;
   color: black;
   font-size: 18px;
   font-weight: 500;
+}
+
+@media only screen and (min-width: 768px) {
+
+  .bio {
+    height: 150px;
+  }
 }

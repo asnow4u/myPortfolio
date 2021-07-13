@@ -10,49 +10,51 @@ import * as data from './data.json';
 
 const App = () => {
 
-  const [visual3DState, setVisual3DState] = React.useState(window.innerWidth<700 ? false : true);
+  // const [visual3DState, setVisual3DState] = React.useState(window.innerWidth<700 ? false : true);
+  //
+  // window.addEventListener('resize', () => {
+  //   if (window.innerWidth < 700 || window.innerHeight < 600) {
+  //     setVisual3DState(false);
+  //   } else {
+  //     setVisual3DState(true);
+  //   }
+  // });
+  //
+  //
+  // if (visual3DState) {
+  //
+  //   return (
+  //     <div>
+  //       <CubeView changeVisual={setVisual3DState} data={data}/>
+  //     </div>
+  //   );
+  //
+  // } else {
 
-  window.addEventListener('resize', () => {
-    if (window.innerWidth < 700 || window.innerHeight < 600) {
-      setVisual3DState(false);
-    } else {
-      setVisual3DState(true);
-    }
-  });
-
-
-  if (visual3DState) {
-
-    return (
-      <div>
-        <CubeView changeVisual={setVisual3DState} data={data}/>
+  return (
+    <div className="wrapper">
+      <div className="backgroundLines">
+        <div className="line"></div>
+        <div className="line"></div>
+        <div className="line"></div>
+        <div className="line"></div>
+        <div className="line"></div>
+        <div className="line"></div>
+        <div className="line"></div>
+        <div className="line"></div>
+        <div className="line"></div>
+        <div className="line"></div>
       </div>
-    );
+      <Navbar />
+      <ProfileInfo data={data.default.main.title}/>
+      <AboutMe data={data.default.main.aboutme}/>
+      <Project data={data.default.project}/>
+      <Contact />
+    </div>
+  );
 
-  } else {
+  // }
 
-    return (
-      <div className="wrapper">
-        <div className="backgroundLines">
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-        </div>
-        <Navbar changeVisual={setVisual3DState}/>
-        <ProfileInfo data={data.default.main.title}/>
-        <AboutMe data={data.default.main.aboutme}/>
-        <Project data={data.default.project}/>
-        <Contact />
-      </div>
-    );
-  }
 }
 
 export default App;
