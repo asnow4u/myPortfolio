@@ -24,7 +24,7 @@ const Project = (props) => {
         {props.data.projects.map((project, index) => {
           return (
             <div key={index} className="projectTile" onClick={() => UpdateProjectDisplay(project, index)}>
-              <img className="projectImage" src={process.env.PUBLIC_URL + project.mobile.image[0]} alt="" />
+              <img className="projectImage" src={process.env.PUBLIC_URL + project.externalDisplay.image[0]} alt="" />
               <div className="projectTitle">{project.name}</div>
             </div>
           );

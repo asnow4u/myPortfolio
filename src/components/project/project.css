@@ -10,7 +10,6 @@
   width: 70%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 20px;
 }
 
 .projectTile {
@@ -45,7 +44,7 @@
   display: none;
 }
 
-.displayProject {
+.externalDisplayProject {
   width: 80%;
   height: 90%;
   margin-left: auto;
@@ -55,89 +54,86 @@
   background-color: rgb(204, 197, 0);
 }
 
-.displayTitle {
-  margin-top: 10px;
+.externalDisplayGifPlayer {
+  display: block;
+  height: 250px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  border: groove black 4px;
+}
+
+.externalDisplayGifPortraitPlayer {
+  display: block;
+  height: 250px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  border: groove black 4px;
+}
+
+.externalDisplayTitleContainer {
+  margin-top: 15px;
+  margin-bottom: 15px;
   text-align: center;
+}
+
+.externalDisplayTitle {
+  display: inline-block;
   color: black;
   font-size: 40px;
   font-weight: bold;
 }
 
-.displayDisc {
-  margin-top: 15px;
+.externalDisplayTitleButton {
+  display: inline-block;
+  height: 50px;
+  vertical-align: top;
+  padding-left: 10px;
+}
+
+.externalDisplayDisc {
   margin-left: auto;
   margin-right: auto;
   width: 90%;
-  height: 200px;
+  height: 150px;
 }
 
-.projectDisc {
+.externalProjectDisc {
   margin-left: auto;
   margin-right: auto;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 5px;
+  padding-right: 5px;
   height: 100%;
-  width: 80%;
-  float: left;
+  width: 90%;
   color: black;
   font-size: 20px;
   font-weight: 500;
+  text-align: center;
   border: solid black 3px;
   overflow-y: scroll;
 }
 
-.displayButtons {
-  width: 20%;
-  height: 100%;
-  padding-left: 5px;
-  float: right;
+.externalDisplayButtonContainer {
+  height: 100px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  text-align: center;
 }
 
 .displayButton {
-  display: block;
-  height: 30%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 7px;
+  /* width: 100px; */
+  width: 15%;
   cursor: pointer;
 }
 
-.displayInfo {
-  padding-top: 20px;
-  width: 100%;
-}
-
-.displayGifPlayer {
-  display: block;
-  float: right;
-  width: 50%;
-  height: 300px;
-  margin-right: 30px;
-  padding: 2px;
-  border: solid black 3px;
-}
-
-.displaySkills {
-  display: block;
-  height: 100%;
-  width: 30%;
-  float: left;
-  margin-top: 15px;
-  margin-left: 30px;
-}
-
-.projectSkill {
-  display: block;
-  padding-top: 5px;
-  height: 100%;
-  font-weight: bold;
-  font-size: 25px;
-  color: black;
-}
-
-
 
 @media only screen and (min-width: 768px) {
+
   .showcaseProjects {
     width: 80%;
   }
@@ -151,46 +147,39 @@
 }
 
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 850px) {
 
-  .displayDisc {
+  .externalDisplayProject {
+    margin-top: 20px;
+  }
+
+  .externalDisplayGifPlayer {
+    height: 350px;
+    width: 60%;
+  }
+
+  .externalDisplayGifPortraitPlayer {
+    height: 350px;
+    width: 280px;
+  }
+
+  .externalDisplayDisc {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
     height: 150px;
   }
 
-  .projectDisc {
-    width: 70%;
-    font-size: 25px;
-  }
-
-  .displayButtons {
-    width: 25%;
-    float: right;
+  .externalDisplayButtonContainer {
+    position: absolute;
+    height: 175px;
+    width: 70px;
+    top: 40px;
+    right: 12%;
   }
 
   .displayButton {
-    display: inline-block;
-    height: 50%;
-    width: 33%;
-    margin-top: 40px;
-  }
-
-  .displayGifPlayer {
-    width: 60%;
-    height: 350px;
-    margin-right: 45px;
-  }
-
-  .displaySkills {
-    width: 20%;
-    float: left;
-    text-align: center;
-    margin-top: 50px;
-    margin-left: 60px;
-  }
-
-  .projectSkill {
-    font-weight: bold;
-    font-size: 30px;
-    color: black;
+    width: 100%;
+    cursor: pointer;
   }
 }
